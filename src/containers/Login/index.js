@@ -9,28 +9,20 @@ import { useInjectReducer } from 'utils/inject-reducer';
 import { useInjectSaga } from 'utils/inject-saga';
 
 import Layout from 'components/Layout';
-import Features from 'components/Features';
-import SliderResponsive from 'components/Slider';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Banner from 'components/Banner';
+import Form from './Form';
 
 import saga from './saga';
 import reducer from './reducer';
 import { getShowcases } from './actions';
 import { selectShowcases } from './selectors';
 
-export function Home({ getShowcases, showcasesData }) {
+export function LoginContent({ getShowcases, showcasesData }) {
   useInjectSaga({ key: 'showcases', saga });
   useInjectReducer({ key: 'showcases', reducer });
 
   return (
     <Layout>
-      <Banner />
-      <SliderResponsive headline="Ostatnio oglądane" />
-      <SliderResponsive headline="Przeglądaj najnowsze" />
-      <Features />
-      {/* <Showcases onGetShowcases={getShowcases} data={showcasesData} /> */}
+      <Form />
     </Layout>
   );
 }
@@ -45,9 +37,9 @@ export function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-Home.propTypes = {
+LoginContent.propTypes = {
   showcasesData: PropTypes.object,
   getShowcases: PropTypes.func,
 };
 
-export default compose(withConnect, memo)(Home);
+export default compose(withConnect, memo)(LoginContent);

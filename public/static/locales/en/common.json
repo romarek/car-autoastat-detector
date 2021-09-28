@@ -1,12 +1,31 @@
 {
   "default": "Message in english",
   "languages": {
-    "es": "Spanish",
+    "pl": "Polish",
     "en": "English"
   },
   "phrases": {
-    "features": "Features",
-    "apiExample": "API example",
-    "getShowcases": "Companies / Sites using Next.js"
+    "allCars": "All cars",
+    "searchByBrands": "Search by Brands",
+    "login": "Login",
+    "register": "Register",
+    "search": "Search",
+    "category1": "Last added",
+    "category2": "Popular",
+    "category3": "Best prices",
+    "allProductsHeadline": "Przeglądaj wszystkie produkty",
+    "allProductsBrands": "Dostępne marki",
+    "submitTitle": "Submit your search query.",
+    "resetTitle": "Clear your search query.",
+    "placeholderSearch": "Search here...",
+    "addToFavourite": "Add To Favourite",
+    "footerCopyright": "All Rights Reserved",
+    "pricing": "Pricing",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "agreement": "Public agreement",
+    "cookiesAccept": "Accept",
+    "cookiesInfo": "This website uses cookies to enhance the user experience.",
+    "cookiesAdditionalInfo": "This bit of text is smaller :O"
   }
 }

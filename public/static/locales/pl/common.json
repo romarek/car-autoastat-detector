@@ -1,0 +1,12 @@
+{
+  "default": "mensaje en español",
+  "languages": {
+    "pl": "Polski",
+    "en": "Angielski"
+  },
+  "phrases": {
+    "features": "Caracteristicas",
+    "apiExample": "Ejemplo con api",
+    "getShowcases": "Empresas / Sitios que usan Next.js"
+  }
+}
