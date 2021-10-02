@@ -1,4 +1,5 @@
-    {
+[
+  {
       "Id": 1,
       "Yard number": 1,
       "Yard name": "CA - VALLEJO",
@@ -49,3 +50,4 @@
       "Trim": "POLICE INTERCEPTOR",
       "Last Updated Time": "2021-09-18T07:01:00Z"
     }
+  ]

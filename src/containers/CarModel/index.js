@@ -10,6 +10,10 @@ import { useInjectSaga } from 'utils/inject-saga';
 
 import Layout from 'components/Layout';
 import Product from 'components/Product';
+import SliderResponsive from 'components/Slider';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Fade from 'react-reveal/Fade';
 
 import saga from './saga';
 import reducer from './reducer';
@@ -22,7 +26,12 @@ export function CarContent({ getShowcases, showcasesData }) {
 
   return (
     <Layout>
-      <Product />
+      <Fade>
+        <Product />
+      </Fade>
+      <Fade>
+        <SliderResponsive headline="Ostatnio oglądane" />
+      </Fade>
     </Layout>
   );
 }

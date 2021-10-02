@@ -5,6 +5,7 @@
     "en": "English"
   },
   "phrases": {
+    "menuStart": "Start",
     "allCars": "All cars",
     "searchByBrands": "Search by Brands",
     "login": "Login",
@@ -18,6 +19,19 @@
     "submitTitle": "Submit your search query.",
     "resetTitle": "Clear your search query.",
     "placeholderSearch": "Search here...",
+    "loginPageHeader": "Login",
+    "loginPageLeadContent": "How do I get started lorem ipsum at?",
+    "loginPageEmail": "Your email address",
+    "loginPagePassword": "Your password",
+    "loginPageSafetyDeclaration": "We'll never share your email with anyone else.",
+    "loginPageResetPassword": "Reset password",
+    "registerPageHeader": "Register",
+    "registerPageLeadContent": "How do I get started lorem ipsum at?",
+    "registerPageUsername": "Your username",
+    "registerPageEmail": "Your email address",
+    "registerPagePassword": "Your password",
+    "registerPageSafetyDeclaration": "We'll never share your email with anyone else.",
+    "registerPageResetPassword": "Reset password",
     "addToFavourite": "Add To Favourite",
     "footerCopyright": "All Rights Reserved",
     "pricing": "Pricing",
@@ -26,6 +40,8 @@
     "agreement": "Public agreement",
     "cookiesAccept": "Accept",
     "cookiesInfo": "This website uses cookies to enhance the user experience.",
-    "cookiesAdditionalInfo": "This bit of text is smaller :O"
+    "cookiesAdditionalInfo": "This bit of text is smaller :O",
+    "404PageHeader": "Houston, we've got a problem!",
+    "500PageHeader": "Oooh, it could be server error!"
   }
 }

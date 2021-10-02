@@ -1,9 +1,15 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import styled from '@emotion/styled';
-
+import { keyframes } from '@emotion/react';
 import { withTranslation } from 'utils/with-i18next';
+
+import VisibilitySensor from 'react-visibility-sensor';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+// import CardSwipe from './CardSwipe';
 
 export function Features({ t }) {
   return (
@@ -12,6 +18,42 @@ export function Features({ t }) {
         <FeaturesListContainer>
           <FeaturesList>
             <FeatureItem>
+              <VisibilitySensor>
+                {({ isVisible }) => {
+                  const percentage = isVisible ? 90 : 0;
+                  return (
+                    <CircularProgressbar
+                      value={percentage}
+                      text={`${percentage}%`}
+                      styles={{
+                        root: {},
+                        path: {
+                          stroke: `rgba(198, 40, 40, ${percentage / 100})`,
+                          strokeLinecap: 'butt',
+                          transition: 'stroke-dashoffset 0.5s ease 0s',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center',
+                        },
+                        trail: {
+                          stroke: '#d6d6d6',
+                          strokeLinecap: 'butt',
+                          transform: 'rotate(0.25turn)',
+                          transformOrigin: 'center center',
+                        },
+                        // Customize the text
+                        text: {
+                          fill: '#000',
+                          fontSize: '16px',
+                        },
+                        background: {
+                          fill: '#3e98c7',
+                        },
+                      }}
+                    />
+                  );
+                }}
+              </VisibilitySensor>
+
               <Title>Find your car</Title>
 
               <Content>{t('features.seo')}</Content>
@@ -31,6 +73,7 @@ export function Features({ t }) {
           </FeaturesList>
         </FeaturesListContainer>
       </FeaturesRoot>
+      {/* <CardSwipe /> */}
     </Container>
   );
 }
@@ -50,12 +93,14 @@ const FeaturesRoot = styled('div')`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 27.136px;
+  width: 100%;
 `;
 
 const FeaturesList = styled('div')`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  width: 100%;
 `;
 
 const FeaturesListContainer = styled('div')`
@@ -70,6 +115,9 @@ const FeatureItem = styled('div')`
   background-color: #f2f2f2;
   padding: 15px;
   border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled('h3')`

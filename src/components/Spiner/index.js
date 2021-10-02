@@ -1,9 +1,9 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
+import { es } from '@emotion/react';
 
-const pulse = keyframes`
+const pulse = es`
 {
   0%{
     transform: scale(0);

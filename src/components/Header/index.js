@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import styled from '@emotion/styled';
-import { stack as Menu } from 'react-burger-menu';
 import { withTranslation } from 'utils/with-i18next';
 
 import SelectLanguages from './SelectLanguages';
@@ -12,6 +11,16 @@ import CustomLink from './CustomLink';
 import Logo from './Logo';
 import Tabs from './Tabs';
 import MenuMapExpander from './MenuMapExpander';
+import Fade from 'react-reveal';
+import Popup from 'reactjs-popup';
+import MobileMenu from './MobileMenu';
+import BurgerIcon from '../_Icons/BurgerIcon';
+
+const contentStyle = {
+  background: 'rgba(255,255,255,0)',
+  width: '80%',
+  border: 'none',
+};
 
 export function Header({ t }) {
   const [expand1, setExpand1] = useState(false);
@@ -26,24 +35,9 @@ export function Header({ t }) {
   };
   return (
     <HeaderRoot>
-      {/* <Menu>
-        <a id="home" className="menu-item" href="/">
-          Home
-        </a>
-        <a id="about" className="menu-item" href="/about">
-          About
-        </a>
-        <a id="contact" className="menu-item" href="/contact">
-          Contact
-        </a>
-      </Menu> */}
       <HeaderContainer>
         <NavRoot>
-          <Logo
-            href="/"
-            src="https://autoastat.com/build/images/logo_temp_desktop.37bb5de7.svg"
-            alt="react-next-boilerplate"
-          />
+          <Logo href="/" src="https://autoastat.com/build/images/logo_temp_desktop.37bb5de7.svg" alt="Logo" />
           <ListItem>
             <div onClick={() => expandMenu1()}>
               <CustomLink name={t('phrases.allCars')} />
@@ -53,45 +47,58 @@ export function Header({ t }) {
             </div>
           </ListItem>
           <Space />
-
           <ListActions>
             <SelectLanguages t={t} style={{ paddingRight: 10 }} />
             <CustomButtonLight href={'/register'} name={t('phrases.register')} />
             <CustomButtonFilled href={'/login'} name={t('phrases.login')} />
           </ListActions>
+          <MobileActions>
+            <Popup
+              modal
+              overlayStyle={{ background: 'rgba(255,255,255,0.98)' }}
+              contentStyle={contentStyle}
+              closeOnDocumentClick={false}
+              trigger={open => <BurgerIcon open={open} />}>
+              {close => <MobileMenu close={close} />}
+            </Popup>
+          </MobileActions>
         </NavRoot>
       </HeaderContainer>
       {expand1 && (
-        <HeaderExpander>
-          <HeadlineSection>{t('phrases.allCars')}</HeadlineSection>
-          <Tabs>
-            <TabItem label={t('phrases.category1')}>
-              <MenuMapExpander />
-            </TabItem>
-            <TabItem label={t('phrases.category2')}>
-              <MenuMapExpander />
-            </TabItem>
-            <TabItem label={t('phrases.category3')}>
-              <MenuMapExpander />
-            </TabItem>
-          </Tabs>
-        </HeaderExpander>
+        <Fade>
+          <HeaderExpander>
+            <HeadlineSection>{t('phrases.allCars')}</HeadlineSection>
+            <Tabs>
+              <TabItem label={t('phrases.category1')}>
+                <MenuMapExpander />
+              </TabItem>
+              <TabItem label={t('phrases.category2')}>
+                <MenuMapExpander />
+              </TabItem>
+              <TabItem label={t('phrases.category3')}>
+                <MenuMapExpander />
+              </TabItem>
+            </Tabs>
+          </HeaderExpander>
+        </Fade>
       )}
       {expand2 && (
-        <HeaderExpander>
-          <HeadlineSection>{t('phrases.searchByBrands')}</HeadlineSection>
-          <Tabs>
-            <TabItem label={t('phrases.category1')}>
-              <MenuMapExpander />
-            </TabItem>
-            <TabItem label={t('phrases.category2')}>
-              <MenuMapExpander />
-            </TabItem>
-            <TabItem label={t('phrases.category3')}>
-              <MenuMapExpander />
-            </TabItem>
-          </Tabs>
-        </HeaderExpander>
+        <Fade>
+          <HeaderExpander>
+            <HeadlineSection>{t('phrases.searchByBrands')}</HeadlineSection>
+            <Tabs>
+              <TabItem label={t('phrases.category1')}>
+                <MenuMapExpander />
+              </TabItem>
+              <TabItem label={t('phrases.category2')}>
+                <MenuMapExpander />
+              </TabItem>
+              <TabItem label={t('phrases.category3')}>
+                <MenuMapExpander />
+              </TabItem>
+            </Tabs>
+          </HeaderExpander>
+        </Fade>
       )}
     </HeaderRoot>
   );
@@ -126,14 +133,28 @@ const NavRoot = styled('nav')`
   max-width: 1024px;
 `;
 
+const MobileActions = styled('div')`
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+    padding-right: 15px;
+  }
+`;
+
 const ListItem = styled('div')`
   display: flex;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ListActions = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Space = styled('div')`

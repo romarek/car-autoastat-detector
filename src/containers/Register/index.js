@@ -9,7 +9,7 @@ import { useInjectReducer } from 'utils/inject-reducer';
 import { useInjectSaga } from 'utils/inject-saga';
 
 import Layout from 'components/Layout';
-import Form from './Form';
+import FormRegister from './Form';
 
 import saga from './saga';
 import reducer from './reducer';
@@ -22,7 +22,7 @@ export function RegisterContent({ getShowcases, showcasesData }) {
 
   return (
     <Layout>
-      <Form />
+      <FormRegister />
     </Layout>
   );
 }

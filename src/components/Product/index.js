@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import styled from '@emotion/styled';
 import { withTranslation } from 'utils/with-i18next';
 import Lightbox from 'react-awesome-lightbox';
 import 'react-awesome-lightbox/build/style.css';
-
-import Header from './Header';
 import customData from './customdata.json';
+import RenderList from './RenderingData';
+import Header from './Header';
 
 export function Product({ t }) {
   const [count, setCount] = useState(0);
   const [lightboxVisible, setLightboxVisible] = useState(false);
-  const imageClick = () => {
+  function imageClick(e) {
+    e.preventDefault();
     setCount(1);
     setLightboxVisible(true);
     console.log(`${count} ${lightboxVisible}`);
-  };
-  const data = JSON.stringify(customData);
+  }
+  function galleryClose(e) {
+    e.preventDefault();
+    setLightboxVisible(false);
+  }
   const images = [
     {
       url:
@@ -38,7 +41,7 @@ export function Product({ t }) {
             <PhotoBlock>
               <PhotoContainer>
                 <LightboxContainer style={{ display: lightboxVisible === false ? 'none' : 'block' }}>
-                  <Lightbox images={images} startIndex={0} />
+                  <Lightbox images={images} startIndex={0} onClose={galleryClose} />
                 </LightboxContainer>
                 <PhotoItem
                   src={
@@ -52,18 +55,21 @@ export function Product({ t }) {
                     'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/2-d9d27dc81bc1423e8b7d15697ccb4863-lot_thumb_watermark.jpg'
                   }
                   alt=""
+                  onClick={imageClick}
                 />
                 <PhotoItem
                   src={
                     'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/3-5a6f9a2c53f3c16233e9077078c39cf4-lot_thumb_watermark.jpg'
                   }
                   alt=""
+                  onClick={imageClick}
                 />
                 <PhotoItem
                   src={
                     'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/4-fae31871677b1bfd4e312a0de5121a7c-lot_thumb_watermark.jpg'
                   }
                   alt=""
+                  onClick={imageClick}
                 />
               </PhotoContainer>
             </PhotoBlock>
@@ -71,26 +77,23 @@ export function Product({ t }) {
               <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <ParametersBlock>
                 <ParametersContent />
-                {data}
+                <RenderList data={customData} />
               </ParametersBlock>
             </BasicInfoBlock>
           </FeaturesList>
           <FeaturesList>
             <FeatureItem>
-              <Title>Find your car</Title>
-
+              <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <Content>{t('features.seo')}</Content>
             </FeatureItem>
 
             <FeatureItem>
-              <Title>Check your car</Title>
-
+              <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <Content>{t('features.reduxSaga')}</Content>
             </FeatureItem>
 
             <FeatureItem>
-              <Title>Buy extra plan</Title>
-
+              <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <Content>{t('features.nextI18next')}</Content>
             </FeatureItem>
           </FeaturesList>

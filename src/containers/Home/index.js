@@ -10,10 +10,11 @@ import { useInjectSaga } from 'utils/inject-saga';
 
 import Layout from 'components/Layout';
 import Features from 'components/Features';
+import Banner from 'components/Banner';
 import SliderResponsive from 'components/Slider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Banner from 'components/Banner';
+import Fade from 'react-reveal/Fade';
 
 import saga from './saga';
 import reducer from './reducer';
@@ -26,9 +27,15 @@ export function Home({ getShowcases, showcasesData }) {
 
   return (
     <Layout>
-      <Banner />
-      <SliderResponsive headline="Ostatnio oglądane" />
-      <SliderResponsive headline="Przeglądaj najnowsze" />
+      <Fade>
+        <Banner />
+      </Fade>
+      <Fade>
+        <SliderResponsive headline="Ostatnio oglądane" />
+      </Fade>
+      <Fade>
+        <SliderResponsive headline="Przeglądaj najnowsze" />
+      </Fade>
       <Features />
       {/* <Showcases onGetShowcases={getShowcases} data={showcasesData} /> */}
     </Layout>

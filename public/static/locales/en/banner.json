@@ -1,5 +1,7 @@
 {
   "title": "Best sales history search service",
   "subTitle": "Sales history with prices and images from the best vehicle auctions of USA - COPART and IAAI.",
-  "search": "Search"
+  "search": "Search",
+  "expandParams": "Expand parameters",
+  "compressParams": "Hide parameters"
 }

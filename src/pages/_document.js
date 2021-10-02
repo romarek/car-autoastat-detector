@@ -35,6 +35,68 @@ class MyDocument extends Document {
               font-family: 'Gilroy Bold';
               scroll-behaviour: smooth;
             }
+            .link-style {
+              color: black;
+              text-decoration: none;
+            }
+            .burger-menu,
+            .burger-menu.open {
+              display: inline-block;
+              cursor: pointer;
+              z-index: 9999;
+              background: #fff;
+              padding: 10px;
+              border-radius: 25px;
+              box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .burger-menu .bar1,
+            .bar2,
+            .bar3 {
+              width: 25px;
+              height: 3px;
+              background-color: #333;
+              margin: 4px 0;
+              transition: 0.4s;
+            }
+
+            .burger-menu.open .bar1 {
+              -webkit-transform: rotate(-45deg) translate(-4px, 4px);
+              transform: rotate(-45deg) translate(-4px, 4px);
+            }
+
+            .burger-menu.open .bar2 {
+              opacity: 0;
+            }
+
+            .burger-menu.open .bar3 {
+              -webkit-transform: rotate(45deg) translate(-6px, -6px);
+              transform: rotate(45deg) translate(-6px, -6px);
+            }
+
+            /* Menu */
+
+            .menu {
+              width: 100%;
+              display: block;
+              text-align: center;
+              padding: 0px;
+            }
+            .menu ul {
+              position: relative;
+              top: 0px;
+              font-size: 24px;
+              padding: 0px;
+            }
+            .menu li {
+              list-style: outside none none;
+              margin: 10px 0px;
+              padding: 0;
+              cursor: pointer;
+            }
+            .menu li:hover {
+              color: #ff0000;
+            }
             .tab-list-active {
               background-color: #f5f5f5;
               color: black;
@@ -91,6 +153,12 @@ class MyDocument extends Document {
               color: #888;
               font-size: 14px;
               margin-bottom: 0.5em;
+            }
+            .slick-dots li {
+              margin: 0 12px;
+            }
+            .slick-dots li.slick-active div {
+              background-color: black !important;
             }
           `}
         />

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { withTranslation } from 'utils/with-i18next';
 import CookieConsent, { Cookies } from 'react-cookie-consent';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-
-import { withTranslation } from 'utils/with-i18next';
 
 export function Layout({ children, t }) {
   return (
     <>
       <Header />
 
-      <main>{children}</main>
+      <Main>{children}</Main>
 
       <Footer />
       <CookieConsent
@@ -42,5 +42,9 @@ Layout.propTypes = {
   children: PropTypes.node,
   t: PropTypes.func,
 };
+
+const Main = styled('main')`
+  width: 100%;
+`;
 
 export default withTranslation('common')(Layout);

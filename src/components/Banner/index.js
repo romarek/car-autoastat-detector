@@ -5,6 +5,7 @@ import makeAnimated from 'react-select/animated';
 import styled from '@emotion/styled';
 
 import { withTranslation } from 'utils/with-i18next';
+import Collapsible from 'react-collapsible';
 const animatedComponents = makeAnimated();
 
 export function Banner({ t }) {
@@ -32,64 +33,71 @@ export function Banner({ t }) {
               pattern="^(?=.*[0-9])(?=.*[A-z])[0-9A-z-]{17}$"
               placeholder="e.g. AB^DF31U100027743"
             />
-            <SearchButton type="submit">{t('phrases.search')}</SearchButton>
+            <SearchButton type="submit">{t('search')}</SearchButton>
           </SearchRow>
-          <SearchRow>
-            <SelectBlockCount4>
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                defaultValue={[typeOptions[4]]}
-                isMulti
-                options={typeOptions}
-                value={type}
-                onChange={type => setType(type)}
-              />
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                defaultValue={[makeOptions[5]]}
-                isMulti
-                options={makeOptions}
-              />
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                defaultValue={[modelOptions[3]]}
-                isMulti
-                options={modelOptions}
-              />
-              <DivideBlock>
-                <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
-                <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
-              </DivideBlock>
-            </SelectBlockCount4>
-          </SearchRow>
-          <SearchRow>
-            <SelectBlockCount3>
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                defaultValue={[colourOptions[5]]}
-                isMulti
-                options={colourOptions}
-              />
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                defaultValue={[colourOptions[4]]}
-                isMulti
-                options={colourOptions}
-              />
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                defaultValue={[colourOptions[5]]}
-                isMulti
-                options={colourOptions}
-              />
-            </SelectBlockCount3>
-          </SearchRow>
+          <Collapsible
+            trigger={t('expandParams')}
+            triggerWhenOpen={t('compressParams')}
+            triggerStyle={{ cursor: 'pointer', userSelect: 'none' }}
+            easing="ease-in-out"
+            open={true}>
+            <SearchRow>
+              <SelectBlockCount4>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={[typeOptions[4]]}
+                  isMulti
+                  options={typeOptions}
+                  value={type}
+                  onChange={type => setType(type)}
+                />
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={[makeOptions[5]]}
+                  isMulti
+                  options={makeOptions}
+                />
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={[modelOptions[3]]}
+                  isMulti
+                  options={modelOptions}
+                />
+                <DivideBlock>
+                  <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
+                  <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
+                </DivideBlock>
+              </SelectBlockCount4>
+            </SearchRow>
+            <SearchRow>
+              <SelectBlockCount3>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={[colourOptions[5]]}
+                  isMulti
+                  options={colourOptions}
+                />
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={[colourOptions[4]]}
+                  isMulti
+                  options={colourOptions}
+                />
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={[colourOptions[5]]}
+                  isMulti
+                  options={colourOptions}
+                />
+              </SelectBlockCount3>
+            </SearchRow>
+          </Collapsible>
         </SendRequestForm>
       </Container>
     </BannerRoot>
@@ -146,6 +154,10 @@ const BannerRoot = styled('div')`
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0px 15px;
+  }
 `;
 
 const Title = styled('h1')`
@@ -160,6 +172,9 @@ const SubTitle = styled('h2')`
 
 const Logo = styled('img')`
   max-width: 440px;
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const Container = styled('div')`
@@ -167,12 +182,20 @@ const Container = styled('div')`
   text-align: center;
 `;
 
-const SendRequestForm = styled('form')``;
+const SendRequestForm = styled('form')`
+  position: relative;
+  z-index: 100;
+`;
 
 const SearchRow = styled('div')`
   display: flex;
   flex-flow: row wrap;
   max-width: 1280px;
+  justify-content: center;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    width: 100%;
+  }
 `;
 
 const VinInput = styled('input')`
@@ -209,6 +232,9 @@ const SearchButton = styled('button')`
 const SelectBlock = styled('div')`
   display: flex;
   flex-flow: row nowrap;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+  }
   width: 100%;
   margin: 10px 0px;
   & > div div {
@@ -221,12 +247,20 @@ const SelectBlockCount4 = styled(SelectBlock)`
   & > div {
     width: 25%;
     padding: 0px 5px;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
 `;
 
 const SelectBlockCount3 = styled(SelectBlock)`
   & > div {
     width: calc(100% / 3);
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 10px;
+    }
     padding: 0px 5px;
   }
 `;

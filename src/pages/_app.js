@@ -8,6 +8,7 @@ import App from 'next/app';
 import withReduxStore from 'utils/with-redux-store';
 import { appWithTranslation } from 'utils/with-i18next';
 
+import { AnimateSharedLayout } from "framer-motion";
 import withDarkMode from 'next-dark-mode';
 
 import 'fontsource-metropolis';
@@ -23,7 +24,9 @@ class Srr extends App {
         </Head>
         <RestfulProvider base="http://localhost:8081/api">
           <Provider store={reduxStore}>
-            <Component {...pageProps} />
+            <AnimateSharedLayout>
+              <Component {...pageProps} />
+            </AnimateSharedLayout>
           </Provider>
         </RestfulProvider>
       </React.StrictMode>
