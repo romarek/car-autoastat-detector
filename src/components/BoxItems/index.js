@@ -4,13 +4,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import axios from 'axios';
-import Slider from 'react-slick';
 import { css } from '@emotion/react';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
 import ActionButton from './ActionButton';
-import ArrowLeftIcon from '../_Icons/ArrowLeft';
-import ArrowRightIcon from '../_Icons/ArrowRight';
 
 const override = css`
   display: block;
@@ -18,7 +15,7 @@ const override = css`
   border-color: red;
 `;
 
-export default function SliderResponsive(props) {
+export default function BoxItemsResponsive(props) {
   const [carResults, setCarResults] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -34,63 +31,13 @@ export default function SliderResponsive(props) {
         console.log(error);
       });
   }, []);
-  const settings = {
-    dots: true,
-    infinite: true,
-    draggable: true,
-    touchMove: true,
-    touchTreshold: 1,
-    lazyLoad: 'progressive',
-    speed: 500,
-    autoplay: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    initialSlide: 0,
-    arrows: true,
-    nextArrow: <ArrowRightIcon />,
-    prevArrow: <ArrowLeftIcon />,
-    appendDots: dots => {
-      return (
-        <DotsBlock>
-          <DotsList> {dots} </DotsList>
-        </DotsBlock>
-      );
-    },
-    customPaging: i => <TouchableDot>{i + 1}</TouchableDot>,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
   return (
     <SliderContainer>
       <h2> {props.headline} </h2>
       {loading ? (
         <ScaleLoader loading={loading} css={override} size={150} />
       ) : (
-        <Slider {...settings} style={{ maxWidth: '100%' }}>
+        <BoxItems>
           {carResults.map(car => (
             <BoilerplateImage key={car.VIN}>
               <ContainerItems>
@@ -109,13 +56,13 @@ export default function SliderResponsive(props) {
               </ContainerItems>
             </BoilerplateImage>
           ))}
-        </Slider>
+        </BoxItems>
       )}
     </SliderContainer>
   );
 }
 
-SliderResponsive.propTypes = {
+BoxItemsResponsive.propTypes = {
   headline: PropTypes.string,
 };
 
@@ -136,6 +83,11 @@ const BoilerplateImage = styled('div')`
 
 const ContainerItems = styled('div')`
   padding-right: 15px;
+`;
+
+const BoxItems = styled('div')`
+  display: flex;
+  flex-flow: row wrap;
 `;
 
 const ImageItem = styled('img')`
@@ -166,27 +118,4 @@ const ButtonsContainer = styled('div')`
   gap: 10px;
   width: 100%;
   margin-top: 15px;
-`;
-
-const DotsBlock = styled('div')``;
-
-const DotsList = styled('ul')``;
-
-const TouchableDot = styled('div')`
-  background-color: rgba(198, 40, 40, 1);
-  color: white;
-  font-family: 'Gilroy Bold';
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  width: 20px;
-  aspect-ratio: 1;
-  border-radius: 10px;
-  &:hover {
-    background-color: rgba(198, 40, 40, 0.5);
-    transition: 0.25s ease-out;
-  }
 `;

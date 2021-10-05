@@ -8,7 +8,7 @@ import App from 'next/app';
 import withReduxStore from 'utils/with-redux-store';
 import { appWithTranslation } from 'utils/with-i18next';
 
-import { AnimateSharedLayout } from "framer-motion";
+import { AnimateSharedLayout } from 'framer-motion';
 import withDarkMode from 'next-dark-mode';
 
 import 'fontsource-metropolis';

@@ -1,5 +1,6 @@
 {
   "features": {
+    "title": "The advantage of this approach",
     "seo": "The advantage of this approach is the ability to create Rich User experiences in a uniform way, without compromising Search Engine Optimisation (SEO) factors, which are key to a good ranking on Google and other search engines.",
     "reduxSaga": "Is a library that aims to make application side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) easier to manage, more efficient to execute, easy to test, and better at handling failures.",
     "nextI18next": "Is a plugin for Next.js projects that allows you to get translations up and running quickly and easily, while fully supporting SSR, multiple namespaces with code splitting, etc.",

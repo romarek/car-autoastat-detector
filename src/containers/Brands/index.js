@@ -9,7 +9,7 @@ import { useInjectReducer } from 'utils/inject-reducer';
 import { useInjectSaga } from 'utils/inject-saga';
 
 import Layout from 'components/Layout';
-import Product from 'components/Product';
+import BoxItemsResponsive from 'components/BoxItems';
 import SliderResponsive from 'components/Slider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -21,21 +21,22 @@ import reducer from './reducer';
 import { getShowcases } from './actions';
 import { selectShowcases } from './selectors';
 
-export function CarContent({ getShowcases, showcasesData }) {
+export function Brands({ getShowcases, showcasesData }) {
   useInjectSaga({ key: 'showcases', saga });
   useInjectReducer({ key: 'showcases', reducer });
 
   return (
     <Layout>
       <Fade>
-        <Product />
+        <BoxItemsResponsive />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Ostatnio oglądane" />
+        <SliderResponsive headline="Przeglądaj najnowsze" />
       </Fade>
       <Fade>
         <Newsletter />
       </Fade>
+      {/* <Showcases onGetShowcases={getShowcases} data={showcasesData} /> */}
     </Layout>
   );
 }
@@ -50,9 +51,9 @@ export function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-CarContent.propTypes = {
+Brands.propTypes = {
   showcasesData: PropTypes.object,
   getShowcases: PropTypes.func,
 };
 
-export default compose(withConnect, memo)(CarContent);
+export default compose(withConnect, memo)(Brands);

@@ -14,62 +14,55 @@ import 'react-circular-progressbar/dist/styles.css';
 export function Features({ t }) {
   return (
     <Container id="features">
+      <SectionHeadline>{t('features.title')}</SectionHeadline>
       <FeaturesRoot>
         <FeaturesListContainer>
           <FeaturesList>
-            <FeatureItem>
-              <VisibilitySensor>
-                {({ isVisible }) => {
-                  const percentage = isVisible ? 90 : 0;
-                  return (
-                    <CircularProgressbar
-                      value={percentage}
-                      text={`${percentage}%`}
-                      styles={{
-                        root: {},
-                        path: {
-                          stroke: `rgba(198, 40, 40, ${percentage / 100})`,
-                          strokeLinecap: 'butt',
-                          transition: 'stroke-dashoffset 0.5s ease 0s',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center',
-                        },
-                        trail: {
-                          stroke: '#d6d6d6',
-                          strokeLinecap: 'butt',
-                          transform: 'rotate(0.25turn)',
-                          transformOrigin: 'center center',
-                        },
-                        // Customize the text
-                        text: {
-                          fill: '#000',
-                          fontSize: '16px',
-                        },
-                        background: {
-                          fill: '#3e98c7',
-                        },
-                      }}
-                    />
-                  );
-                }}
-              </VisibilitySensor>
+            {[...Array(3)].map(index => (
+              <FeatureItem key={index}>
+                <VisibilitySensor>
+                  {({ isVisible }) => {
+                    const percentage = isVisible ? 90 : 0;
+                    return (
+                      <CircularProgressbar
+                        value={percentage}
+                        text={`${percentage}%`}
+                        styles={{
+                          root: {
+                            width: '100%',
+                          },
+                          path: {
+                            stroke: `rgba(198, 40, 40, ${percentage / 100})`,
+                            strokeLinecap: 'butt',
+                            transition: 'stroke-dashoffset 0.5s ease 0s',
+                            transform: 'rotate(0.25turn)',
+                            transformOrigin: 'center center',
+                          },
+                          trail: {
+                            stroke: '#d6d6d6',
+                            strokeLinecap: 'butt',
+                            transform: 'rotate(0.25turn)',
+                            transformOrigin: 'center center',
+                          },
+                          // Customize the text
+                          text: {
+                            fill: '#000',
+                            fontSize: '16px',
+                          },
+                          background: {
+                            fill: '#3e98c7',
+                          },
+                        }}
+                      />
+                    );
+                  }}
+                </VisibilitySensor>
 
-              <Title>Find your car</Title>
+                <Title>Find your car</Title>
 
-              <Content>{t('features.seo')}</Content>
-            </FeatureItem>
-
-            <FeatureItem>
-              <Title>Check your car</Title>
-
-              <Content>{t('features.reduxSaga')}</Content>
-            </FeatureItem>
-
-            <FeatureItem>
-              <Title>Buy extra plan</Title>
-
-              <Content>{t('features.nextI18next')}</Content>
-            </FeatureItem>
+                <Content>{t('features.seo')}</Content>
+              </FeatureItem>
+            ))}
           </FeaturesList>
         </FeaturesListContainer>
       </FeaturesRoot>
@@ -120,11 +113,17 @@ const FeatureItem = styled('div')`
   }
 `;
 
+const SectionHeadline = styled('h1')`
+  text-align: center;
+`;
+
 const Title = styled('h3')`
   font-size: 20px;
-  font-family: 'Metropolis';
+  font-family: 'Gilroy Bold';
   font-weight: 600;
+  text-align: center;
   margin: 0;
+  padding-top: 15px;
 `;
 
 const Content = styled('p')`

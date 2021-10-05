@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withTranslation } from 'utils/with-i18next';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+
 import Lightbox from 'react-awesome-lightbox';
 import 'react-awesome-lightbox/build/style.css';
 import customData from './customdata.json';
@@ -9,8 +12,29 @@ import RenderList from './RenderingData';
 import Header from './Header';
 
 export function Product({ t }) {
+  const router = useRouter();
+  const [product, setProduct] = useState([]);
   const [count, setCount] = useState(0);
   const [lightboxVisible, setLightboxVisible] = useState(false);
+  useEffect(() => {
+    async function getProductByVin() {
+      const { vin } = router.query;
+      await axios
+        .get(`http://localhost:8080/api/salesdata/vin/${vin}`)
+        .then(res => {
+          console.log(vin);
+          console.log(res.data);
+          setProduct(res.data);
+          // eslint-disable-next-line no-console
+          console.log(product);
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        });
+    }
+    getProductByVin();
+  }, []);
   function imageClick(e) {
     e.preventDefault();
     setCount(1);
@@ -74,27 +98,179 @@ export function Product({ t }) {
               </PhotoContainer>
             </PhotoBlock>
             <BasicInfoBlock>
-              <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <Title>
+                {product.Make !== undefined ? product.Make : t('noMoreInfo')}
+                {product.ModelDetail !== undefined ? product.ModelDetail + ' ' : ''}
+                {product.Color !== undefined ? product.Color + ' ' : ''}
+                {product.Engine !== undefined ? product.Engine + ' ' : ''}
+              </Title>
+              <Header title={t('bid')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <ParametersBlock>
-                <ParametersContent />
-                <RenderList data={customData} />
+                <ParametersContent>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                </ParametersContent>
+                {/* <RenderList data={customData} /> */}
               </ParametersBlock>
             </BasicInfoBlock>
           </FeaturesList>
           <FeaturesList>
             <FeatureItem>
-              <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
-              <Content>{t('features.seo')}</Content>
+              <Header title={t('vehicle')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <ParametersBlock>
+                <ParametersContent>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                </ParametersContent>
+                {/* <RenderList data={customData} /> */}
+              </ParametersBlock>
             </FeatureItem>
 
             <FeatureItem>
-              <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
-              <Content>{t('features.reduxSaga')}</Content>
+              <Header title={t('accident')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <ParametersBlock>
+                <ParametersContent>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                </ParametersContent>
+                {/* <RenderList data={customData} /> */}
+              </ParametersBlock>
             </FeatureItem>
 
             <FeatureItem>
-              <Header title={t('category2')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
-              <Content>{t('features.nextI18next')}</Content>
+              <Header title={t('auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <ParametersBlock>
+                <ParametersContent>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                </ParametersContent>
+                {/* <RenderList data={customData} /> */}
+              </ParametersBlock>
+            </FeatureItem>
+          </FeaturesList>
+          <FeaturesList>
+            <FeatureItem style={{ width: '100%' }}>
+              <Header title={t('auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <ParametersBlock>
+                <ParametersContent>
+                  <ParametersRow>
+                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                </ParametersContent>
+              </ParametersBlock>
             </FeatureItem>
           </FeaturesList>
         </FeaturesListContainer>
@@ -112,28 +288,35 @@ const Container = styled('div')`
   margin: 0 auto;
   padding: 6rem 1rem;
   max-width: 1024px;
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    margin: unset;
+  }
 `;
 
 const FeaturesRoot = styled('div')`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 27.136px;
+  display: flex;
 `;
 
 const FeaturesList = styled('div')`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
+  @media (max-width: 768px) {
+    flex-flow: column;
+  }
 `;
 
 const FeaturesListContainer = styled('div')`
-  grid-column: 1 / span 12;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
 `;
 
 const FeatureBlock = styled('div')`
   display: flex;
   flex-direction: column;
-  margin-bottom: 72px;
+  margin-bottom: 15px;
   background-color: #f2f2f2;
   padding: 15px;
   border-radius: 10px;
@@ -149,10 +332,11 @@ const FeatureItem = styled(FeatureBlock)`
 
 const PhotoBlock = styled(FeatureBlock)`
   width: 50%;
+  margin-right: 15px;
 `;
 
 const BasicInfoBlock = styled(FeatureBlock)`
-  width: 50%;
+  width: calc(50% - 15px);
   margin-right: 0px;
 `;
 
@@ -194,5 +378,21 @@ const PhotoItem = styled('img')`
 const ParametersBlock = styled('div')``;
 
 const ParametersContent = styled('div')``;
+
+const ParametersRow = styled('div')`
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 10px;
+`;
+
+const ParametersCell = styled('div')`
+  &:nth-of-type(1) {
+    width: 30%;
+    color: gray;
+  }
+  &:nth-of-type(2) {
+    width: 70%;
+  }
+`;
 
 export default withTranslation('common')(Product);

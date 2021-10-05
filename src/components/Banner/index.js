@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import styled from '@emotion/styled';
+import axios from 'axios';
+import Link from 'next/link';
 
 import { withTranslation } from 'utils/with-i18next';
 import Collapsible from 'react-collapsible';
@@ -10,13 +12,13 @@ const animatedComponents = makeAnimated();
 
 export function Banner({ t }) {
   const [numberVin, setNumberVin] = useState('');
-  const [type, setType] = useState(null);
-  const [model, setModel] = useState(null);
-  const [startYear, setStartYear] = useState(null);
-  const [endYear, setEndYear] = useState(null);
+  const [type, setType] = useState('');
+  const [model, setModel] = useState('');
+  const [startYear, setStartYear] = useState('');
+  const [endYear, setEndYear] = useState('');
   function handleSubmit(e) {
     e.preventDefault();
-    alert(numberVin, type);
+    alert(`Pokaż mi VIN: ${numberVin} i typ: ${type}`);
   }
   return (
     <BannerRoot>
@@ -33,68 +35,101 @@ export function Banner({ t }) {
               pattern="^(?=.*[0-9])(?=.*[A-z])[0-9A-z-]{17}$"
               placeholder="e.g. AB^DF31U100027743"
             />
-            <SearchButton type="submit">{t('search')}</SearchButton>
+            <SearchButton type="submit">
+              {numberVin.length > 0 ? (
+                <Link href={`/car-model/${numberVin}`}>{t('searchByVin')}</Link>
+              ) : (
+                <Link href="/">{t('searchByParams')}</Link>
+              )}
+            </SearchButton>
           </SearchRow>
           <Collapsible
+            lazyRender
+            open={true}
             trigger={t('expandParams')}
             triggerWhenOpen={t('compressParams')}
             triggerStyle={{ cursor: 'pointer', userSelect: 'none' }}
-            easing="ease-in-out"
-            open={true}>
+            easing="ease-in-out">
             <SearchRow>
               <SelectBlockCount4>
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  defaultValue={[typeOptions[4]]}
-                  isMulti
-                  options={typeOptions}
-                  value={type}
-                  onChange={type => setType(type)}
-                />
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  defaultValue={[makeOptions[5]]}
-                  isMulti
-                  options={makeOptions}
-                />
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  defaultValue={[modelOptions[3]]}
-                  isMulti
-                  options={modelOptions}
-                />
+                <FormControl>
+                  <Label>{t('typeLabel')}</Label>
+                  <Select
+                    inputId={'type'}
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    defaultValue={[typeOptions[4]]}
+                    isMulti
+                    options={typeOptions}
+                    value={type}
+                    onChange={type => setType(type)}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                  />
+                </FormControl>
+                <FormControl>
+                  <Label>{t('typeLabel')}</Label>
+                  <Select
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    defaultValue={[makeOptions[5]]}
+                    isMulti
+                    options={makeOptions}
+                  />
+                </FormControl>
+                <FormControl>
+                  <Label>{t('typeLabel')}</Label>
+                  <Select
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    defaultValue={[modelOptions[3]]}
+                    isMulti
+                    options={modelOptions}
+                  />
+                </FormControl>
                 <DivideBlock>
-                  <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
-                  <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
+                  <FormControl>
+                    <Label>{t('typeLabel')}</Label>
+                    <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
+                  </FormControl>
+                  <FormControl>
+                    <Label>{t('typeLabel')}</Label>
+                    <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
+                  </FormControl>
                 </DivideBlock>
               </SelectBlockCount4>
             </SearchRow>
             <SearchRow>
               <SelectBlockCount3>
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  defaultValue={[colourOptions[5]]}
-                  isMulti
-                  options={colourOptions}
-                />
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  defaultValue={[colourOptions[4]]}
-                  isMulti
-                  options={colourOptions}
-                />
-                <Select
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  defaultValue={[colourOptions[5]]}
-                  isMulti
-                  options={colourOptions}
-                />
+                <FormControl>
+                  <Label>{t('typeLabel')}</Label>
+                  <Select
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    defaultValue={[colourOptions[5]]}
+                    isMulti
+                    options={colourOptions}
+                  />
+                </FormControl>
+                <FormControl>
+                  <Label>{t('typeLabel')}</Label>
+                  <Select
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    defaultValue={[colourOptions[4]]}
+                    isMulti
+                    options={colourOptions}
+                  />
+                </FormControl>
+                <FormControl>
+                  <Label>{t('typeLabel')}</Label>
+                  <Select
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    defaultValue={[colourOptions[5]]}
+                    isMulti
+                    options={colourOptions}
+                  />
+                </FormControl>
               </SelectBlockCount3>
             </SearchRow>
           </Collapsible>
@@ -224,8 +259,20 @@ const SearchButton = styled('button')`
   border-radius: 10px;
   &:hover {
     background-color: transparent;
+  }
+  &:hover,
+  &:hover a {
     color: #c62828;
     transition: 0.25s;
+  }
+  & > a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    &:hover {
+      color: #c62828;
+      transition: 0.25s;
+    }
   }
 `;
 
@@ -277,6 +324,22 @@ const DivideBlock = styled('div')`
   & > div:nth-of-type(2) {
     margin-left: 5px;
   }
+`;
+
+const FormControl = styled('div')`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+const Label = styled('label')`
+  color: gray;
+  font-size: 13px;
+  padding-bottom: 5px;
+  text-align: left;
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+  width: 100%;
 `;
 
 export default withTranslation('banner')(Banner);

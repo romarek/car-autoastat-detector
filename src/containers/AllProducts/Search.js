@@ -66,10 +66,10 @@ function Search({ t }) {
             <HitsPerPage
               defaultRefinement={4}
               items={[
-                { value: 2, label: '2 results per page' },
-                { value: 4, label: '4 results per page' },
+                { value: 3, label: '3 results per page' },
                 { value: 6, label: '6 results per page' },
-                { value: 8, label: '8 results per page' },
+                { value: 9, label: '9 results per page' },
+                { value: 12, label: '12 results per page' },
               ]}
             />
             <PanelHeadline>{t('allProductsBrands')}</PanelHeadline>

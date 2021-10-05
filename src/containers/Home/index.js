@@ -14,6 +14,7 @@ import Banner from 'components/Banner';
 import SliderResponsive from 'components/Slider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Newsletter from 'components/Newsletter';
 import Fade from 'react-reveal/Fade';
 
 import saga from './saga';
@@ -36,7 +37,12 @@ export function Home({ getShowcases, showcasesData }) {
       <Fade>
         <SliderResponsive headline="Przeglądaj najnowsze" />
       </Fade>
-      <Features />
+      <Fade>
+        <Features />
+      </Fade>
+      <Fade>
+        <Newsletter />
+      </Fade>
       {/* <Showcases onGetShowcases={getShowcases} data={showcasesData} /> */}
     </Layout>
   );

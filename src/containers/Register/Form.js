@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withTranslation } from 'utils/with-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useLayer, useHover, Arrow } from 'react-laag';
 import Fade from 'react-reveal/Fade';
 
 import ActionButton from '../../components/Slider/ActionButton';
@@ -33,6 +34,41 @@ const FormRegister = ({ t }) => {
     registerUser(data).then(_ => setInfo('Please visit your email address and active your account'));
   };
 
+  const [value, setValue] = React.useState('');
+  const [hasFocus, setFocus] = React.useState(false);
+
+  const { renderLayer, triggerProps, layerProps, arrowProps, triggerBounds } = useLayer({
+    isOpen: hasFocus,
+    overflowContainer: false,
+    auto: true,
+    snap: true,
+    placement: 'top-start',
+    possiblePlacements: ['top-start', 'bottom-start', 'right-center', 'left-center'],
+    triggerOffset: 12,
+    containerOffset: 16,
+    arrowOffset: 8,
+  });
+
+  const validationMap = {
+    lowercase: value => /[a-z]/.test(value),
+    uppercase: value => /[A-Z]/.test(value),
+    special: value => /[\!\@\#\$\%\^\&\*\+\_\-\~]/.test(value),
+    numeric: value => /[0-9]/.test(value),
+    length: value => value.length >= 8,
+  };
+
+  function Requirement({ children, type, value }) {
+    const predicate = validationMap[type];
+    const isValid = predicate(value);
+
+    return (
+      <li className="requirement">
+        <span>{isValid ? '✔︎' : ''}</span>
+        {children}
+      </li>
+    );
+  }
+
   return (
     <RegistrationContainer>
       <RegisterBlock>
@@ -52,7 +88,44 @@ const FormRegister = ({ t }) => {
               </FormGroup>
               <FormGroup controlId="formPassword">
                 <FormLabel>Password</FormLabel>
-                <FormControl ref={register} name="password" type="password" placeholder="Password" />
+                <FormControl
+                  {...triggerProps}
+                  ref={register}
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={value}
+                  onChange={evt => setValue(evt.target.value)}
+                  onFocus={() => setFocus(true)}
+                  onBlur={() => setFocus(false)}
+                />
+                {hasFocus &&
+                  renderLayer(
+                    <ul
+                      {...layerProps}
+                      style={{
+                        ...layerProps.style,
+                      }}
+                      className="requirements">
+                      <div>Choose a secure password</div>
+                      <Requirement value={value} type="length">
+                        8 characters
+                      </Requirement>
+                      <Requirement value={value} type="uppercase">
+                        1 uppercase letter
+                      </Requirement>
+                      <Requirement value={value} type="lowercase">
+                        1 lowercase letter
+                      </Requirement>
+                      <Requirement value={value} type="special">
+                        1 special character
+                      </Requirement>
+                      <Requirement value={value} type="numeric">
+                        1 number
+                      </Requirement>
+                      <Arrow {...arrowProps} />
+                    </ul>
+                  )}
               </FormGroup>
               {info && <Alert variant="success">{info}</Alert>}
               {error && <Alert variant="danger">{error?.data}</Alert>}

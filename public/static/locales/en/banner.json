@@ -3,5 +3,8 @@
   "subTitle": "Sales history with prices and images from the best vehicle auctions of USA - COPART and IAAI.",
   "search": "Search",
   "expandParams": "Expand parameters",
-  "compressParams": "Hide parameters"
+  "compressParams": "Hide parameters",
+  "typePlaceholderSelect": "Select ",
+  "typeLabel": "Type",
+  "typeSpace": ""
 }
