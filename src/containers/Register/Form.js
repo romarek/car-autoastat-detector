@@ -1,8 +1,11 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutate } from 'restful-react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import axios from 'axios';
 
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
@@ -27,47 +30,60 @@ const FormRegister = ({ t }) => {
     verb: 'POST',
     path: 'register',
   });
-  const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit } = useForm();
 
-  const onSubmit = data => {
+  function onSubmit() {
     setInfo();
-    registerUser(data).then(_ => setInfo('Please visit your email address and active your account'));
+    axios
+      .post('http://localhost:8080/api/auth/signup', {
+        username: username,
+        email: email,
+        password: password,
+      })
+      .then(res => {
+        console.log('User is registered successfully!');
+      })
+      .catch(error => {
+        console.log('Coś poszło nie tak...');
+      });
+    // registerUser(data).then(_ => setInfo('Please visit your email address and active your account'));
   };
-
-  const [value, setValue] = React.useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = React.useState('');
   const [hasFocus, setFocus] = React.useState(false);
 
-  const { renderLayer, triggerProps, layerProps, arrowProps, triggerBounds } = useLayer({
-    isOpen: hasFocus,
-    overflowContainer: false,
-    auto: true,
-    snap: true,
-    placement: 'top-start',
-    possiblePlacements: ['top-start', 'bottom-start', 'right-center', 'left-center'],
-    triggerOffset: 12,
-    containerOffset: 16,
-    arrowOffset: 8,
-  });
+  // const { renderLayer, triggerProps, layerProps, arrowProps, triggerBounds } = useLayer({
+  //   isOpen: hasFocus,
+  //   overflowContainer: false,
+  //   auto: true,
+  //   snap: true,
+  //   placement: 'top-start',
+  //   possiblePlacements: ['top-start', 'bottom-start', 'right-center', 'left-center'],
+  //   triggerOffset: 12,
+  //   containerOffset: 16,
+  //   arrowOffset: 8,
+  // });
 
-  const validationMap = {
-    lowercase: value => /[a-z]/.test(value),
-    uppercase: value => /[A-Z]/.test(value),
-    special: value => /[\!\@\#\$\%\^\&\*\+\_\-\~]/.test(value),
-    numeric: value => /[0-9]/.test(value),
-    length: value => value.length >= 8,
-  };
+  // const validationMap = {
+  //   lowercase: password => /[a-z]/.test(password),
+  //   uppercase: password => /[A-Z]/.test(password),
+  //   special: password => /[\!\@\#\$\%\^\&\*\+\_\-\~]/.test(password),
+  //   numeric: password => /[0-9]/.test(password),
+  //   length: password => password.length >= 8,
+  // };
 
-  function Requirement({ children, type, value }) {
-    const predicate = validationMap[type];
-    const isValid = predicate(value);
+  // function Requirement({ children, type, password }) {
+  //   const predicate = validationMap[type];
+  //   const isValid = predicate(password);
 
-    return (
-      <li className="requirement">
-        <span>{isValid ? '✔︎' : ''}</span>
-        {children}
-      </li>
-    );
-  }
+  //   return (
+  //     <li className="requirement">
+  //       <span>{isValid ? '✔︎' : ''}</span>
+  //       {children}
+  //     </li>
+  //   );
+  // }
 
   return (
     <RegistrationContainer>
@@ -76,30 +92,41 @@ const FormRegister = ({ t }) => {
           <RegisterForm>
             <HeaderPage>{t('phrases.registerPageHeader')}</HeaderPage>
             <LeadPageContent>{t('phrases.registerPageLeadContent')}</LeadPageContent>
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form onSubmit={onSubmit()}>
               <FormGroup controlId="formUsername">
                 <FormLabel>{t('phrases.registerPageUsername')}</FormLabel>
-                <FormControl ref={register} name="username" type="text" placeholder="Enter username" />
+                <FormControl
+                  value={username}
+                  onChange={event => setUsername(event.target.value)}
+                  name="username"
+                  type="text"
+                  placeholder="Enter username"
+                />
               </FormGroup>
               <FormGroup controlId="formEmail">
                 <FormLabel>{t('phrases.registerPageEmail')}</FormLabel>
-                <FormControl ref={register} name="email" type="email" placeholder="Enter email" />
+                <FormControl
+                  value={email}
+                  onChange={event => setEmail(event.target.value)}
+                  name="email"
+                  type="email"
+                  placeholder="Enter email"
+                />
                 <FormText className="text-muted">Well never share your email with anyone else.</FormText>
               </FormGroup>
               <FormGroup controlId="formPassword">
                 <FormLabel>Password</FormLabel>
                 <FormControl
-                  {...triggerProps}
-                  ref={register}
+                  // {...triggerProps}
                   name="password"
                   type="password"
                   placeholder="Password"
-                  value={value}
-                  onChange={evt => setValue(evt.target.value)}
-                  onFocus={() => setFocus(true)}
-                  onBlur={() => setFocus(false)}
+                  value={password}
+                  onChange={evt => setPassword(evt.target.password)}
+                  // onFocus={() => setFocus(true)}
+                  // onBlur={() => setFocus(false)}
                 />
-                {hasFocus &&
+                {/* {hasFocus &&
                   renderLayer(
                     <ul
                       {...layerProps}
@@ -108,24 +135,24 @@ const FormRegister = ({ t }) => {
                       }}
                       className="requirements">
                       <div>Choose a secure password</div>
-                      <Requirement value={value} type="length">
+                      <Requirement value={password} type="length">
                         8 characters
                       </Requirement>
-                      <Requirement value={value} type="uppercase">
+                      <Requirement value={password} type="uppercase">
                         1 uppercase letter
                       </Requirement>
-                      <Requirement value={value} type="lowercase">
+                      <Requirement value={password} type="lowercase">
                         1 lowercase letter
                       </Requirement>
-                      <Requirement value={value} type="special">
+                      <Requirement value={password} type="special">
                         1 special character
                       </Requirement>
-                      <Requirement value={value} type="numeric">
+                      <Requirement value={password} type="numeric">
                         1 number
                       </Requirement>
                       <Arrow {...arrowProps} />
                     </ul>
-                  )}
+                  )} */}
               </FormGroup>
               {info && <Alert variant="success">{info}</Alert>}
               {error && <Alert variant="danger">{error?.data}</Alert>}

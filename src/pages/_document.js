@@ -154,6 +154,11 @@ class MyDocument extends Document {
               font-size: 14px;
               margin-bottom: 0.5em;
             }
+            @media (max-width: 768px) {
+              .slick-dots {
+                display: none;
+              }
+            }
             .slick-dots li {
               margin: 0 12px;
             }

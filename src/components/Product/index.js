@@ -7,18 +7,32 @@ import axios from 'axios';
 
 import Lightbox from 'react-awesome-lightbox';
 import 'react-awesome-lightbox/build/style.css';
-import customData from './customdata.json';
-import RenderList from './RenderingData';
+import localIpUrl from 'local-ip-url';
+const { detect } = require('detect-browser');
+// import RenderList from './RenderingData';
 import Header from './Header';
 
 export function Product({ t }) {
   const router = useRouter();
+  const browser = detect();
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(0);
   const [lightboxVisible, setLightboxVisible] = useState(false);
+  const [userAgent, setUserAgent] = useState('');
+  function imageClick(e) {
+    e.preventDefault();
+    setCount(1);
+    setLightboxVisible(true);
+    console.log(`${count} ${lightboxVisible}`);
+  }
+  function galleryClose(e) {
+    e.preventDefault();
+    setLightboxVisible(false);
+  }
   useEffect(() => {
     async function getProductByVin() {
       const { vin } = router.query;
+      setUserAgent(`${browser.name} ${browser.version} ${browser.os}`);
       await axios
         .get(`http://localhost:8080/api/salesdata/vin/${vin}`)
         .then(res => {
@@ -34,27 +48,40 @@ export function Product({ t }) {
         });
     }
     getProductByVin();
+    async function sendUserData() {
+      const userView = {
+        vin: router.query.vin,
+        isDatabaseIn: true,
+        ipAddress: localIpUrl('public', 'ipv4'),
+        userAgent: userAgent,
+      };
+      axios
+        .post('http://localhost:8080/api/requests/', {
+          vin: userView.vin,
+          isDatabaseIn: userView.isDatabaseIn,
+          ipAddress: userView.ipAddress,
+          userAgent: userView.userAgent,
+        })
+        .then(res => {
+          console.log('Kolejne wyświetlenie zaliczone!');
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        });
+    }
+    sendUserData();
   }, []);
-  function imageClick(e) {
-    e.preventDefault();
-    setCount(1);
-    setLightboxVisible(true);
-    console.log(`${count} ${lightboxVisible}`);
-  }
-  function galleryClose(e) {
-    e.preventDefault();
-    setLightboxVisible(false);
-  }
   const images = [
     {
       url:
         'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/1-6625a6810395380bf127b39bf9e2b6b8-lot_thumb_watermark.jpg',
-      title: 'image title 1',
+      title: 'Example of image title 1',
     },
     {
       url:
         'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/2-d9d27dc81bc1423e8b7d15697ccb4863-lot_thumb_watermark.jpg',
-      title: 'image title 2',
+      title: 'Example of image title 2',
     },
   ];
   return (
@@ -99,43 +126,49 @@ export function Product({ t }) {
             </PhotoBlock>
             <BasicInfoBlock>
               <Title>
-                {product.Make !== undefined ? product.Make : t('noMoreInfo')}
+                {product.Make !== undefined ? product.Make : t('phrases.noMoreInfo')}
                 {product.ModelDetail !== undefined ? product.ModelDetail + ' ' : ''}
                 {product.Color !== undefined ? product.Color + ' ' : ''}
                 {product.Engine !== undefined ? product.Engine + ' ' : ''}
               </Title>
-              <Header title={t('bid')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <Header title={t('phrases.bid')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <ParametersBlock>
                 <ParametersContent>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.vin')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{t('phrases.bid')}</ParametersCell>
                     <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.lot')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.date')}</ParametersCell>
+                    <ParametersCell>
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
+                    </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.seller')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.location')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.reatilValue')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.repairValue')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                 </ParametersContent>
                 {/* <RenderList data={customData} /> */}
@@ -144,38 +177,38 @@ export function Product({ t }) {
           </FeaturesList>
           <FeaturesList>
             <FeatureItem>
-              <Header title={t('vehicle')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <Header title={t('phrases.vehicle')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <ParametersBlock>
                 <ParametersContent>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.odometer')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{t('phrases.engine')}</ParametersCell>
                     <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.fuel')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.driveLine')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.transmission')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.color')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.trim')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                 </ParametersContent>
                 {/* <RenderList data={customData} /> */}
@@ -183,38 +216,37 @@ export function Product({ t }) {
             </FeatureItem>
 
             <FeatureItem>
-              <Header title={t('accident')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <Header
+                title={t('phrases.accident')}
+                icon="https://autoastat.com/build/images/ico_auction.3822b338.svg"
+              />
               <ParametersBlock>
                 <ParametersContent>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.loss')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{t('phrases.damage')}</ParametersCell>
                     <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.runAndDrive')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.starts')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.keys')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.buyerCountry')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                 </ParametersContent>
                 {/* <RenderList data={customData} /> */}
@@ -222,38 +254,26 @@ export function Product({ t }) {
             </FeatureItem>
 
             <FeatureItem>
-              <Header title={t('auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <Header title={t('phrases.auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <ParametersBlock>
                 <ParametersContent>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.saleDoc')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
+                    <ParametersCell>{t('phrases.whoCanBid')}</ParametersCell>
                     <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('noMoreInfo')}
+                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.saleStatus')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.minBidMet')}</ParametersCell>
+                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                 </ParametersContent>
                 {/* <RenderList data={customData} /> */}
@@ -262,12 +282,12 @@ export function Product({ t }) {
           </FeaturesList>
           <FeaturesList>
             <FeatureItem style={{ width: '100%' }}>
-              <Header title={t('auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <Header title={t('phrases.auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <ParametersBlock>
                 <ParametersContent>
                   <ParametersRow>
-                    <ParametersCell>{t('bid')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('noMoreInfo')}</ParametersCell>
+                    <ParametersCell>{t('phrases.bid')}</ParametersCell>
+                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                 </ParametersContent>
               </ParametersBlock>

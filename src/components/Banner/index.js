@@ -13,12 +13,39 @@ const animatedComponents = makeAnimated();
 export function Banner({ t }) {
   const [numberVin, setNumberVin] = useState('');
   const [type, setType] = useState('');
+  const [make, setMake] = useState('');
   const [model, setModel] = useState('');
-  const [startYear, setStartYear] = useState('');
-  const [endYear, setEndYear] = useState('');
+  const [yearBegin, setYearBegin] = useState('');
+  const [yearEnd, setYearEnd] = useState('');
+  const [auction, setAuction] = useState('');
+  const [dateBegin, setDateBegin] = useState('');
+  const [dateEnd, setDateEnd] = useState('');
+  const [region, setRegion] = useState('');
+  const [state, setState] = useState('');
   function handleSubmit(e) {
     e.preventDefault();
     alert(`Pokaż mi VIN: ${numberVin} i typ: ${type}`);
+  }
+  function handleTypeChange(type) {
+    setType(type.value);
+  }
+  function handleMakeChange(make) {
+    setMake(make.value);
+  }
+  function handleModelChange(model) {
+    setModel(model.value);
+  }
+  function handleYearBeginChange(yearBegin) {
+    setYearBegin(yearBegin.value);
+  }
+  function handleYearEndChange(yearEnd) {
+    setYearEnd(yearEnd.value);
+  }
+  function getResultsFromDb(e) {
+    e.preventDefault();
+    axios.get(
+      `http://localhost:8080/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}&auction=${auction}&dateBegin=${dateBegin}&dateEnd=${dateEnd}&region=${region}&state=${state}`
+    );
   }
   return (
     <BannerRoot>
@@ -39,7 +66,9 @@ export function Banner({ t }) {
               {numberVin.length > 0 ? (
                 <Link href={`/car-model/${numberVin}`}>{t('searchByVin')}</Link>
               ) : (
-                <Link href="/">{t('searchByParams')}</Link>
+                <Link href="/" onClick={getResultsFromDb}>
+                  {t('searchByParams')}
+                </Link>
               )}
             </SearchButton>
           </SearchRow>
@@ -58,42 +87,60 @@ export function Banner({ t }) {
                     inputId={'type'}
                     closeMenuOnSelect={false}
                     components={animatedComponents}
-                    defaultValue={[typeOptions[4]]}
-                    isMulti
                     options={typeOptions}
                     value={type}
-                    onChange={type => setType(type)}
+                    onChange={handleTypeChange}
                     placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
                   />
                 </FormControl>
                 <FormControl>
                   <Label>{t('typeLabel')}</Label>
                   <Select
+                    inputId={'make'}
                     closeMenuOnSelect={false}
                     components={animatedComponents}
-                    defaultValue={[makeOptions[5]]}
-                    isMulti
                     options={makeOptions}
+                    value={make}
+                    onChange={handleMakeChange}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
                   />
                 </FormControl>
                 <FormControl>
                   <Label>{t('typeLabel')}</Label>
                   <Select
+                    inputId={'model'}
                     closeMenuOnSelect={false}
                     components={animatedComponents}
-                    defaultValue={[modelOptions[3]]}
-                    isMulti
                     options={modelOptions}
+                    value={model}
+                    onChange={handleModelChange}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
                   />
                 </FormControl>
                 <DivideBlock>
                   <FormControl>
                     <Label>{t('typeLabel')}</Label>
-                    <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
+                    <Select
+                      inputId={'year_begin'}
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      options={colourOptions}
+                      value={yearBegin}
+                      onChange={handleYearBeginChange}
+                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                    />
                   </FormControl>
                   <FormControl>
                     <Label>{t('typeLabel')}</Label>
-                    <Select closeMenuOnSelect={false} components={animatedComponents} options={colourOptions} />
+                    <Select
+                      inputId={'year_end'}
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      options={colourOptions}
+                      value={yearEnd}
+                      onChange={handleYearEndChange}
+                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                    />
                   </FormControl>
                 </DivideBlock>
               </SelectBlockCount4>
@@ -105,9 +152,8 @@ export function Banner({ t }) {
                   <Select
                     closeMenuOnSelect={false}
                     components={animatedComponents}
-                    defaultValue={[colourOptions[5]]}
-                    isMulti
                     options={colourOptions}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
                   />
                 </FormControl>
                 <FormControl>
@@ -115,9 +161,8 @@ export function Banner({ t }) {
                   <Select
                     closeMenuOnSelect={false}
                     components={animatedComponents}
-                    defaultValue={[colourOptions[4]]}
-                    isMulti
                     options={colourOptions}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
                   />
                 </FormControl>
                 <FormControl>
@@ -125,9 +170,8 @@ export function Banner({ t }) {
                   <Select
                     closeMenuOnSelect={false}
                     components={animatedComponents}
-                    defaultValue={[colourOptions[5]]}
-                    isMulti
                     options={colourOptions}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
                   />
                 </FormControl>
               </SelectBlockCount3>
