@@ -7,6 +7,10 @@
   "expandParams": "Expand parameters",
   "compressParams": "Hide parameters",
   "typePlaceholderSelect": "Select ",
-  "typeLabel": "Type",
+  "typeLabel1": "Type",
+  "typeLabel2": "Brand",
+  "typeLabel3": "Model",
+  "typeLabel4": "Year from",
+  "typeLabel5": "Year to",
   "typeSpace": ""
 }

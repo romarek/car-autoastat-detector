@@ -30,9 +30,16 @@ const FormRegister = ({ t }) => {
     verb: 'POST',
     path: 'register',
   });
-  // const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [registerStatus, setRegisterStatus] = useState('PENDING');
+  const [mailResend, setMailResend] = useState(false);
+  const [hasFocus, setFocus] = React.useState(false);
 
-  function onSubmit() {
+  const onSubmit = event => {
+    event.preventDefault();
     setInfo();
     axios
       .post('http://localhost:8080/api/auth/signup', {
@@ -41,49 +48,60 @@ const FormRegister = ({ t }) => {
         password: password,
       })
       .then(res => {
-        console.log('User is registered successfully!');
+        console.log(res.data);
+        if (res.status === 400) {
+          setRegisterStatus('HOUSTON PROBLEM');
+        } else {
+          setRegisterStatus('SUCCESS');
+        }
       })
       .catch(error => {
         console.log('Coś poszło nie tak...');
       });
-    // registerUser(data).then(_ => setInfo('Please visit your email address and active your account'));
   };
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = React.useState('');
-  const [hasFocus, setFocus] = React.useState(false);
 
-  // const { renderLayer, triggerProps, layerProps, arrowProps, triggerBounds } = useLayer({
-  //   isOpen: hasFocus,
-  //   overflowContainer: false,
-  //   auto: true,
-  //   snap: true,
-  //   placement: 'top-start',
-  //   possiblePlacements: ['top-start', 'bottom-start', 'right-center', 'left-center'],
-  //   triggerOffset: 12,
-  //   containerOffset: 16,
-  //   arrowOffset: 8,
-  // });
+  const resendMail = event => {
+    event.preventDefault();
+    setMailResend(true);
+  };
 
-  // const validationMap = {
-  //   lowercase: password => /[a-z]/.test(password),
-  //   uppercase: password => /[A-Z]/.test(password),
-  //   special: password => /[\!\@\#\$\%\^\&\*\+\_\-\~]/.test(password),
-  //   numeric: password => /[0-9]/.test(password),
-  //   length: password => password.length >= 8,
-  // };
+  function closeSuccessRegister() {
+    setRegisterStatus('PENDING');
+    console.log('Close');
+  }
 
-  // function Requirement({ children, type, password }) {
-  //   const predicate = validationMap[type];
-  //   const isValid = predicate(password);
+  const { renderLayer, triggerProps, layerProps, arrowProps, triggerBounds } = useLayer({
+    isOpen: hasFocus,
+    overflowContainer: false,
+    auto: true,
+    snap: true,
+    placement: 'top-start',
+    possiblePlacements: ['top-start', 'bottom-start', 'right-center', 'left-center'],
+    triggerOffset: 20,
+    containerOffset: 16,
+    arrowOffset: 8,
+  });
 
-  //   return (
-  //     <li className="requirement">
-  //       <span>{isValid ? '✔︎' : ''}</span>
-  //       {children}
-  //     </li>
-  //   );
-  // }
+  const validationMap = {
+    lowercase: value => /[a-z]/.test(value),
+    uppercase: value => /[A-Z]/.test(value),
+    special: value => /[\!\@\#\$\%\^\&\*\+\_\-\~]/.test(value),
+    numeric: value => /[0-9]/.test(value),
+    length: value => value.length >= 8,
+  };
+
+  // eslint-disable-next-line react/prop-types
+  function Requirement({ children, type, value }) {
+    const predicate = validationMap[type];
+    const isValid = predicate(value);
+
+    return (
+      <li className="requirement">
+        <span style={{ color: 'green' }}>{isValid ? '✔︎' : ''}</span>
+        {children}
+      </li>
+    );
+  }
 
   return (
     <RegistrationContainer>
@@ -92,78 +110,98 @@ const FormRegister = ({ t }) => {
           <RegisterForm>
             <HeaderPage>{t('phrases.registerPageHeader')}</HeaderPage>
             <LeadPageContent>{t('phrases.registerPageLeadContent')}</LeadPageContent>
-            <Form onSubmit={onSubmit()}>
-              <FormGroup controlId="formUsername">
-                <FormLabel>{t('phrases.registerPageUsername')}</FormLabel>
-                <FormControl
-                  value={username}
-                  onChange={event => setUsername(event.target.value)}
-                  name="username"
-                  type="text"
-                  placeholder="Enter username"
+            {registerStatus === 'SUCCESS' && (
+              <Fade>
+                <SuccessRegister>
+                  <ContentLine>
+                    <CloseToastRegister type="button" onClick={closeSuccessRegister}>
+                      X
+                    </CloseToastRegister>
+                  </ContentLine>
+                  <div>Check your inbox!</div>
+                  <ButtonResend type="button" onClick={event => resendMail}>
+                    Resend confirmation mail
+                  </ButtonResend>
+                  {mailResend === true && <div>We resend you confirm mail!</div>}
+                </SuccessRegister>
+              </Fade>
+            )}
+            {registerStatus === 'PENDING' && (
+              <Form onSubmit={event => onSubmit(event)}>
+                <FormGroup controlId="formUsername">
+                  <FormLabel>{t('phrases.registerPageUsername')}</FormLabel>
+                  <FormControl
+                    value={username}
+                    onChange={event => setUsername(event.target.value)}
+                    name="username"
+                    type="text"
+                    placeholder="Enter username"
+                  />
+                </FormGroup>
+                <FormGroup controlId="formEmail">
+                  <FormLabel>{t('phrases.registerPageEmail')}</FormLabel>
+                  <FormControl
+                    value={email}
+                    onChange={event => setEmail(event.target.value)}
+                    name="email"
+                    type="email"
+                    placeholder="Enter email"
+                  />
+                  <FormText className="text-muted">Well never share your email with anyone else.</FormText>
+                </FormGroup>
+                <FormGroup controlId="formPassword">
+                  <FormLabel>Password</FormLabel>
+                  <FormControl
+                    {...triggerProps}
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={event => setPassword(event.target.value)}
+                    onFocus={() => setFocus(true)}
+                    onBlur={() => setFocus(false)}
+                  />
+                  {hasFocus &&
+                    renderLayer(
+                      <Fade>
+                        <TooltipBox
+                          {...layerProps}
+                          style={{
+                            ...layerProps.style,
+                          }}
+                          className="requirements">
+                          <strong>Choose a secure password</strong>
+                          <Requirement value={password} type="length">
+                            8 characters
+                          </Requirement>
+                          <Requirement value={password} type="uppercase">
+                            1 uppercase letter
+                          </Requirement>
+                          <Requirement value={password} type="lowercase">
+                            1 lowercase letter
+                          </Requirement>
+                          <Requirement value={password} type="special">
+                            1 special character
+                          </Requirement>
+                          <Requirement value={password} type="numeric">
+                            1 number
+                          </Requirement>
+                          <Arrow {...arrowProps} />
+                        </TooltipBox>
+                      </Fade>
+                    )}
+                </FormGroup>
+                {info && <Alert variant="success">{info}</Alert>}
+                {error && <Alert variant="danger">{error?.data}</Alert>}
+                <ActionButton
+                  disabled={loading}
+                  type="submit"
+                  label={t('phrases.register')}
+                  case="login"
+                  buttonColor="#c62828"
                 />
-              </FormGroup>
-              <FormGroup controlId="formEmail">
-                <FormLabel>{t('phrases.registerPageEmail')}</FormLabel>
-                <FormControl
-                  value={email}
-                  onChange={event => setEmail(event.target.value)}
-                  name="email"
-                  type="email"
-                  placeholder="Enter email"
-                />
-                <FormText className="text-muted">Well never share your email with anyone else.</FormText>
-              </FormGroup>
-              <FormGroup controlId="formPassword">
-                <FormLabel>Password</FormLabel>
-                <FormControl
-                  // {...triggerProps}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={evt => setPassword(evt.target.password)}
-                  // onFocus={() => setFocus(true)}
-                  // onBlur={() => setFocus(false)}
-                />
-                {/* {hasFocus &&
-                  renderLayer(
-                    <ul
-                      {...layerProps}
-                      style={{
-                        ...layerProps.style,
-                      }}
-                      className="requirements">
-                      <div>Choose a secure password</div>
-                      <Requirement value={password} type="length">
-                        8 characters
-                      </Requirement>
-                      <Requirement value={password} type="uppercase">
-                        1 uppercase letter
-                      </Requirement>
-                      <Requirement value={password} type="lowercase">
-                        1 lowercase letter
-                      </Requirement>
-                      <Requirement value={password} type="special">
-                        1 special character
-                      </Requirement>
-                      <Requirement value={password} type="numeric">
-                        1 number
-                      </Requirement>
-                      <Arrow {...arrowProps} />
-                    </ul>
-                  )} */}
-              </FormGroup>
-              {info && <Alert variant="success">{info}</Alert>}
-              {error && <Alert variant="danger">{error?.data}</Alert>}
-              <ActionButton
-                disabled={loading}
-                type="submit"
-                label={t('phrases.register')}
-                case="login"
-                buttonColor="#c62828"
-              />
-            </Form>
+              </Form>
+            )}
           </RegisterForm>
         </Fade>
       </RegisterBlock>
@@ -253,5 +291,60 @@ const FormText = styled('div')`
 `;
 
 const Alert = styled('div')``;
+
+const TooltipBox = styled('ul')`
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  position: relative;
+  z-index: 100;
+  & > li {
+    list-style-type: none;
+  }
+`;
+
+const SuccessRegister = styled('div')`
+  background-color: #26d463;
+  color: white;
+  padding: 5px 15px 20px 15px;
+  border-radius: 5px;
+`;
+
+const ButtonResend = styled('button')`
+  background-color: #26d463;
+  color: white;
+  font-family: 'Gilroy Bold';
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  padding: 10px 15px;
+  &:hover {
+    background-color: white;
+    color: #26d463;
+    border: 2px solid #26d463;
+    transition: 0.25s ease;
+  }
+`;
+
+const ContentLine = styled('div')`
+  display: flex;
+  flex-flow: column;
+  justify-content: end;
+`;
+
+const CloseToastRegister = styled('button')`
+  background-color: unset;
+  color: white;
+  font-family: 'Gilroy Bold';
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+`;
 
 export default withTranslation('common')(FormRegister);

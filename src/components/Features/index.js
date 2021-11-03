@@ -83,10 +83,13 @@ const Container = styled('div')`
 `;
 
 const FeaturesRoot = styled('div')`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 27.136px;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 30px;
   width: 100%;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+  }
 `;
 
 const FeaturesList = styled('div')`
@@ -97,13 +100,13 @@ const FeaturesList = styled('div')`
 `;
 
 const FeaturesListContainer = styled('div')`
-  grid-column: 1 / span 12;
+  width: 100%;
 `;
 
 const FeatureItem = styled('div')`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  max-width: 300px;
   margin-bottom: 72px;
   background-color: #f2f2f2;
   padding: 15px;

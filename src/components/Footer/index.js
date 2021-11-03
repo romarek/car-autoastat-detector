@@ -15,7 +15,7 @@ function Footer({ t }) {
             href="https://nextjs.org/features/server-side-rendering"
             rel="noopener noreferrer"
             target="_blank">
-            <TextLink>SSR</TextLink>
+            <TextLink>My Page</TextLink>
           </Link>
 
           <Link
@@ -23,11 +23,11 @@ function Footer({ t }) {
             href="https://nextjs.org/features/static-exporting"
             rel="noopener noreferrer"
             target="_blank">
-            <TextLink>SSR</TextLink>
+            <TextLink>My Page</TextLink>
           </Link>
 
           <Link className="link" href="https://nextjs.org/features/css-in-js" rel="noopener noreferrer" target="_blank">
-          <TextLink>SSR</TextLink>
+            <TextLink>My Page</TextLink>
           </Link>
 
           <Link
@@ -35,7 +35,7 @@ function Footer({ t }) {
             href="https://nextjs.org/features/progressive-web-apps"
             rel="noopener noreferrer"
             target="_blank">
-            <TextLink>SSR</TextLink>
+            <TextLink>My Page</TextLink>
           </Link>
         </FooterRow>
       </FooterContainer>
@@ -49,8 +49,9 @@ Footer.PropTypes = {
 
 const FooterRoot = styled('footer')`
   bottom: 0;
-  width: 100%;
-  margin: 0 auto;
+  position: static;
+  width: calc(100vw);
+  margin-bottom: -15px;
   padding: 0 0;
   background: #121212;
   color: #f1f1f1;
@@ -60,19 +61,24 @@ const FooterRoot = styled('footer')`
 const FooterContainer = styled('div')`
   margin: 0 auto;
   max-width: 1024px;
-  padding: 2rem 0 4rem;
+  padding: 2rem 0 2rem;
   min-height: 200px;
 `;
 
 const FooterRow = styled('div')`
   display: flex;
+  flex-flow: row;
   justify-content: space-evenly;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+  }
 `;
 
 const TextLink = styled('span')`
   color: #f1f1f1;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
   &:hover {
     text-decoration: underline;
     transition: 0.25s ease;

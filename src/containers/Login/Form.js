@@ -39,8 +39,8 @@ const Login = ({ t }) => {
             <HeaderPage>{t('phrases.loginPageHeader')}</HeaderPage>
             <LeadPageContent>{t('phrases.loginPageLeadContent')}</LeadPageContent>
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <GoogleLoginComponent />
-              {/* <GoogleLogoutComponent />
+              {/* <GoogleLoginComponent />
+              <GoogleLogoutComponent />
               <GoogleLoginHooks />
               <GoogleLogoutHooks /> */}
               <FormGroup controlId="formBasicEmail">

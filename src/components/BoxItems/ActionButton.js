@@ -3,11 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import Link from 'next/link';
 
 import HeartIcon from '../_Icons/Heart';
 import AddButtonIcon from '../_Icons/AddButton';
 
 function ActionButton(props) {
+  const link = props.link;
   const icon = props.case;
   const buttonStyle = {
     backgroundColor: props.buttonColor,
@@ -21,18 +23,21 @@ function ActionButton(props) {
     borderRadius: props.isBigRadius ? '5px' : '25px',
   };
   return (
-    <ButtonLove style={buttonStyle}>
-      {(icon === 'favourite' && <HeartIcon />) ||
-        (icon === 'more' && <HeartIcon />) ||
-        (icon === 'login' && <HeartIcon />)}
-      {props.label}
-    </ButtonLove>
+    <Link href={props.link}>
+      <ButtonLove type="button" style={buttonStyle}>
+        {(icon === 'favourite' && <HeartIcon />) ||
+          (icon === 'more' && <HeartIcon />) ||
+          (icon === 'login' && <HeartIcon />)}
+        {props.label}
+      </ButtonLove>
+    </Link>
   );
 }
 
 ActionButton.propTypes = {
   label: PropTypes.string,
   case: PropTypes.string,
+  link: PropTypes.string,
   buttonColor: PropTypes.string,
   isBigRadius: PropTypes.bool,
 };

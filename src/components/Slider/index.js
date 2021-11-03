@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import axios from 'axios';
 import Slider from 'react-slick';
 import { css } from '@emotion/react';
@@ -94,13 +95,15 @@ export default function SliderResponsive(props) {
           {carResults.map(car => (
             <BoilerplateImage key={car.VIN}>
               <ContainerItems>
-                <ImageItem src="https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
+                  <ImageItem src={car.ImageURL01} />
+                </Link>
                 <DataContainer>
-                  <TitleItem>
-                    {car.Make} {car.ModelDetail} {car.BodyStyle} {car.Color}
-                  </TitleItem>
+                  <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
+                    <TitleItem>{car.Title}</TitleItem>
+                  </Link>
                   <ContentItem>VIN: {car.VIN}</ContentItem>
-                  <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
+                  <ContentItem>Date: {car.SaleDateMDCY} </ContentItem>
                 </DataContainer>
                 <ButtonsContainer>
                   <ActionButton label="Add to favourite" case="favourite" buttonColor="#c62828" />

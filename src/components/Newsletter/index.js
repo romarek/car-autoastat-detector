@@ -10,7 +10,6 @@ import CardSwipe from '../Features/CardSwipe';
 import DisplayState from './DisplayState';
 import ActionButton from '../Slider/ActionButton';
 
-
 function Newsletter() {
   return (
     <NewsletterContainer>
@@ -105,6 +104,7 @@ Newsletter.PropTypes = {
 const NewsletterContainer = styled('div')`
   display: flex;
   justify-content: center;
+  margin: 0 auto;
 `;
 
 const NewsletterBlock = styled('div')`
@@ -112,7 +112,8 @@ const NewsletterBlock = styled('div')`
   height: 480px;
   @media (max-width: 768px) {
     width: 100%;
-    flex-flow: column wrap;
+    height: auto;
+    flex-flow: column nowrap;
   }
   padding: 25px;
   display: flex;
@@ -139,6 +140,9 @@ const NewsletterImage = styled('div')`
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 

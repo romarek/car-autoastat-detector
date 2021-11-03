@@ -35,6 +35,9 @@ class MyDocument extends Document {
               font-family: 'Gilroy Bold';
               scroll-behaviour: smooth;
             }
+            body {
+              overflow-x: hidden;
+            }
             .link-style {
               color: black;
               text-decoration: none;
@@ -179,7 +182,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#c62828" />
         </Head>
 
-        <body>
+        <body id="body">
           <Main />
           <NextScript />
         </body>

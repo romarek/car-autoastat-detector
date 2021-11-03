@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
@@ -9,6 +10,13 @@ import Link from 'next/link';
 import { withTranslation } from 'utils/with-i18next';
 import Collapsible from 'react-collapsible';
 const animatedComponents = makeAnimated();
+import Slider from 'react-slick';
+import { css } from '@emotion/react';
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import ActionButton from '../BoxItems/ActionButton';
+
+import ArrowLeftIcon from '../_Icons/ArrowLeft';
+import ArrowRightIcon from '../_Icons/ArrowRight';
 
 export function Banner({ t }) {
   const [numberVin, setNumberVin] = useState('');
@@ -17,43 +25,177 @@ export function Banner({ t }) {
   const [model, setModel] = useState('');
   const [yearBegin, setYearBegin] = useState('');
   const [yearEnd, setYearEnd] = useState('');
-  const [auction, setAuction] = useState('');
-  const [dateBegin, setDateBegin] = useState('');
-  const [dateEnd, setDateEnd] = useState('');
-  const [region, setRegion] = useState('');
-  const [state, setState] = useState('');
+  const [typeOptions, setTypeOptions] = useState([]);
+  const [modelOptions, setModelOptions] = useState([]);
+  const [makeOptions, setMakeOptions] = useState([]);
+  const [yearOptions, setYearOptions] = useState([]);
+  const [typeOptionsSelected, setTypeOptionsSelected] = useState([]);
+  const [modelOptionsSelected, setModelOptionsSelected] = useState([]);
+  const [makeOptionsSelected, setMakeOptionsSelected] = useState([]);
+  const [yearOptionsSelected, setYearOptionsSelected] = useState([]);
   function handleSubmit(e) {
     e.preventDefault();
-    alert(`Pokaż mi VIN: ${numberVin} i typ: ${type}`);
+    // alert(`Pokaż mi VIN: ${numberVin} i typ: ${type}`);
   }
-  function handleTypeChange(type) {
-    setType(type.value);
-  }
-  function handleMakeChange(make) {
-    setMake(make.value);
-  }
-  function handleModelChange(model) {
-    setModel(model.value);
-  }
-  function handleYearBeginChange(yearBegin) {
-    setYearBegin(yearBegin.value);
-  }
-  function handleYearEndChange(yearEnd) {
-    setYearEnd(yearEnd.value);
-  }
-  function getResultsFromDb(e) {
+  const [carSearchResults, setCarSearchResults] = useState([]);
+  const [carResultsCount, setCarResultsCount] = useState('PENDING');
+  const [loading, setLoading] = useState(false);
+  const getResultsFromDb = e => {
     e.preventDefault();
-    axios.get(
-      `http://localhost:8080/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}&auction=${auction}&dateBegin=${dateBegin}&dateEnd=${dateEnd}&region=${region}&state=${state}`
-    );
+    setLoading(true);
+    axios
+      .get(
+        `http://localhost:8080/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}`
+      )
+      .then(res => {
+        setCarSearchResults(res.data.salesdata);
+        setCarResultsCount(res.data.totalItems);
+        setLoading(false);
+      });
+  };
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
+  const customStyles = {
+    menuPortal: provided => ({ ...provided, zIndex: 9999 }),
+    menu: provided => ({ ...provided, zIndex: 9999 }),
+  };
+  const settings = {
+    dots: true,
+    infinite: true,
+    draggable: true,
+    touchMove: true,
+    touchTreshold: 1,
+    lazyLoad: 'progressive',
+    speed: 500,
+    autoplay: true,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    arrows: true,
+    nextArrow: <ArrowRightIcon />,
+    prevArrow: <ArrowLeftIcon />,
+    appendDots: dots => {
+      return (
+        <DotsBlock>
+          <DotsList> {dots} </DotsList>
+        </DotsBlock>
+      );
+    },
+    customPaging: i => <TouchableDot>{i + 1}</TouchableDot>,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/salesdata/queries').then(res => {
+      const data = res.data.totalItems;
+      setTypeOptions(
+        data.map(d => ({
+          value: d.VehicleType,
+          label: d.VehicleType,
+        }))
+      );
+      setMakeOptions(
+        data.map(d => ({
+          value: d.Make,
+          label: d.Make,
+        }))
+      );
+      setModelOptions(
+        data.map(d => ({
+          value: d.ModelGroup,
+          label: d.ModelGroup,
+        }))
+      );
+      setYearOptions(
+        data.map(d => ({
+          value: d.Year,
+          label: d.Year,
+        }))
+      );
+    });
+    const uniqueValuesTypeOptions = new Set();
+    const uniqueValuesMakeOptions = new Set();
+    const uniqueValuesModelOptions = new Set();
+    const uniqueValuesYearOptions = new Set();
+    const filteredType = typeOptions.filter(obj => {
+      const isPresentInSetType = uniqueValuesTypeOptions.has(obj.value);
+      uniqueValuesTypeOptions.add(obj.value);
+      return !isPresentInSetType;
+    });
+    const filteredMake = makeOptions.filter(obj => {
+      const isPresentInSetMake = uniqueValuesMakeOptions.has(obj.value);
+      uniqueValuesMakeOptions.add(obj.value);
+      return !isPresentInSetMake;
+    });
+    const filteredModel = modelOptions.filter(obj => {
+      const isPresentInSetModel = uniqueValuesModelOptions.has(obj.value);
+      uniqueValuesModelOptions.add(obj.value);
+      return !isPresentInSetModel;
+    });
+    const filteredYear = yearOptions.filter(obj => {
+      const isPresentInSetYear = uniqueValuesYearOptions.has(obj.value);
+      uniqueValuesYearOptions.add(obj.value);
+      return !isPresentInSetYear;
+    });
+    console.log(`Show me: ${filteredType}`);
+    setTypeOptionsSelected(filteredType);
+    setMakeOptionsSelected(filteredMake);
+    setModelOptionsSelected(filteredModel);
+    setYearOptionsSelected(filteredYear);
+    setType('');
+    setMake('');
+    setModel('');
+    setYearBegin('');
+    setYearEnd('');
+    console.log(typeOptions);
+  }, []);
+  function handleChangeType(e) {
+    setType(e.value);
+  }
+  function handleChangeMake(e) {
+    setMake(e.value);
+  }
+  function handleChangeModel(e) {
+    setModel(e.value);
+  }
+  function handleChangeYearBegin(e) {
+    setYearBegin(e.value);
+  }
+  function handleChangeYearEnd(e) {
+    setYearEnd(e.value);
   }
   return (
     <BannerRoot>
+      <BackgroundLandscape />
       <Container>
-        <Logo src="/static/images/jumbo_landing_graphics.svg" alt="Jumbo landing graphics" />
-
         <Title>{t('title')}</Title>
-
         <SubTitle>{t('subTitle')}</SubTitle>
         <SendRequestForm onSubmit={handleSubmit}>
           <SearchRow>
@@ -66,9 +208,9 @@ export function Banner({ t }) {
               {numberVin.length > 0 ? (
                 <Link href={`/car-model/${numberVin}`}>{t('searchByVin')}</Link>
               ) : (
-                <Link href="/" onClick={getResultsFromDb}>
+                <button type="button" onClick={getResultsFromDb}>
                   {t('searchByParams')}
-                </Link>
+                </button>
               )}
             </SearchButton>
           </SearchRow>
@@ -82,103 +224,117 @@ export function Banner({ t }) {
             <SearchRow>
               <SelectBlockCount4>
                 <FormControl>
-                  <Label>{t('typeLabel')}</Label>
+                  <Label>{t('typeLabel1')}</Label>
                   <Select
                     inputId={'type'}
-                    closeMenuOnSelect={false}
+                    closeMenuOnSelect={true}
                     components={animatedComponents}
-                    options={typeOptions}
-                    value={type}
-                    onChange={handleTypeChange}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                    options={typeOptionsSelected}
+                    onChange={handleChangeType.bind(this)}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel1'))}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    styles={customStyles}
                   />
                 </FormControl>
                 <FormControl>
-                  <Label>{t('typeLabel')}</Label>
+                  <Label>{t('typeLabel2')}</Label>
                   <Select
                     inputId={'make'}
-                    closeMenuOnSelect={false}
+                    closeMenuOnSelect={true}
                     components={animatedComponents}
-                    options={makeOptions}
-                    value={make}
-                    onChange={handleMakeChange}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                    options={makeOptionsSelected}
+                    onChange={handleChangeMake.bind(this)}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel2'))}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    styles={customStyles}
                   />
                 </FormControl>
                 <FormControl>
-                  <Label>{t('typeLabel')}</Label>
+                  <Label>{t('typeLabel3')}</Label>
                   <Select
                     inputId={'model'}
-                    closeMenuOnSelect={false}
+                    closeMenuOnSelect={true}
                     components={animatedComponents}
-                    options={modelOptions}
-                    value={model}
-                    onChange={handleModelChange}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                    options={modelOptionsSelected}
+                    onChange={handleChangeModel.bind(this)}
+                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel3'))}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    styles={customStyles}
                   />
                 </FormControl>
                 <DivideBlock>
                   <FormControl>
-                    <Label>{t('typeLabel')}</Label>
+                    <Label>{t('typeLabel4')}</Label>
                     <Select
                       inputId={'year_begin'}
-                      closeMenuOnSelect={false}
+                      closeMenuOnSelect={true}
                       components={animatedComponents}
-                      options={colourOptions}
-                      value={yearBegin}
-                      onChange={handleYearBeginChange}
-                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                      options={yearOptionsSelected}
+                      onChange={handleChangeYearBegin.bind(this)}
+                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel4'))}
+                      menuPortalTarget={document.body}
+                      menuPosition={'fixed'}
+                      styles={customStyles}
                     />
                   </FormControl>
                   <FormControl>
-                    <Label>{t('typeLabel')}</Label>
+                    <Label>{t('typeLabel5')}</Label>
                     <Select
                       inputId={'year_end'}
-                      closeMenuOnSelect={false}
+                      closeMenuOnSelect={true}
                       components={animatedComponents}
-                      options={colourOptions}
-                      value={yearEnd}
-                      onChange={handleYearEndChange}
-                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
+                      options={yearOptionsSelected}
+                      onChange={handleChangeYearEnd.bind(this)}
+                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel5'))}
+                      menuPortalTarget={document.body}
+                      menuPosition={'fixed'}
+                      styles={customStyles}
                     />
                   </FormControl>
                 </DivideBlock>
               </SelectBlockCount4>
             </SearchRow>
-            <SearchRow>
-              <SelectBlockCount3>
-                <FormControl>
-                  <Label>{t('typeLabel')}</Label>
-                  <Select
-                    closeMenuOnSelect={false}
-                    components={animatedComponents}
-                    options={colourOptions}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
-                  />
-                </FormControl>
-                <FormControl>
-                  <Label>{t('typeLabel')}</Label>
-                  <Select
-                    closeMenuOnSelect={false}
-                    components={animatedComponents}
-                    options={colourOptions}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
-                  />
-                </FormControl>
-                <FormControl>
-                  <Label>{t('typeLabel')}</Label>
-                  <Select
-                    closeMenuOnSelect={false}
-                    components={animatedComponents}
-                    options={colourOptions}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel'))}
-                  />
-                </FormControl>
-              </SelectBlockCount3>
-            </SearchRow>
           </Collapsible>
         </SendRequestForm>
       </Container>
+      {loading ? (
+        <ScaleLoader loading={loading} css={override} size={150} />
+      ) : (
+        <SliderContainer>
+          {carResultsCount !== 'PENDING' && (
+            <div>
+              {carResultsCount === 0 ? (
+                <BoxResultFailed>No one items in database!</BoxResultFailed>
+              ) : (
+                <BoxResultSuccessed>Found {carResultsCount} records in database.</BoxResultSuccessed>
+              )}
+              <Slider {...settings} style={{ maxWidth: '100%' }}>
+                {carSearchResults.map(car => (
+                  <BoilerplateImage key={car.VIN}>
+                    <ContainerItems>
+                      <ImageItem src="https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                      <DataContainer>
+                        <TitleItem>
+                          {car.Make} {car.ModelDetail} {car.BodyStyle} {car.Color}
+                        </TitleItem>
+                        <ContentItem>VIN: {car.VIN}</ContentItem>
+                        <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
+                      </DataContainer>
+                      <ButtonsContainer>
+                        <ActionButton label="Add to favourite" case="favourite" buttonColor="#c62828" link="/" />
+                        <ActionButton label="Read more" case="more" buttonColor="#000" link={`/car-model/${car.VIN}`} />
+                      </ButtonsContainer>
+                    </ContainerItems>
+                  </BoilerplateImage>
+                ))}
+              </Slider>
+            </div>
+          )}
+        </SliderContainer>
+      )}
     </BannerRoot>
   );
 }
@@ -187,52 +343,12 @@ Banner.propTypes = {
   t: PropTypes.func,
 };
 
-const colourOptions = [
-  { label: 'Red', value: 'red' },
-  { label: 'Red', value: 'red' },
-  { label: 'Red', value: 'red' },
-  { label: 'Red', value: 'red' },
-  { label: 'Red', value: 'red' },
-];
-
-const typeOptions = [
-  { label: 'Automobile', value: 'automobile' },
-  { label: 'Motorcycle', value: 'motorcycle' },
-  { label: 'Trailer', value: 'trailer' },
-  { label: 'Truck', value: 'truck' },
-  { label: 'ATV', value: 'atv' },
-  { label: 'Industrial equipment', value: 'industrial equipment' },
-  { label: 'Recreational vehicle', value: 'recreational vehicle' },
-  { label: 'Snowmobile', value: 'snowmobile' },
-  { label: 'Boat', value: 'boat' },
-  { label: 'Jet ski', value: 'jet ski' },
-  { label: 'Bus, minibus', value: 'bus, minibus' },
-  { label: 'Other', value: 'other ' },
-];
-
-const makeOptions = [
-  { label: 'Aston Martin', value: 'aston martin' },
-  { label: 'Audi', value: 'audi' },
-  { label: 'BMW', value: 'bmw' },
-  { label: 'Ford', value: 'ford' },
-  { label: 'Toyota', value: 'toyota' },
-];
-
-const modelOptions = [
-  { label: 'DB11', value: 'DB11' },
-  { label: 'DB9', value: 'DB9' },
-  { label: 'Rapide', value: 'rapide' },
-  { label: 'V8 Vantage', value: 'V8 vantage' },
-  { label: 'Vanquish', value: 'vanquish' },
-  { label: 'Vantage', value: 'vantage' },
-];
-
 const BannerRoot = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: -15px;
   @media (max-width: 768px) {
     width: 100%;
     padding: 0px 15px;
@@ -241,12 +357,29 @@ const BannerRoot = styled('div')`
 
 const Title = styled('h1')`
   font-size: 45px;
+  @media (max-width: 768px) {
+    margin-top: 50px;
+  }
 `;
 
 const SubTitle = styled('h2')`
   font-size: 20px;
   margin: 0;
   font-weight: 300;
+  max-width: 1024px;
+  padding: 15px;
+`;
+
+const BackgroundLandscape = styled('div')`
+  width: 100%;
+  height: 0vh;
+  position: relative;
+  z-index: 1;
+  @media (min-width: 768px) {
+    background-image: url('/static/images/frame-g1b8de030c_1920.jpg');
+    height: 60vh;
+    margin-bottom: -20vh;
+  }
 `;
 
 const Logo = styled('img')`
@@ -259,6 +392,14 @@ const Logo = styled('img')`
 const Container = styled('div')`
   max-width: 1280px;
   text-align: center;
+  position: relative;
+  z-index: 10;
+  background-color: white;
+  @media (min-width: 768px) {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const SendRequestForm = styled('form')`
@@ -285,7 +426,7 @@ const VinInput = styled('input')`
   padding: 15px 5px;
   border: 0;
   border-radius: 10px;
-  min-width: 35vw;
+  min-width: calc(100% - 310px);
   &:focus {
     border: 2px solid #c62828;
     transition: 0.5s ease;
@@ -297,10 +438,14 @@ const SearchButton = styled('button')`
   color: white;
   font-family: 'Gilroy Bold';
   cursor: pointer;
+  width: 275px;
   margin: 15px 5px;
   padding: 15px 45px;
   border: 2px solid #c62828;
   border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   &:hover {
     background-color: transparent;
   }
@@ -317,6 +462,19 @@ const SearchButton = styled('button')`
       color: #c62828;
       transition: 0.25s;
     }
+  }
+  & > button {
+    background: unset;
+    color: white;
+    font-family: 'Gilroy Bold';
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  &:hover > button {
+    color: #c62828;
+    transition: 0.25s;
   }
 `;
 
@@ -384,6 +542,98 @@ const Label = styled('label')`
     text-align: center;
   }
   width: 100%;
+`;
+
+const SliderContainer = styled('div')`
+  max-width: 1024px;
+  padding: 15px;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+const BoilerplateImage = styled('div')`
+  width: 100%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  aspect-ratio: 16 / 12;
+  border-radius: 10px;
+`;
+
+const ContainerItems = styled('div')`
+  padding-right: 15px;
+`;
+
+const ImageItem = styled('img')`
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+`;
+
+const TitleItem = styled('h3')`
+  margin: 0;
+  padding: 0;
+`;
+
+const ContentItem = styled('h5')`
+  color: gray;
+  margin: 0;
+  padding: 0;
+`;
+
+const DataContainer = styled('div')`
+  margin-top: 15px;
+`;
+
+const ButtonsContainer = styled('div')`
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+`;
+
+const DotsBlock = styled('div')``;
+
+const DotsList = styled('ul')``;
+
+const TouchableDot = styled('div')`
+  background-color: rgba(198, 40, 40, 1);
+  color: white;
+  font-family: 'Gilroy Bold';
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  &:hover {
+    background-color: rgba(198, 40, 40, 0.5);
+    transition: 0.25s ease-out;
+  }
+`;
+
+const BoxResult = styled('div')`
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 580px;
+  margin: 15px auto;
+  padding: 15px;
+`;
+
+const BoxResultFailed = styled(BoxResult)`
+  background-color: rgba(198, 40, 40, 1);
+`;
+
+const BoxResultSuccessed = styled(BoxResult)`
+  background-color: green;
 `;
 
 export default withTranslation('banner')(Banner);

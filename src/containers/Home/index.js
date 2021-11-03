@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import dynamic from 'next/dynamic';
 
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -10,7 +11,6 @@ import { useInjectSaga } from 'utils/inject-saga';
 
 import Layout from 'components/Layout';
 import Features from 'components/Features';
-import Banner from 'components/Banner';
 import SliderResponsive from 'components/Slider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -21,6 +21,8 @@ import saga from './saga';
 import reducer from './reducer';
 import { getShowcases } from './actions';
 import { selectShowcases } from './selectors';
+
+const Banner = dynamic(() => import('components/Banner'), { ssr: false });
 
 export function Home({ getShowcases, showcasesData }) {
   useInjectSaga({ key: 'showcases', saga });

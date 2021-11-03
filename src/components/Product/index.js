@@ -46,6 +46,18 @@ export function Product({ t }) {
           // eslint-disable-next-line no-console
           console.log(error);
         });
+      // await axios
+      //   .get('https://www.copart.com/public/data/lotdetails/solr/lotImages/30478350/USA', {
+      //     headers: {
+      //       'Content-Type': 'application/x-www-form-urlencoded',
+      //     },
+      //   })
+      //   .then(res => {
+      //     console.log(res.data);
+      //   })
+      //   .catch(error => {
+      //     console.log(error.data);
+      //   });
     }
     getProductByVin();
     async function sendUserData() {
@@ -74,14 +86,20 @@ export function Product({ t }) {
   }, []);
   const images = [
     {
-      url:
-        'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/1-6625a6810395380bf127b39bf9e2b6b8-lot_thumb_watermark.jpg',
-      title: 'Example of image title 1',
+      url: product.ImageURL01,
+      title: product.Title,
     },
     {
-      url:
-        'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/2-d9d27dc81bc1423e8b7d15697ccb4863-lot_thumb_watermark.jpg',
-      title: 'Example of image title 2',
+      url: product.ImageURL02,
+      title: product.Title,
+    },
+    {
+      url: product.ImageURL03,
+      title: product.Title,
+    },
+    {
+      url: product.ImageURL04,
+      title: product.Title,
     },
   ];
   return (
@@ -94,42 +112,19 @@ export function Product({ t }) {
                 <LightboxContainer style={{ display: lightboxVisible === false ? 'none' : 'block' }}>
                   <Lightbox images={images} startIndex={0} onClose={galleryClose} />
                 </LightboxContainer>
-                <PhotoItem
-                  src={
-                    'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/1-6625a6810395380bf127b39bf9e2b6b8-lot_thumb_watermark.jpg'
-                  }
-                  alt=""
-                  onClick={imageClick}
-                />
-                <PhotoItem
-                  src={
-                    'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/2-d9d27dc81bc1423e8b7d15697ccb4863-lot_thumb_watermark.jpg'
-                  }
-                  alt=""
-                  onClick={imageClick}
-                />
-                <PhotoItem
-                  src={
-                    'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/3-5a6f9a2c53f3c16233e9077078c39cf4-lot_thumb_watermark.jpg'
-                  }
-                  alt=""
-                  onClick={imageClick}
-                />
-                <PhotoItem
-                  src={
-                    'https://s.autoastat.com/images/copart/2021/9/27/5YJ3E1EB4KF408262/4-fae31871677b1bfd4e312a0de5121a7c-lot_thumb_watermark.jpg'
-                  }
-                  alt=""
-                  onClick={imageClick}
-                />
+                <PhotoItem src={product.ImageURL01} alt={product.Title} onClick={imageClick} />
+                <PhotoItem src={product.ImageURL02} alt={product.Title} onClick={imageClick} />
+                <PhotoItem src={product.ImageURL03} alt={product.Title} onClick={imageClick} />
+                <PhotoItem src={product.ImageURL04} alt={product.Title} onClick={imageClick} />
               </PhotoContainer>
             </PhotoBlock>
             <BasicInfoBlock>
               <Title>
-                {product.Make !== undefined ? product.Make : t('phrases.noMoreInfo')}
+                {product.Title}
+                {/* {product.Make !== undefined ? product.Make : t('phrases.noMoreInfo')}
                 {product.ModelDetail !== undefined ? product.ModelDetail + ' ' : ''}
                 {product.Color !== undefined ? product.Color + ' ' : ''}
-                {product.Engine !== undefined ? product.Engine + ' ' : ''}
+                {product.Engine !== undefined ? product.Engine + ' ' : ''} */}
               </Title>
               <Header title={t('phrases.bid')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
               <ParametersBlock>
@@ -141,12 +136,15 @@ export function Product({ t }) {
                   <ParametersRow>
                     <ParametersCell>{t('phrases.bid')}</ParametersCell>
                     <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
+                      {product.FinalBid !== undefined ? product.FinalBid : t('phrases.noMoreInfo')}{' '}
+                      {product.CurrencyCode !== undefined ? product.CurrencyCode : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.lot')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
+                    <ParametersCell>
+                      {product.LotNumber !== undefined ? product.LotNumber : t('phrases.noMoreInfo')}
+                    </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.date')}</ParametersCell>
