@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import styled from '@emotion/styled';
 import { withTranslation } from 'utils/with-i18next';
+import Link from 'next/link';
 
 import SelectLanguages from './SelectLanguages';
 import CustomButtonLight from './CustomButtonLight';
@@ -37,7 +37,7 @@ export function Header({ t }) {
     <HeaderRoot>
       <HeaderContainer>
         <NavRoot>
-          <Logo href="/" src="https://autoastat.com/build/images/logo_temp_desktop.37bb5de7.svg" alt="Logo" />
+          <Logo href="/" src="/static/images/BIDSPACE-removebg-preview.png" alt="Logo" />
           <ListItem>
             <div onClick={() => expandMenu1()}>
               <CustomLink name={t('phrases.allCars')} />
@@ -45,12 +45,21 @@ export function Header({ t }) {
             <div onClick={() => expandMenu2()}>
               <CustomLink name={t('phrases.searchByBrands')} />
             </div>
+            <Link href="/about">
+              <CustomLink name={t('phrases.about')} />
+            </Link>
+            <Link href="/donate">
+              <CustomLink name={t('phrases.donate')} />
+            </Link>
+            <Link href="/contact">
+              <CustomLink name={t('phrases.contact')} />
+            </Link>
           </ListItem>
           <Space />
           <ListActions>
             <SelectLanguages t={t} style={{ paddingRight: 10 }} />
-            <CustomButtonLight href={'/register'} name={t('phrases.register')} />
-            <CustomButtonFilled href={'/login'} name={t('phrases.login')} />
+            {/* <CustomButtonLight href={'/register'} name={t('phrases.register')} />
+            <CustomButtonFilled href={'/login'} name={t('phrases.login')} /> */}
           </ListActions>
           <MobileActions>
             <Popup

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withTranslation } from 'utils/with-i18next';
+import Link from 'next/link';
+import CustomLink from './CustomLink';
 import Fade from 'react-reveal';
 
 function MobileMenu({ close, t }) {
@@ -10,12 +12,21 @@ function MobileMenu({ close, t }) {
       <MenuContainer className="menu">
         <MenuList>
           <MenuItem onClick={close}>{t('phrases.menuStart')}</MenuItem>
-          <MenuItem onClick={close}>Getting Started</MenuItem>
-          <MenuItem onClick={close}>Component API</MenuItem>
-          <MenuItem onClick={close}>Use Case - Tooltip</MenuItem>
-          <MenuItem onClick={close}>Use Case - Modal</MenuItem>
-          <MenuItem onClick={close}>Use Case - Menu</MenuItem>
-          <MenuItem onClick={close}>Contributing</MenuItem>
+          <MenuItem onClick={close}>
+            <Link href="/about">
+              <TextLink>{t('phrases.about')}</TextLink>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={close}>
+            <Link href="/donate">
+              <TextLink>{t('phrases.donate')}</TextLink>
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={close}>
+            <Link href="/contact">
+              <TextLink>{t('phrases.contact')}</TextLink>
+            </Link>
+          </MenuItem>
         </MenuList>
       </MenuContainer>
     </Fade>
@@ -32,5 +43,10 @@ const MenuContainer = styled('div')``;
 const MenuList = styled('ul')``;
 
 const MenuItem = styled('li')``;
+
+const TextLink = styled('div')`
+  color: black;
+  text-decoration: none;
+`;
 
 export default withTranslation('common')(MobileMenu);

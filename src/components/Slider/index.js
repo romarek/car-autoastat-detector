@@ -25,7 +25,8 @@ export default function SliderResponsive(props) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:8080/api/salesdata?page=1')
+      // eslint-disable-next-line react/prop-types
+      .get(props.apilink)
       .then(res => {
         setCarResults(res.data.salesdata);
         setLoading(false);
@@ -105,8 +106,8 @@ export default function SliderResponsive(props) {
                   <ContentItem>VIN: {car.VIN}</ContentItem>
                   <ContentItem>Date: {car.SaleDateMDCY} </ContentItem>
                 </DataContainer>
-                <ButtonsContainer>
-                  <ActionButton label="Add to favourite" case="favourite" buttonColor="#c62828" />
+                <ButtonsContainer style={{ display: 'none' }}>
+                  <ActionButton label="Add to favourite" case="favourite" buttonColor="#535353" />
                   <ActionButton label="Read more" case="more" buttonColor="#000" />
                 </ButtonsContainer>
               </ContainerItems>
@@ -120,6 +121,7 @@ export default function SliderResponsive(props) {
 
 SliderResponsive.propTypes = {
   headline: PropTypes.string,
+  props: PropTypes.object,
 };
 
 const SliderContainer = styled('div')`
@@ -179,15 +181,15 @@ const TouchableDot = styled('div')`
   background-color: rgba(198, 40, 40, 1);
   color: white;
   font-family: 'Gilroy Bold';
-  font-size: 16px;
+  font-size: 0px;
   font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  width: 20px;
+  padding: 3px;
+  width: 5px;
   aspect-ratio: 1;
-  border-radius: 10px;
+  border-radius: 50%;
   &:hover {
     background-color: rgba(198, 40, 40, 0.5);
     transition: 0.25s ease-out;

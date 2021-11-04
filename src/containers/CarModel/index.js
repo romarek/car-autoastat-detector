@@ -33,9 +33,9 @@ export function CarContent({ getShowcases, showcasesData }) {
       <Fade>
         <SliderResponsive headline="Ostatnio oglądane" />
       </Fade>
-      <Fade>
+      {/* <Fade>
         <Newsletter />
-      </Fade>
+      </Fade> */}
     </Layout>
   );
 }

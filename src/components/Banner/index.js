@@ -223,7 +223,7 @@ export function Banner({ t }) {
             easing="ease-in-out">
             <SearchRow>
               <SelectBlockCount4>
-                <FormControl>
+                {/* <FormControl>
                   <Label>{t('typeLabel1')}</Label>
                   <Select
                     inputId={'type'}
@@ -236,7 +236,7 @@ export function Banner({ t }) {
                     menuPosition={'fixed'}
                     styles={customStyles}
                   />
-                </FormControl>
+                </FormControl> */}
                 <FormControl>
                   <Label>{t('typeLabel2')}</Label>
                   <Select
@@ -324,7 +324,7 @@ export function Banner({ t }) {
                         <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
                       </DataContainer>
                       <ButtonsContainer>
-                        <ActionButton label="Add to favourite" case="favourite" buttonColor="#c62828" link="/" />
+                        <ActionButton label="Add to favourite" case="favourite" buttonColor="#535353" link="/" />
                         <ActionButton label="Read more" case="more" buttonColor="#000" link={`/car-model/${car.VIN}`} />
                       </ButtonsContainer>
                     </ContainerItems>
@@ -428,20 +428,20 @@ const VinInput = styled('input')`
   border-radius: 10px;
   min-width: calc(100% - 310px);
   &:focus {
-    border: 2px solid #c62828;
+    border: 2px solid #535353;
     transition: 0.5s ease;
   }
 `;
 
 const SearchButton = styled('button')`
-  background-color: #c62828;
+  background-color: #535353;
   color: white;
   font-family: 'Gilroy Bold';
   cursor: pointer;
   width: 275px;
   margin: 15px 5px;
   padding: 15px 45px;
-  border: 2px solid #c62828;
+  border: 2px solid #535353;
   border-radius: 10px;
   @media (max-width: 768px) {
     width: 100%;
@@ -451,7 +451,7 @@ const SearchButton = styled('button')`
   }
   &:hover,
   &:hover a {
-    color: #c62828;
+    color: #535353;
     transition: 0.25s;
   }
   & > a {
@@ -459,7 +459,7 @@ const SearchButton = styled('button')`
     padding: 10px 15px;
     text-decoration: none;
     &:hover {
-      color: #c62828;
+      color: #535353;
       transition: 0.25s;
     }
   }
@@ -473,7 +473,7 @@ const SearchButton = styled('button')`
     height: 100%;
   }
   &:hover > button {
-    color: #c62828;
+    color: #535353;
     transition: 0.25s;
   }
 `;
@@ -481,6 +481,7 @@ const SearchButton = styled('button')`
 const SelectBlock = styled('div')`
   display: flex;
   flex-flow: row nowrap;
+  gap: 15px;
   @media (max-width: 768px) {
     flex-flow: column nowrap;
   }
@@ -494,7 +495,7 @@ const SelectBlock = styled('div')`
 
 const SelectBlockCount4 = styled(SelectBlock)`
   & > div {
-    width: 25%;
+    width: 33.333%;
     padding: 0px 5px;
     @media (max-width: 768px) {
       width: 100%;
@@ -517,6 +518,7 @@ const SelectBlockCount3 = styled(SelectBlock)`
 const DivideBlock = styled('div')`
   display: flex;
   flex-flow: row nowrap;
+
   & > div {
     width: calc(50% - 0px);
   }

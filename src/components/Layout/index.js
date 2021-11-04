@@ -20,11 +20,11 @@ export function Layout({ children, t }) {
         cookieName="myAwesomeCookieName2"
         style={{ background: '#fff', color: 'black', boxShadow: '0px 0px 15px rgba(0,0,0,0.1)', alignItems: 'center' }}
         buttonStyle={{
-          backgroundColor: '#c62828',
+          backgroundColor: '#535353',
           color: '#fff',
           fontFamily: 'Gilroy Bold',
           fontSize: '13px',
-          border: '2px solid #c62828',
+          border: '2px solid #535353',
           borderRadius: 10,
           padding: '15px 25px',
           '&:hover': {

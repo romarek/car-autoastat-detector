@@ -34,18 +34,29 @@ export function Home({ getShowcases, showcasesData }) {
         <Banner />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Ostatnio oglądane" />
+        <SliderResponsive headline="Sport cars" apilink="http://localhost:8080/api/salesdata?page=1" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Przeglądaj najnowsze" />
+        <SliderResponsive headline="Highest bid" apilink="http://localhost:8080/api/salesdata?page=2" />
       </Fade>
       <Fade>
-        <Features />
+        <SliderResponsive headline="Mercedes" apilink="http://localhost:8080/api/salesdata?page=3" />
       </Fade>
       <Fade>
-        <Newsletter />
+        <SliderResponsive headline="Toyota" apilink="http://localhost:8080/api/salesdata?page=2" />
       </Fade>
-      {/* <Showcases onGetShowcases={getShowcases} data={showcasesData} /> */}
+      <Fade>
+        <SliderResponsive headline="Lexus" apilink="http://localhost:8080/api/salesdata?page=3" />
+      </Fade>
+      <Fade>
+        <SliderResponsive headline="BMW" apilink="http://localhost:8080/api/salesdata?page=1" />
+      </Fade>
+      <Fade>
+        <SliderResponsive headline="Subaru" apilink="http://localhost:8080/api/salesdata?page=2" />
+      </Fade>
+      <Fade>
+        <SliderResponsive headline="Nissan" apilink="http://localhost:8080/api/salesdata?page=3" />
+      </Fade>
     </Layout>
   );
 }

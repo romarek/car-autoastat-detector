@@ -63,7 +63,7 @@ const Login = ({ t }) => {
                 type="submit"
                 label={t('phrases.login')}
                 case="login"
-                buttonColor="#c62828"
+                buttonColor="#535353"
               />
             </Form>
           </LoginForm>

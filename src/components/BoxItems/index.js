@@ -50,7 +50,7 @@ export default function BoxItemsResponsive(props) {
                   <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
                 </DataContainer>
                 <ButtonsContainer>
-                  <ActionButton label="Add to favourite" case="favourite" buttonColor="#c62828" link="/" />
+                  <ActionButton label="Add to favourite" case="favourite" buttonColor="#535353" link="/" />
                   <ActionButton label="Read more" case="more" buttonColor="#000" link={`/car-model/${car.VIN}`} />
                 </ButtonsContainer>
               </ContainerItems>

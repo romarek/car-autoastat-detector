@@ -17,7 +17,7 @@ class MyDocument extends Document {
         <Global
           styles={css`
             ::selection {
-              background-color: #c62828;
+              background-color: #535353;
               color: #fff;
             }
             @font-face {
@@ -107,7 +107,7 @@ class MyDocument extends Document {
             }
             .tab-list-active:before {
               content: 'A';
-              background: #c62828;
+              background: #535353;
               color: transparent;
               width: 1px;
               border-radius: 5px 0px 0px 5px;
@@ -163,7 +163,7 @@ class MyDocument extends Document {
               }
             }
             .slick-dots li {
-              margin: 0 12px;
+              margin: 0px;
             }
             .slick-dots li.slick-active div {
               background-color: black !important;
@@ -179,7 +179,8 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#000000" />
           <link rel="shortcut icon" href="/static/favicon/favicon.png" />
           <meta name="msapplication-config" content="/static/favicon/browserconfig.xml" />
-          <meta name="theme-color" content="#c62828" />
+          <meta name="theme-color" content="#535353" />
+          <meta name="description" content="" />
         </Head>
 
         <body id="body">

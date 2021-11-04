@@ -4,18 +4,18 @@ import { Link } from 'utils/with-i18next';
 import styled from '@emotion/styled';
 
 const ItemLink = styled.a`
-  background-color: #c62828;
+  background-color: #535353;
   color: #fff;
   text-decoration: none;
   margin-left: -5px;
   margin-right: 1rem;
   padding: 15px;
-  border: 1px solid #c62828;
+  border: 1px solid #535353;
   border-radius: 5px;
 
   &:hover {
     background-color: #fff;
-    color: #c62828;
+    color: #535353;
     cursor: pointer;
     transition: 0.25s ease;
   }

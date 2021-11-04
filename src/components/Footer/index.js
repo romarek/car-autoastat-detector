@@ -43,7 +43,7 @@ function Footer({ t }) {
   );
 }
 
-Footer.PropTypes = {
+Footer.propTypes = {
   t: PropTypes.func,
 };
 

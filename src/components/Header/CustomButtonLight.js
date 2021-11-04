@@ -4,7 +4,7 @@ import { Link } from 'utils/with-i18next';
 import styled from '@emotion/styled';
 
 const ItemLink = styled.a`
-  color: #c62828;
+  color: #535353;
   text-decoration: none;
   margin-left: -5px;
   margin-right: 1rem;
@@ -14,10 +14,10 @@ const ItemLink = styled.a`
 
   &:hover {
     background-color: #fff;
-    color: #c62828;
+    color: #535353;
     cursor: pointer;
     transition: 0.25s ease;
-    border: 1px solid #c62828;
+    border: 1px solid #535353;
   }
 `;
 

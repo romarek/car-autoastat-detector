@@ -108,6 +108,13 @@ export function Product({ t }) {
         <FeaturesListContainer>
           <FeaturesList>
             <PhotoBlock>
+              <Title>
+                {product.Title}
+                {/* {product.Make !== undefined ? product.Make : t('phrases.noMoreInfo')}
+            {product.ModelDetail !== undefined ? product.ModelDetail + ' ' : ''} */}
+                {product.Color !== undefined ? product.Color + ' ' : ''}
+                {product.Engine !== undefined ? product.Engine + ' ' : ''}
+              </Title>
               <PhotoContainer>
                 <LightboxContainer style={{ display: lightboxVisible === false ? 'none' : 'block' }}>
                   <Lightbox images={images} startIndex={0} onClose={galleryClose} />
@@ -116,29 +123,26 @@ export function Product({ t }) {
                 <PhotoItem src={product.ImageURL02} alt={product.Title} onClick={imageClick} />
                 <PhotoItem src={product.ImageURL03} alt={product.Title} onClick={imageClick} />
                 <PhotoItem src={product.ImageURL04} alt={product.Title} onClick={imageClick} />
+                <PhotoItem src={product.ImageURL05} alt={product.Title} onClick={imageClick} />
               </PhotoContainer>
             </PhotoBlock>
             <BasicInfoBlock>
-              <Title>
-                {product.Title}
-                {/* {product.Make !== undefined ? product.Make : t('phrases.noMoreInfo')}
-                {product.ModelDetail !== undefined ? product.ModelDetail + ' ' : ''}
-                {product.Color !== undefined ? product.Color + ' ' : ''}
-                {product.Engine !== undefined ? product.Engine + ' ' : ''} */}
-              </Title>
-              <Header title={t('phrases.bid')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
+              <Header
+                title={
+                  product.FinalBid !== undefined
+                    ? t('phrases.bid') +
+                      ': ' +
+                      product.FinalBid +
+                      (product.CurrencyCode !== undefined ? product.CurrencyCode : t('phrases.noMoreInfo'))
+                    : t('phrases.noMoreInfo')
+                }
+                icon="https://autoastat.com/build/images/ico_auction.3822b338.svg"
+              />
               <ParametersBlock>
                 <ParametersContent>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.vin')}</ParametersCell>
                     <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.bid')}</ParametersCell>
-                    <ParametersCell>
-                      {product.FinalBid !== undefined ? product.FinalBid : t('phrases.noMoreInfo')}{' '}
-                      {product.CurrencyCode !== undefined ? product.CurrencyCode : t('phrases.noMoreInfo')}
-                    </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.lot')}</ParametersCell>
@@ -147,149 +151,109 @@ export function Product({ t }) {
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.date')}</ParametersCell>
+                    <ParametersCell>{t('phrases.auction')}</ParametersCell>
                     <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
+                      {product.YardName !== undefined ? product.YardName : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.year')}</ParametersCell>
+                    <ParametersCell>
+                      {product.Year !== undefined ? product.Year : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.seller')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
+                    <ParametersCell>
+                      {product.Seller !== undefined ? product.Seller : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.date')}</ParametersCell>
+                    <ParametersCell>
+                      {product.SaleDateMDCY !== undefined ? product.SaleDateMDCY : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.fuel')}</ParametersCell>
+                    <ParametersCell>
+                      {product.FuelType !== undefined ? product.FuelType : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.color')}</ParametersCell>
+                    <ParametersCell>
+                      {product.Color !== undefined ? product.Color : t('phrases.noMoreInfo')}
+                    </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.location')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
+                    <ParametersCell>
+                      {product.LocationCity !== undefined ? product.LocationCity : t('phrases.noMoreInfo')}
+                    </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.reatilValue')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
+                    <ParametersCell>
+                      {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}
+                    </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.repairValue')}</ParametersCell>
+                    <ParametersCell>
+                      {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.primaryDamage')}</ParametersCell>
+                    <ParametersCell>
+                      {product.PrimaryDamage !== undefined ? product.PrimaryDamage : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.secondaryDamage')}</ParametersCell>
+                    <ParametersCell>
+                      {product.SecondaryDamage !== undefined ? product.SecondaryDamage : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.estRetailValue')}</ParametersCell>
                     <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.bodyStyle')}</ParametersCell>
+                    <ParametersCell>
+                      {product.BodyStyle !== undefined ? product.BodyStyle : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.runsdrives')}</ParametersCell>
+                    <ParametersCell>
+                      {product.RunsDrives !== undefined ? product.RunsDrives : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.keys')}</ParametersCell>
+                    <ParametersCell>
+                      {product.HasKeysYesOrNo !== undefined ? product.HasKeysYesOrNo : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.transmission')}</ParametersCell>
+                    <ParametersCell>
+                      {product.Transmission !== undefined ? product.Transmission : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
+                    <ParametersCell>{t('phrases.specialNote')}</ParametersCell>
+                    <ParametersCell>
+                      {product.SpecialNote !== undefined ? product.SpecialNote : t('phrases.noMoreInfo')}
+                    </ParametersCell>
                   </ParametersRow>
                 </ParametersContent>
                 {/* <RenderList data={customData} /> */}
               </ParametersBlock>
             </BasicInfoBlock>
-          </FeaturesList>
-          <FeaturesList>
-            <FeatureItem>
-              <Header title={t('phrases.vehicle')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
-              <ParametersBlock>
-                <ParametersContent>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.odometer')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.engine')}</ParametersCell>
-                    <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
-                    </ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.fuel')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.driveLine')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.transmission')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.color')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.trim')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                </ParametersContent>
-                {/* <RenderList data={customData} /> */}
-              </ParametersBlock>
-            </FeatureItem>
-
-            <FeatureItem>
-              <Header
-                title={t('phrases.accident')}
-                icon="https://autoastat.com/build/images/ico_auction.3822b338.svg"
-              />
-              <ParametersBlock>
-                <ParametersContent>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.loss')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.damage')}</ParametersCell>
-                    <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
-                    </ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.runAndDrive')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.starts')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.keys')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.buyerCountry')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                </ParametersContent>
-                {/* <RenderList data={customData} /> */}
-              </ParametersBlock>
-            </FeatureItem>
-
-            <FeatureItem>
-              <Header title={t('phrases.auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
-              <ParametersBlock>
-                <ParametersContent>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.saleDoc')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.whoCanBid')}</ParametersCell>
-                    <ParametersCell>
-                      {product.CreateDateTime !== undefined ? product.CreateDateTime : t('phrases.noMoreInfo')}
-                    </ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.saleStatus')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.minBidMet')}</ParametersCell>
-                    <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                </ParametersContent>
-                {/* <RenderList data={customData} /> */}
-              </ParametersBlock>
-            </FeatureItem>
-          </FeaturesList>
-          <FeaturesList>
-            <FeatureItem style={{ width: '100%' }}>
-              <Header title={t('phrases.auction')} icon="https://autoastat.com/build/images/ico_auction.3822b338.svg" />
-              <ParametersBlock>
-                <ParametersContent>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.bid')}</ParametersCell>
-                    <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
-                  </ParametersRow>
-                </ParametersContent>
-              </ParametersBlock>
-            </FeatureItem>
           </FeaturesList>
         </FeaturesListContainer>
       </FeaturesRoot>
@@ -305,7 +269,7 @@ const Container = styled('div')`
   width: 100%;
   margin: 0 auto;
   padding: 6rem 1rem;
-  max-width: 1024px;
+  max-width: 1240px;
   @media (max-width: 1024px) {
     max-width: 100%;
     margin: unset;
@@ -320,6 +284,7 @@ const FeaturesList = styled('div')`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
+  gap: 15px;
   @media (max-width: 768px) {
     flex-flow: column;
   }
@@ -335,7 +300,7 @@ const FeatureBlock = styled('div')`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-  background-color: #f2f2f2;
+  background-color: rgba(0, 0, 0, 0.02);
   padding: 15px;
   border-radius: 10px;
 `;
@@ -349,20 +314,22 @@ const FeatureItem = styled(FeatureBlock)`
 `;
 
 const PhotoBlock = styled(FeatureBlock)`
-  width: 50%;
+  width: 60%;
   margin-right: 15px;
 `;
 
 const BasicInfoBlock = styled(FeatureBlock)`
-  width: calc(50% - 15px);
+  width: 40%;
   margin-right: 0px;
 `;
 
 const Title = styled('h3')`
-  font-size: 20px;
+  font-size: 24px;
   font-family: 'Gilroy Bold';
   font-weight: 600;
   margin: 0;
+  width: 100%;
+  text-align: center;
 `;
 
 const Content = styled('p')`
@@ -375,20 +342,24 @@ const LightboxContainer = styled('div')``;
 const PhotoContainer = styled('div')`
   display: flex;
   flex-flow: row wrap;
+  gap: 10px;
 `;
 
 const PhotoItem = styled('img')`
-  width: calc(50% - 10px);
-  aspect-ratio: 1 / 1;
+  width: calc(50% - 5px);
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-postion: center;
   cursor: pointer;
   border-radius: 5px;
   pointer-events: all;
+  &:first-of-type {
+    width: 100%;
+  }
   &:nth-of-type(even) {
     margin-bottom: 10px;
   }
   &:nth-of-type(odd) {
-    margin-right: 10px;
     margin-bottom: 10px;
   }
 `;
