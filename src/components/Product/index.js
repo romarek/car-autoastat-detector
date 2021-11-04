@@ -17,6 +17,8 @@ export function Product({ t }) {
   const browser = detect();
   const [product, setProduct] = useState([]);
   const [userAgent, setUserAgent] = useState('');
+  const [images, setImages] = useState([]);
+  const originalUrl = JSON.stringify(product.ImageURL01).replaceAll(/(")/gi, '');
   useEffect(() => {
     async function getProductByVin() {
       const { vin } = router.query;
@@ -58,18 +60,19 @@ export function Product({ t }) {
         });
     }
     sendUserData();
+    async function imagesForGallery() {
+      for (let i = 1; i < 10; i++) {
+        const newUrl = originalUrl.replace(/(-img1)/, `-img${i}`);
+        images.push({
+          url: newUrl,
+          title: product.Title,
+          original: newUrl,
+          thumbnail: newUrl,
+        });
+      }
+    }
+    imagesForGallery();
   }, []);
-  let images = [];
-  const originalUrl = JSON.stringify(product.ImageURL01).replaceAll(/"/gi, '');
-  for (let i = 1; i < 10; i++) {
-    const newUrl = originalUrl.replace(/-img1/, `-img${i}`);
-    images.push({
-      url: newUrl,
-      title: product.Title,
-      original: newUrl,
-      thumbnail: newUrl,
-    });
-  }
   return (
     <Container id="product_content">
       <FeaturesRoot>
