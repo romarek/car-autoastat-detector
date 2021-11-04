@@ -18,7 +18,7 @@ export function Product({ t }) {
   const [product, setProduct] = useState([]);
   const [userAgent, setUserAgent] = useState('');
   const [images, setImages] = useState([]);
-  const originalUrl = JSON.stringify(product.ImageURL01).replaceAll(/(")/gi, '');
+  const [originalUrl, setOriginalUrl] = useState('');
   useEffect(() => {
     async function getProductByVin() {
       const { vin } = router.query;
@@ -29,6 +29,8 @@ export function Product({ t }) {
           setProduct(res.data);
           // eslint-disable-next-line no-console
           console.log(product);
+          setOriginalUrl(res.data.ImageURL01);
+          setTimeout(imagesForGallery(), 3000);
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -60,19 +62,18 @@ export function Product({ t }) {
         });
     }
     sendUserData();
-    async function imagesForGallery() {
-      for (let i = 1; i < 10; i++) {
-        const newUrl = originalUrl.replace(/(-img1)/, `-img${i}`);
-        images.push({
-          url: newUrl,
-          title: product.Title,
-          original: newUrl,
-          thumbnail: newUrl,
-        });
-      }
-    }
-    imagesForGallery();
   }, []);
+  async function imagesForGallery() {
+    for (let i = 1; i < 10; i++) {
+      const newUrl = originalUrl.replace(/(-img1)/, `-img${i}`);
+      images.push({
+        url: newUrl,
+        title: product.Title,
+        original: newUrl,
+        thumbnail: newUrl,
+      });
+    }
+  }
   return (
     <Container id="product_content">
       <FeaturesRoot>

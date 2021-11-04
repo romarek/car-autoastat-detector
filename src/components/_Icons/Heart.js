@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'React';
+import React from 'react';
 
 export default function HeartIcon() {
   return (

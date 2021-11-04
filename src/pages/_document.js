@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
@@ -183,7 +184,19 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/static/favicon/favicon.png" />
           <meta name="msapplication-config" content="/static/favicon/browserconfig.xml" />
           <meta name="theme-color" content="#535353" />
-          <meta name="description" content="" />
+          <meta content="The Bidspace website provides reliable information on prices and damage to insured vehicles in America and Canada resulting from an accident, hail, flood, theft or other insured event." />
+          <meta
+            name="keywords"
+            content="accident, after, crash, cars, cars, usa, ukraine, car, offer, history, history for free, price "
+          />
+          <meta
+            property="og:description"
+            content="The site Bidspace.info provides free information on the statistics of prices for beaten cars from the USA after insurance claims."
+          />
+          <meta
+            property="og:title"
+            content="Free history of sales, prices and damage insurance cars in the United States at Copart and insurance auctions IAAI"
+          />
         </Head>
 
         <body id="body">
