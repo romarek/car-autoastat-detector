@@ -25,11 +25,9 @@ export function Banner({ t }) {
   const [model, setModel] = useState('');
   const [yearBegin, setYearBegin] = useState('');
   const [yearEnd, setYearEnd] = useState('');
-  const [typeOptions, setTypeOptions] = useState([]);
   const [modelOptions, setModelOptions] = useState([]);
   const [makeOptions, setMakeOptions] = useState([]);
   const [yearOptions, setYearOptions] = useState([]);
-  const [typeOptionsSelected, setTypeOptionsSelected] = useState([]);
   const [modelOptionsSelected, setModelOptionsSelected] = useState([]);
   const [makeOptionsSelected, setMakeOptionsSelected] = useState([]);
   const [yearOptionsSelected, setYearOptionsSelected] = useState([]);
@@ -115,12 +113,6 @@ export function Banner({ t }) {
   useEffect(() => {
     axios.get('http://localhost:8080/api/salesdata/queries').then(res => {
       const data = res.data.totalItems;
-      setTypeOptions(
-        data.map(d => ({
-          value: d.VehicleType,
-          label: d.VehicleType,
-        }))
-      );
       setMakeOptions(
         data.map(d => ({
           value: d.Make,
@@ -140,15 +132,10 @@ export function Banner({ t }) {
         }))
       );
     });
-    const uniqueValuesTypeOptions = new Set();
     const uniqueValuesMakeOptions = new Set();
     const uniqueValuesModelOptions = new Set();
     const uniqueValuesYearOptions = new Set();
-    const filteredType = typeOptions.filter(obj => {
-      const isPresentInSetType = uniqueValuesTypeOptions.has(obj.value);
-      uniqueValuesTypeOptions.add(obj.value);
-      return !isPresentInSetType;
-    });
+    console.log(`Show me plis: ${JSON.stringify(makeOptions)}`);
     const filteredMake = makeOptions.filter(obj => {
       const isPresentInSetMake = uniqueValuesMakeOptions.has(obj.value);
       uniqueValuesMakeOptions.add(obj.value);
@@ -164,21 +151,15 @@ export function Banner({ t }) {
       uniqueValuesYearOptions.add(obj.value);
       return !isPresentInSetYear;
     });
-    console.log(`Show me: ${filteredType}`);
-    setTypeOptionsSelected(filteredType);
+    console.log(`Show me: ${JSON.stringify(filteredMake)}`);
     setMakeOptionsSelected(filteredMake);
     setModelOptionsSelected(filteredModel);
     setYearOptionsSelected(filteredYear);
-    setType('');
     setMake('');
     setModel('');
     setYearBegin('');
     setYearEnd('');
-    console.log(typeOptions);
   }, []);
-  function handleChangeType(e) {
-    setType(e.value);
-  }
   function handleChangeMake(e) {
     setMake(e.value);
   }
@@ -315,18 +296,12 @@ export function Banner({ t }) {
                 {carSearchResults.map(car => (
                   <BoilerplateImage key={car.VIN}>
                     <ContainerItems>
-                      <ImageItem src="https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                      <ImageItem src={car.ImageURL01} />
                       <DataContainer>
-                        <TitleItem>
-                          {car.Make} {car.ModelDetail} {car.BodyStyle} {car.Color}
-                        </TitleItem>
+                        <TitleItem>{car.Title}</TitleItem>
                         <ContentItem>VIN: {car.VIN}</ContentItem>
                         <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
                       </DataContainer>
-                      <ButtonsContainer>
-                        <ActionButton label="Add to favourite" case="favourite" buttonColor="#535353" link="/" />
-                        <ActionButton label="Read more" case="more" buttonColor="#000" link={`/car-model/${car.VIN}`} />
-                      </ButtonsContainer>
                     </ContainerItems>
                   </BoilerplateImage>
                 ))}
@@ -606,15 +581,15 @@ const TouchableDot = styled('div')`
   background-color: rgba(198, 40, 40, 1);
   color: white;
   font-family: 'Gilroy Bold';
-  font-size: 16px;
+  font-size: 0px;
   font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  width: 20px;
+  padding: 5px;
+  width: 5px;
   aspect-ratio: 1;
-  border-radius: 10px;
+  border-radius: 50%;
   &:hover {
     background-color: rgba(198, 40, 40, 0.5);
     transition: 0.25s ease-out;

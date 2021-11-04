@@ -3,32 +3,20 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withTranslation } from 'utils/with-i18next';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 
-import Lightbox from 'react-awesome-lightbox';
-import 'react-awesome-lightbox/build/style.css';
+import axios from 'axios';
+import ImageGallery from 'react-image-gallery';
 import localIpUrl from 'local-ip-url';
 const { detect } = require('detect-browser');
 // import RenderList from './RenderingData';
 import Header from './Header';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 export function Product({ t }) {
   const router = useRouter();
   const browser = detect();
   const [product, setProduct] = useState([]);
-  const [count, setCount] = useState(0);
-  const [lightboxVisible, setLightboxVisible] = useState(false);
   const [userAgent, setUserAgent] = useState('');
-  function imageClick(e) {
-    e.preventDefault();
-    setCount(1);
-    setLightboxVisible(true);
-    console.log(`${count} ${lightboxVisible}`);
-  }
-  function galleryClose(e) {
-    e.preventDefault();
-    setLightboxVisible(false);
-  }
   useEffect(() => {
     async function getProductByVin() {
       const { vin } = router.query;
@@ -36,8 +24,6 @@ export function Product({ t }) {
       await axios
         .get(`http://localhost:8080/api/salesdata/vin/${vin}`)
         .then(res => {
-          console.log(vin);
-          console.log(res.data);
           setProduct(res.data);
           // eslint-disable-next-line no-console
           console.log(product);
@@ -46,18 +32,6 @@ export function Product({ t }) {
           // eslint-disable-next-line no-console
           console.log(error);
         });
-      // await axios
-      //   .get('https://www.copart.com/public/data/lotdetails/solr/lotImages/30478350/USA', {
-      //     headers: {
-      //       'Content-Type': 'application/x-www-form-urlencoded',
-      //     },
-      //   })
-      //   .then(res => {
-      //     console.log(res.data);
-      //   })
-      //   .catch(error => {
-      //     console.log(error.data);
-      //   });
     }
     getProductByVin();
     async function sendUserData() {
@@ -75,7 +49,8 @@ export function Product({ t }) {
           userAgent: userView.userAgent,
         })
         .then(res => {
-          console.log('Kolejne wyświetlenie zaliczone!');
+          // eslint-disable-next-line no-console
+          console.log(res.data);
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -84,24 +59,17 @@ export function Product({ t }) {
     }
     sendUserData();
   }, []);
-  const images = [
-    {
-      url: product.ImageURL01,
+  let images = [];
+  const originalUrl = JSON.stringify(product.ImageURL01).replaceAll(/"/gi, '');
+  for (let i = 1; i < 10; i++) {
+    const newUrl = originalUrl.replace(/-img1/, `-img${i}`);
+    images.push({
+      url: newUrl,
       title: product.Title,
-    },
-    {
-      url: product.ImageURL02,
-      title: product.Title,
-    },
-    {
-      url: product.ImageURL03,
-      title: product.Title,
-    },
-    {
-      url: product.ImageURL04,
-      title: product.Title,
-    },
-  ];
+      original: newUrl,
+      thumbnail: newUrl,
+    });
+  }
   return (
     <Container id="product_content">
       <FeaturesRoot>
@@ -110,20 +78,11 @@ export function Product({ t }) {
             <PhotoBlock>
               <Title>
                 {product.Title}
-                {/* {product.Make !== undefined ? product.Make : t('phrases.noMoreInfo')}
-            {product.ModelDetail !== undefined ? product.ModelDetail + ' ' : ''} */}
                 {product.Color !== undefined ? product.Color + ' ' : ''}
                 {product.Engine !== undefined ? product.Engine + ' ' : ''}
               </Title>
               <PhotoContainer>
-                <LightboxContainer style={{ display: lightboxVisible === false ? 'none' : 'block' }}>
-                  <Lightbox images={images} startIndex={0} onClose={galleryClose} />
-                </LightboxContainer>
-                <PhotoItem src={product.ImageURL01} alt={product.Title} onClick={imageClick} />
-                <PhotoItem src={product.ImageURL02} alt={product.Title} onClick={imageClick} />
-                <PhotoItem src={product.ImageURL03} alt={product.Title} onClick={imageClick} />
-                <PhotoItem src={product.ImageURL04} alt={product.Title} onClick={imageClick} />
-                <PhotoItem src={product.ImageURL05} alt={product.Title} onClick={imageClick} />
+                <ImageGallery items={images} originalWidth={'100%'} />
               </PhotoContainer>
             </PhotoBlock>
             <BasicInfoBlock>
@@ -305,14 +264,6 @@ const FeatureBlock = styled('div')`
   border-radius: 10px;
 `;
 
-const FeatureItem = styled(FeatureBlock)`
-  width: 33.3333%;
-  margin-right: 15px;
-  &:last-of-type {
-    margin-right: 0px;
-  }
-`;
-
 const PhotoBlock = styled(FeatureBlock)`
   width: 60%;
   margin-right: 15px;
@@ -332,36 +283,10 @@ const Title = styled('h3')`
   text-align: center;
 `;
 
-const Content = styled('p')`
-  line-height: 1.65;
-  font-weight: 400;
-`;
-
-const LightboxContainer = styled('div')``;
-
 const PhotoContainer = styled('div')`
   display: flex;
   flex-flow: row wrap;
   gap: 10px;
-`;
-
-const PhotoItem = styled('img')`
-  width: calc(50% - 5px);
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-postion: center;
-  cursor: pointer;
-  border-radius: 5px;
-  pointer-events: all;
-  &:first-of-type {
-    width: 100%;
-  }
-  &:nth-of-type(even) {
-    margin-bottom: 10px;
-  }
-  &:nth-of-type(odd) {
-    margin-bottom: 10px;
-  }
 `;
 
 const ParametersBlock = styled('div')``;

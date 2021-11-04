@@ -168,6 +168,9 @@ class MyDocument extends Document {
             .slick-dots li.slick-active div {
               background-color: black !important;
             }
+            .image-gallery {
+              width: 100%;
+            }
           `}
         />
 
