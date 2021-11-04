@@ -24,7 +24,7 @@ export function Product({ t }) {
       const { vin } = router.query;
       setUserAgent(`${browser.name} ${browser.version} ${browser.os}`);
       await axios
-        .get(`http://localhost:8081/api/salesdata/vin/${vin}`)
+        .get(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`)
         .then(res => {
           setProduct(res.data);
           // eslint-disable-next-line no-console
@@ -46,7 +46,7 @@ export function Product({ t }) {
         userAgent: userAgent,
       };
       axios
-        .post('http://localhost:8081/api/requests/', {
+        .post('http://185.157.81.192:8081/api/requests/', {
           vin: userView.vin,
           isDatabaseIn: userView.isDatabaseIn,
           ipAddress: userView.ipAddress,

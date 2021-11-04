@@ -22,7 +22,7 @@ class Srr extends App {
         <Head>
           <title>Car AutoAstat Searching Page</title>
         </Head>
-        <RestfulProvider base="http://localhost:8081/api">
+        <RestfulProvider base="http://185.157.81.192:8081/api">
           <Provider store={reduxStore}>
             <AnimateSharedLayout>
               <Component {...pageProps} />

@@ -21,7 +21,7 @@ export default function BoxItemsResponsive(props) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:8081/api/salesdata?page=1')
+      .get('http://185.157.81.192:8081/api/salesdata?page=1')
       .then(res => {
         setCarResults(res.data.salesdata);
         setLoading(false);
