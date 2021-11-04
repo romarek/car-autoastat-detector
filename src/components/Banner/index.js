@@ -43,7 +43,7 @@ export function Banner({ t }) {
     setLoading(true);
     axios
       .get(
-        `http://localhost:8080/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}`
+        `http://localhost:8081/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}`
       )
       .then(res => {
         setCarSearchResults(res.data.salesdata);
@@ -111,7 +111,7 @@ export function Banner({ t }) {
     ],
   };
   useEffect(() => {
-    axios.get('http://localhost:8080/api/salesdata/queries').then(res => {
+    axios.get('http://localhost:8081/api/salesdata/queries').then(res => {
       const data = res.data.totalItems;
       setMakeOptions(
         data.map(d => ({

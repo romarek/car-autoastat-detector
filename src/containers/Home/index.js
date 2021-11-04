@@ -34,28 +34,28 @@ export function Home({ getShowcases, showcasesData }) {
         <Banner />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Sport cars" apilink="http://localhost:8080/api/salesdata?page=1" />
+        <SliderResponsive headline="Sport cars" apilink="http://localhost:8081/api/salesdata?page=1" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Highest bid" apilink="http://localhost:8080/api/salesdata?page=2" />
+        <SliderResponsive headline="Highest bid" apilink="http://localhost:8081/api/salesdata?page=2" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Mercedes" apilink="http://localhost:8080/api/salesdata?page=3" />
+        <SliderResponsive headline="Mercedes" apilink="http://localhost:8081/api/salesdata?page=3" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Toyota" apilink="http://localhost:8080/api/salesdata?page=2" />
+        <SliderResponsive headline="Toyota" apilink="http://localhost:8081/api/salesdata?page=2" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Lexus" apilink="http://localhost:8080/api/salesdata?page=3" />
+        <SliderResponsive headline="Lexus" apilink="http://localhost:8081/api/salesdata?page=3" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="BMW" apilink="http://localhost:8080/api/salesdata?page=1" />
+        <SliderResponsive headline="BMW" apilink="http://localhost:8081/api/salesdata?page=1" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Subaru" apilink="http://localhost:8080/api/salesdata?page=2" />
+        <SliderResponsive headline="Subaru" apilink="http://localhost:8081/api/salesdata?page=2" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Nissan" apilink="http://localhost:8080/api/salesdata?page=3" />
+        <SliderResponsive headline="Nissan" apilink="http://localhost:8081/api/salesdata?page=3" />
       </Fade>
     </Layout>
   );
