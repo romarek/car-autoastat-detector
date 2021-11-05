@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 import axios from 'axios';
 import Slider from 'react-slick';
 import { css } from '@emotion/react';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
-import ActionButton from './ActionButton';
 import ArrowLeftIcon from '../_Icons/ArrowLeft';
 import ArrowRightIcon from '../_Icons/ArrowRight';
 
@@ -20,13 +21,15 @@ const override = css`
 `;
 
 export default function SliderResponsive(props) {
+  const router = useRouter();
   const [carResults, setCarResults] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
+    const { vin } = router.query;
     axios
       // eslint-disable-next-line react/prop-types
-      .get(props.apilink)
+      .get(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`)
       .then(res => {
         setCarResults(res.data);
         setLoading(false);
