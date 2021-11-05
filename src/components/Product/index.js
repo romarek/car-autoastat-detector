@@ -19,7 +19,8 @@ export function Product({ t }) {
   const [product, setProduct] = useState([]);
   const [userAgent, setUserAgent] = useState('');
   const [originalUrl, setOriginalUrl] = useState('');
-  const [vinUrl, setVinUrl] = useState('http://185.157.81.192:8081/api/salesdata/vin/${product.VIN}');
+  const { autoVin } = router.query;
+  const [vinUrl, setVinUrl] = useState(`http://185.157.81.192:8081/api/salesdata/vin/${autoVin}`);
   useEffect(() => {
     async function getProductByVin() {
       const { vin } = router.query;
@@ -267,7 +268,7 @@ export function Product({ t }) {
           </FeaturesList>
         </FeaturesListContainer>
       </FeaturesRoot>
-      <SliderResponsive headline="Recent views" apilink={`http://185.157.81.192:8081/api/salesdata/vin/${vinUrl}`} />
+      <SliderResponsive headline="Recent views" apilink={`${vinUrl}`} />
     </Container>
   );
 }
