@@ -323,12 +323,13 @@ const BasicInfoBlock = styled(FeatureBlock)`
 `;
 
 const Title = styled('h3')`
-  font-size: 24px;
+  font-size: 36px;
   font-family: 'Gilroy Bold';
   font-weight: 600;
   margin: 0;
   width: 100%;
-  text-align: center;
+  text-align: left;
+  padding-bottom: 3rem;
 `;
 
 const PhotoContainer = styled('div')`
