@@ -10,6 +10,7 @@ import localIpUrl from 'local-ip-url';
 const { detect } = require('detect-browser');
 // import RenderList from './RenderingData';
 import Header from './Header';
+import SliderResponsive from 'components/Slider';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 export function Product({ t }) {
@@ -264,6 +265,10 @@ export function Product({ t }) {
           </FeaturesList>
         </FeaturesListContainer>
       </FeaturesRoot>
+      <SliderResponsive
+        headline="Recent views"
+        apilink={`http://185.157.81.192:8081/api/salesdata/vin/${product.VIN}`}
+      />
     </Container>
   );
 }

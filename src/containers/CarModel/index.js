@@ -30,9 +30,6 @@ export function CarContent({ getShowcases, showcasesData }) {
       <Fade>
         <Product />
       </Fade>
-      <Fade>
-        <SliderResponsive headline="Ostatnio oglądane" />
-      </Fade>
       {/* <Fade>
         <Newsletter />
       </Fade> */}
