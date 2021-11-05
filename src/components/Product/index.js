@@ -19,11 +19,10 @@ export function Product({ t }) {
   const [product, setProduct] = useState([]);
   const [userAgent, setUserAgent] = useState('');
   const [originalUrl, setOriginalUrl] = useState('');
-  const { autoVin } = router.query;
-  const [vinUrl, setVinUrl] = useState(`http://185.157.81.192:8081/api/salesdata/vin/${autoVin}`);
+  const { vin } = router.query;
+  const [vinUrl, setVinUrl] = useState(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`);
   useEffect(() => {
     async function getProductByVin() {
-      const { vin } = router.query;
       setUserAgent(`${browser.name} ${browser.version} ${browser.os}`);
       await axios
         .get(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`)
