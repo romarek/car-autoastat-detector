@@ -19,6 +19,7 @@ export function Product({ t }) {
   const [product, setProduct] = useState([]);
   const [userAgent, setUserAgent] = useState('');
   const [originalUrl, setOriginalUrl] = useState('');
+  const [vinUrl, setVinUrl] = useState('http://185.157.81.192:8081/api/salesdata/vin/${product.VIN}');
   useEffect(() => {
     async function getProductByVin() {
       const { vin } = router.query;
@@ -30,6 +31,7 @@ export function Product({ t }) {
           // eslint-disable-next-line no-console
           console.log(product);
           setOriginalUrl(res.data.ImageURL01);
+          setVinUrl(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`);
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -265,10 +267,7 @@ export function Product({ t }) {
           </FeaturesList>
         </FeaturesListContainer>
       </FeaturesRoot>
-      <SliderResponsive
-        headline="Recent views"
-        apilink={`http://185.157.81.192:8081/api/salesdata/vin/${product.VIN}`}
-      />
+      <SliderResponsive headline="Recent views" apilink={`http://185.157.81.192:8081/api/salesdata/vin/${vinUrl}`} />
     </Container>
   );
 }
