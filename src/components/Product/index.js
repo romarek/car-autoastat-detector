@@ -267,7 +267,7 @@ export function Product({ t }) {
           </FeaturesList>
         </FeaturesListContainer>
       </FeaturesRoot>
-      <SliderResponsive headline="Recent views" apilink={`${vinUrl}`} />
+      {/* <SliderResponsive headline="Recent views" /> */}
     </Container>
   );
 }
