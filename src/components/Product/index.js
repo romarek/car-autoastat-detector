@@ -10,7 +10,7 @@ import localIpUrl from 'local-ip-url';
 const { detect } = require('detect-browser');
 // import RenderList from './RenderingData';
 import Header from './Header';
-import SliderResponsive from 'components/Slider';
+import SliderResponsive from 'components/Slider/RecentViews';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 export function Product({ t }) {
