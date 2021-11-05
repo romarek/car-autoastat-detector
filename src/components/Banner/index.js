@@ -183,7 +183,7 @@ export function Banner({ t }) {
             <VinInput
               onChange={e => setNumberVin(e.target.value)}
               pattern="^(?=.*[0-9])(?=.*[A-z])[0-9A-z-]{17}$"
-              placeholder="e.g. AB^DF31U100027743"
+              placeholder="VIN number"
             />
             <SearchButton type="submit">
               {numberVin.length > 0 ? (

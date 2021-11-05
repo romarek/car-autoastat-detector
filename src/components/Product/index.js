@@ -30,7 +30,7 @@ export function Product({ t }) {
           // eslint-disable-next-line no-console
           console.log(product);
           setOriginalUrl(res.data.ImageURL01);
-          setTimeout(imagesForGallery(), 3000);
+          setTimeout(imagesForGallery(), 1000);
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -63,16 +63,64 @@ export function Product({ t }) {
     }
     sendUserData();
   }, []);
-  async function imagesForGallery() {
-    for (let i = 1; i < 10; i++) {
-      const newUrl = originalUrl.replace(/(-img1)/, `-img${i}`);
-      images.push({
-        url: newUrl,
+  function imagesForGallery() {
+    // const newUrl = originalUrl.replace(/(-img1)/, `-img${i}`);
+    images.push(
+      {
+        url: originalUrl.replace(/(-img1)/, `-img1`),
         title: product.Title,
-        original: newUrl,
-        thumbnail: newUrl,
-      });
-    }
+        original: originalUrl.replace(/(-img1)/, `-img1`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img1`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img2`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img2`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img2`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img3`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img3`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img3`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img4`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img4`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img4`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img5`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img5`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img5`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img6`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img6`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img6`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img7`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img7`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img7`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img8`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img8`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img8`),
+      },
+      {
+        url: originalUrl.replace(/(-img1)/, `-img9`),
+        title: product.Title,
+        original: originalUrl.replace(/(-img1)/, `-img9`),
+        thumbnail: originalUrl.replace(/(-img1)/, `-img9`),
+      }
+    );
   }
   return (
     <Container id="product_content">
