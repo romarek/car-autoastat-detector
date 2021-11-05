@@ -7,7 +7,7 @@ const localeSubpaths = get(config, 'publicRuntimeConfig.localeSubpaths', 'none')
 const path = require('path');
 
 module.exports = new NextI18Next({
-  otherLanguages: ['en', 'es'],
+  otherLanguages: ['en', 'pl', 'ru'],
   localeSubpaths: { ...localeSubpaths },
   localePath: path.resolve('./public/static/locales'),
 });
