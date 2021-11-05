@@ -29,63 +29,6 @@ export function Product({ t }) {
           // eslint-disable-next-line no-console
           console.log(product);
           setOriginalUrl(res.data.ImageURL01);
-          let images = [];
-          images.push(
-            {
-              url: originalUrl.replace(/(-img1)/, `-img1`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img1`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img1`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img2`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img2`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img2`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img3`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img3`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img3`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img4`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img4`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img4`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img5`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img5`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img5`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img6`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img6`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img6`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img7`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img7`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img7`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img8`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img8`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img8`),
-            },
-            {
-              url: originalUrl.replace(/(-img1)/, `-img9`),
-              title: product.Title,
-              original: originalUrl.replace(/(-img1)/, `-img9`),
-              thumbnail: originalUrl.replace(/(-img1)/, `-img9`),
-            }
-          );
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -118,6 +61,63 @@ export function Product({ t }) {
     }
     sendUserData();
   }, []);
+  let images = [];
+  images.push(
+    {
+      url: product.ImageURL01,
+      title: product.Title,
+      original: product.ImageURL01,
+      thumbnail: product.ImageURL01,
+    },
+    {
+      url: product.ImageURL02,
+      title: product.Title,
+      original: product.ImageURL02,
+      thumbnail: product.ImageURL02,
+    },
+    {
+      url: product.ImageURL03,
+      title: product.Title,
+      original: product.ImageURL03,
+      thumbnail: product.ImageURL03,
+    },
+    {
+      url: product.ImageURL04,
+      title: product.Title,
+      original: product.ImageURL04,
+      thumbnail: product.ImageURL04,
+    },
+    {
+      url: product.ImageURL05,
+      title: product.Title,
+      original: product.ImageURL05,
+      thumbnail: product.ImageURL05,
+    },
+    {
+      url: product.ImageURL06,
+      title: product.Title,
+      original: product.ImageURL06,
+      thumbnail: product.ImageURL06,
+    },
+    {
+      url: product.ImageURL07,
+      title: product.Title,
+      original: product.ImageURL07,
+      thumbnail: product.ImageURL07,
+    },
+    {
+      url: product.ImageURL08,
+      title: product.Title,
+      original: product.ImageURL08,
+      thumbnail: product.ImageURL08,
+    },
+    {
+      url: product.ImageURL09,
+      title: product.Title,
+      original: product.ImageURL09,
+      thumbnail: product.ImageURL09,
+    }
+  );
   return (
     <Container id="product_content">
       <FeaturesRoot>
