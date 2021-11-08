@@ -55,11 +55,8 @@ export function Header({ t }) {
           <Space />
           <ListActions>
             <SelectLanguages t={t} style={{ paddingRight: 10 }} />
-            {/* <CustomButtonLight href={'/register'} name={t('phrases.register')} />
-            <CustomButtonFilled href={'/login'} name={t('phrases.login')} /> */}
           </ListActions>
           <MobileActions>
-            <SelectLanguages t={t} style={{ paddingRight: 10 }} />
             <Popup
               modal
               overlayStyle={{ background: 'rgba(255,255,255,0.98)' }}
@@ -162,9 +159,6 @@ const ListActions = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const Space = styled('div')`
