@@ -226,7 +226,7 @@ export function Banner({ t }) {
                     components={animatedComponents}
                     options={makeOptionsSelected}
                     onChange={handleChangeMake.bind(this)}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel2'))}
+                    placeholder={t('typeLabel2')}
                     menuPortalTarget={document.body}
                     menuPosition={'fixed'}
                     styles={customStyles}
@@ -240,7 +240,7 @@ export function Banner({ t }) {
                     components={animatedComponents}
                     options={modelOptionsSelected}
                     onChange={handleChangeModel.bind(this)}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel3'))}
+                    placeholder={t('typeLabel3')}
                     menuPortalTarget={document.body}
                     menuPosition={'fixed'}
                     styles={customStyles}
@@ -255,7 +255,7 @@ export function Banner({ t }) {
                       components={animatedComponents}
                       options={yearOptionsSelected}
                       onChange={handleChangeYearBegin.bind(this)}
-                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel4'))}
+                      placeholder={t('typeLabel4')}
                       menuPortalTarget={document.body}
                       menuPosition={'fixed'}
                       styles={customStyles}
@@ -269,7 +269,7 @@ export function Banner({ t }) {
                       components={animatedComponents}
                       options={yearOptionsSelected}
                       onChange={handleChangeYearEnd.bind(this)}
-                      placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel5'))}
+                      placeholder={t('typeLabel5')}
                       menuPortalTarget={document.body}
                       menuPosition={'fixed'}
                       styles={customStyles}
