@@ -39,12 +39,12 @@ export function Header({ t }) {
         <NavRoot>
           <Logo href="/" src="/static/images/BIDSPACE-removebg-preview.png" alt="Logo" />
           <ListItem>
-            <div onClick={() => expandMenu1()}>
+            {/* <div onClick={() => expandMenu1()}>
               <CustomLink name={t('phrases.allCars')} />
             </div>
             <div onClick={() => expandMenu2()}>
               <CustomLink name={t('phrases.searchByBrands')} />
-            </div>
+            </div> */}
             <Link href="/about">
               <CustomLink name={t('phrases.about')} />
             </Link>
