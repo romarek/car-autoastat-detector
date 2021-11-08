@@ -319,11 +319,18 @@ const FeatureBlock = styled('div')`
 const PhotoBlock = styled(FeatureBlock)`
   width: 60%;
   margin-right: 15px;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-right: 0px;
+  }
 `;
 
 const BasicInfoBlock = styled(FeatureBlock)`
   width: 40%;
   margin-right: 0px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled('h3')`

@@ -50,6 +50,8 @@ Layout.propTypes = {
 
 const Main = styled('main')`
   width: 100%;
+  position: relative;
+  margin-top: 5rem;
 `;
 
 const CookieIcon = styled('img')`

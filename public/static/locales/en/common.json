@@ -2,7 +2,8 @@
   "default": "Message in english",
   "languages": {
     "pl": "Polish",
-    "en": "English"
+    "en": "English",
+    "ru": "Russian"
   },
   "phrases": {
     "menuStart": "Start",
@@ -80,7 +81,7 @@
     "agreement": "Public agreement",
     "cookiesAccept": "Accept",
     "cookiesInfo": "This website uses cookies to enhance the user experience.",
-    "cookiesAdditionalInfo": "This bit of text is smaller :O",
+    "cookiesAdditionalInfo": "",
     "404PageHeader": "Houston, we've got a problem!",
     "500PageHeader": "Oooh, it could be server error!"
   }

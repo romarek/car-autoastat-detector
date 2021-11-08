@@ -49,12 +49,11 @@ Footer.propTypes = {
 
 const FooterRoot = styled('footer')`
   bottom: 0;
-  position: static;
+  position: relative;
   width: calc(100vw);
   margin-bottom: -15px;
   padding: 0 0;
-  background: #121212;
-  color: #f1f1f1;
+  color: black;
   overflow: hidden;
 `;
 
@@ -75,7 +74,7 @@ const FooterRow = styled('div')`
 `;
 
 const TextLink = styled('span')`
-  color: #f1f1f1;
+  color: black;
   cursor: pointer;
   text-decoration: none;
   text-align: center;

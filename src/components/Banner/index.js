@@ -511,6 +511,7 @@ const FormControl = styled('div')`
 `;
 
 const Label = styled('label')`
+  background-color: white;
   color: gray;
   font-size: 13px;
   padding-bottom: 5px;

@@ -22,6 +22,7 @@ export function SelectLanguages({ t }) {
     <SelectRoot name="languages" id="languages" value={select} onChange={handleSelect}>
       <OptionRoot value="pl">{t('languages.pl')}</OptionRoot>
       <OptionRoot value="en">{t('languages.en')}</OptionRoot>
+      <OptionRoot value="ru">{t('languages.ru')}</OptionRoot>
     </SelectRoot>
   );
 }

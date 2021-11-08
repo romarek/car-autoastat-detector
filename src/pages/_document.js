@@ -197,6 +197,16 @@ class MyDocument extends Document {
             property="og:title"
             content="Free history of sales, prices and damage insurance cars in the United States at Copart and insurance auctions IAAI"
           />
+          <script async src={'https://www.googletagmanager.com/gtag/js?id=G-4QDLQD2PYM'} />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-4QDLQD2PYM');`,
+            }}
+          />
         </Head>
 
         <body id="body">

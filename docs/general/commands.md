@@ -12,7 +12,7 @@ or
 npm run dev
 ```
 
-Starts the development server running on `http://localhost:3000`
+Starts the development server running on `http://185.157.81.192:3000`
 
 ## Server
 
@@ -29,7 +29,7 @@ npm run dev
 ```
 
 Starts the development server and makes your application accessible at
-`localhost:3000`. Changes in the application code will be hot-reloaded.
+`185.157.81.192:3000`. Changes in the application code will be hot-reloaded.
 
 ### Production
 

@@ -48,9 +48,6 @@ export function Header({ t }) {
             <Link href="/about">
               <CustomLink name={t('phrases.about')} />
             </Link>
-            <Link href="/donate">
-              <CustomLink name={t('phrases.donate')} />
-            </Link>
             <Link href="/contact">
               <CustomLink name={t('phrases.contact')} />
             </Link>
@@ -62,6 +59,7 @@ export function Header({ t }) {
             <CustomButtonFilled href={'/login'} name={t('phrases.login')} /> */}
           </ListActions>
           <MobileActions>
+            <SelectLanguages t={t} style={{ paddingRight: 10 }} />
             <Popup
               modal
               overlayStyle={{ background: 'rgba(255,255,255,0.98)' }}
@@ -121,7 +119,7 @@ const HeaderRoot = styled('header')`
   left: 0;
   width: 100%;
   height: 64px;
-  position: sticky;
+  position: fixed;
   top: 0px;
   z-index: 1000;
 `;
@@ -146,6 +144,9 @@ const MobileActions = styled('div')`
   display: none;
   @media (max-width: 768px) {
     display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 15px;
     padding-right: 15px;
   }
 `;
