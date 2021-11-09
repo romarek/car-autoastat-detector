@@ -53,6 +53,7 @@
     "secondaryDamage": "Secondary damage",
     "estRetailValue": "Est. Retail Value",
     "bodyStyle": "Body style",
+    "titleCode": "Title code",
     "noMoreInfo": "No info",
     "usersOnly": "Register users only",
     "allProductsHeadline": "Przeglądaj wszystkie produkty",
@@ -83,6 +84,7 @@
     "cookiesInfo": "This website uses cookies to enhance the user experience.",
     "cookiesAdditionalInfo": "",
     "404PageHeader": "Houston, we've got a problem!",
-    "500PageHeader": "Oooh, it could be server error!"
+    "500PageHeader": "Oooh, it could be server error!",
+    "pageBuild": "Website under construction" 
   }
 }

@@ -7,7 +7,6 @@ import Link from 'next/link';
 import SelectLanguages from './SelectLanguages';
 import CustomButtonLight from './CustomButtonLight';
 import CustomButtonFilled from './CustomButtonFilled';
-import CustomLink from './CustomLink';
 import Logo from './Logo';
 import Tabs from './Tabs';
 import MenuMapExpander from './MenuMapExpander';
@@ -15,12 +14,6 @@ import Fade from 'react-reveal';
 import Popup from 'reactjs-popup';
 import MobileMenu from './MobileMenu';
 import BurgerIcon from '../_Icons/BurgerIcon';
-
-const contentStyle = {
-  background: 'rgba(255,255,255,0)',
-  width: '80%',
-  border: 'none',
-};
 
 export function Header({ t }) {
   const [expand1, setExpand1] = useState(false);
@@ -46,10 +39,10 @@ export function Header({ t }) {
               <CustomLink name={t('phrases.searchByBrands')} />
             </div> */}
             <Link href="/about">
-              <CustomLink name={t('phrases.about')} />
+              <CustomLink>{t('phrases.about')}</CustomLink>
             </Link>
             <Link href="/contact">
-              <CustomLink name={t('phrases.contact')} />
+              <CustomLink>{t('phrases.contact')}</CustomLink>
             </Link>
           </ListItem>
           <Space />
@@ -110,6 +103,12 @@ export function Header({ t }) {
 
 Header.propTypes = {
   t: PropTypes.func,
+};
+
+const contentStyle = {
+  background: 'rgba(255,255,255,0)',
+  width: '80%',
+  border: 'none',
 };
 
 const HeaderRoot = styled('header')`
@@ -180,5 +179,21 @@ const HeaderExpander = styled('div')`
 const HeadlineSection = styled('h2')``;
 
 const TabItem = styled('div')``;
+
+const CustomLink = styled('span')`
+  background-color: transparent;
+  color: #757575;
+  text-decoration: none;
+  margin-left: -5px;
+  margin-right: 2rem;
+  padding: 5px;
+  border: none;
+  font-family: 'Gilroy Bold';
+  font-size: 14px;
+  &:hover {
+    cursor: pointer;
+    color: #000;
+  }
+`;
 
 export default withTranslation('common')(Header);

@@ -7,7 +7,7 @@ cache:
 
 notifications:
   email:
-    - jorgelca1205@gmail.com
+    - patryk.swierlikowski@gmail.com
 
 node_js:
   - '10'

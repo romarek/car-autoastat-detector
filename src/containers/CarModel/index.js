@@ -13,7 +13,6 @@ import Product from 'components/Product';
 import SliderResponsive from 'components/Slider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Newsletter from 'components/Newsletter';
 import Fade from 'react-reveal/Fade';
 
 import saga from './saga';
@@ -30,9 +29,6 @@ export function CarContent({ getShowcases, showcasesData }) {
       <Fade>
         <Product />
       </Fade>
-      {/* <Fade>
-        <Newsletter />
-      </Fade> */}
     </Layout>
   );
 }

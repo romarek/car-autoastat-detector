@@ -1,16 +1,16 @@
 {
   "default": "Message in english",
   "languages": {
-    "pl": "Polish",
-    "en": "English",
-    "ru": "Russian"
+    "pl": "Польский",
+    "en": "Aнглийский",
+    "ru": "Pусский"
   },
   "phrases": {
     "menuStart": "Start",
     "allCars": "все автомобили",
     "searchByBrands": "Марка",
     "about": "о нас",
-    "donate": "Donate",
+    "donate": "Грант",
     "contact": "Контакты",
     "search": "поиск",
     "category1": "последний добавленный",
@@ -41,18 +41,20 @@
     "secondaryDamage": "Второстепенное повреждение",
     "estRetailValue": "Оценочная розничная стоимость",
     "bodyStyle": "Тип кузова",
+    "titleCode": "Код заголовка",
     "noMoreInfo": "информация отсутствует",
     "allProductsHeadline": "Посмотреть все товары",
     "allProductsBrands": "Доступные бренды",
     "placeholderSearch": "Введите lot или vin номер",
     "footerCopyright": "Not all Rights Reserved",
-    "pricing": "Pricing",
+    "pricing": "Ценообразование",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "agreement": "Public agreement",
     "cookiesAccept": "Accept",
     "cookiesInfo": "This website uses cookies to enhance the user experience.",
     "404PageHeader": "Houston, we've got a problem!",
-    "500PageHeader": "Oooh, it could be server error!"
+    "500PageHeader": "Oooh, it could be server error!",
+    "pageBuild": "Сайт находится в разработке" 
   }
 }

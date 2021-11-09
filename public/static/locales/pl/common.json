@@ -53,6 +53,7 @@
     "secondaryDamage": "Szkody wtórne",
     "estRetailValue": "Wartość detaliczna",
     "bodyStyle": "Rodzaj nadwozia",
+    "titleCode": "Title code",
     "noMoreInfo": "Brak informacji",
     "usersOnly": "Register users only",
     "allProductsHeadline": "Przeglądaj wszystkie produkty",
@@ -83,6 +84,7 @@
     "cookiesInfo": "Nasza strona internetowa używa plików cookies (tzw. ciasteczka) w celach statystycznych, reklamowych oraz funkcjonalnych. Dzięki nim możemy indywidualnie dostosować stronę do twoich potrzeb. Każdy może zaakceptować pliki cookies albo ma możliwość wyłączenia ich w przeglądarce, dzięki czemu nie będą zbierane żadne informacje.",
     "cookiesAdditionalInfo": "",
     "404PageHeader": "Houston, we've got a problem!",
-    "500PageHeader": "Oooh, it could be server error!"
+    "500PageHeader": "Oooh, it could be server error!",
+    "pageBuild": "Strona w budowie" 
   }
 }

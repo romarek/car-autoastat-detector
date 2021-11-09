@@ -296,9 +296,13 @@ export function Banner({ t }) {
                 {carSearchResults.map(car => (
                   <BoilerplateImage key={car.VIN}>
                     <ContainerItems>
-                      <ImageItem src={car.ImageURL01} />
+                      <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
+                        <ImageItem src={car.ImageURL01} />
+                      </Link>
                       <DataContainer>
-                        <TitleItem>{car.Title}</TitleItem>
+                        <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
+                          <TitleItem>{car.Title}</TitleItem>
+                        </Link>
                         <ContentItem>VIN: {car.VIN}</ContentItem>
                         <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
                       </DataContainer>
@@ -352,7 +356,7 @@ const BackgroundLandscape = styled('div')`
   z-index: 1;
   @media (min-width: 768px) {
     background-image: url('/static/images/frame-g1b8de030c_1920.jpg');
-    height: 60vh;
+    height: 50vh;
     margin-bottom: -20vh;
   }
 `;
@@ -549,11 +553,13 @@ const ImageItem = styled('img')`
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 const TitleItem = styled('h3')`
   margin: 0;
   padding: 0;
+  cursor: pointer;
 `;
 
 const ContentItem = styled('h5')`

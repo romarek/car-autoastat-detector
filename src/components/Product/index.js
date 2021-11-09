@@ -185,6 +185,13 @@ export function Product({ t }) {
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
+                    <ParametersCell>{t('phrases.specialNote')}</ParametersCell>
+                    <ParametersCell>
+                      {t('phrases.titleCode')}{' '}
+                      {product.SpecialNote !== undefined ? product.SpecialNote : t('phrases.noMoreInfo')}
+                    </ParametersCell>
+                  </ParametersRow>
+                  <ParametersRow>
                     <ParametersCell>{t('phrases.fuel')}</ParametersCell>
                     <ParametersCell>
                       {product.FuelType !== undefined ? product.FuelType : t('phrases.noMoreInfo')}
@@ -205,13 +212,15 @@ export function Product({ t }) {
                   <ParametersRow>
                     <ParametersCell>{t('phrases.reatilValue')}</ParametersCell>
                     <ParametersCell>
-                      {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}
+                      {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}{' '}
+                      {product.CurrencyCode !== undefined ? product.CurrencyCode : ''}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
                     <ParametersCell>{t('phrases.repairValue')}</ParametersCell>
                     <ParametersCell>
-                      {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}
+                      {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}{' '}
+                      {product.CurrencyCode !== undefined ? product.CurrencyCode : ''}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
@@ -252,12 +261,6 @@ export function Product({ t }) {
                     <ParametersCell>{t('phrases.transmission')}</ParametersCell>
                     <ParametersCell>
                       {product.Transmission !== undefined ? product.Transmission : t('phrases.noMoreInfo')}
-                    </ParametersCell>
-                  </ParametersRow>
-                  <ParametersRow>
-                    <ParametersCell>{t('phrases.specialNote')}</ParametersCell>
-                    <ParametersCell>
-                      {product.SpecialNote !== undefined ? product.SpecialNote : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                 </ParametersContent>
@@ -360,12 +363,13 @@ const ParametersRow = styled('div')`
 `;
 
 const ParametersCell = styled('div')`
+  white-space: normal;
   &:nth-of-type(1) {
-    width: 30%;
+    width: 40%;
     color: gray;
   }
   &:nth-of-type(2) {
-    width: 70%;
+    width: 60%;
   }
 `;
 

@@ -147,11 +147,13 @@ const ImageItem = styled('img')`
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 const TitleItem = styled('h3')`
   margin: 0;
   padding: 0;
+  cursor: pointer;
 `;
 
 const ContentItem = styled('h5')`
