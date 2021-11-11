@@ -97,7 +97,7 @@ export default function SliderResponsive(props) {
             <BoilerplateImage key={car.VIN}>
               <ContainerItems>
                 <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
-                  <ImageItem src={car.ImageURL01} />
+                  <ImageItem src={`http://185.157.81.192/${car.ImageURL01}`} />
                 </Link>
                 <DataContainer>
                   <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
