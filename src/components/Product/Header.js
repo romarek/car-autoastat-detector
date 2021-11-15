@@ -22,8 +22,12 @@ const HeaderIcon = styled('img')`
   width: 30px;
   height: 30px;
   object-fit: cover;
+  display: none;
 `;
-const HeaderContent = styled('h3')``;
+const HeaderContent = styled('h3')`
+  font-size: 30px;
+  line-height: 36px;
+`;
 
 Header.propTypes = {
   props: PropTypes.string,

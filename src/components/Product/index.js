@@ -20,18 +20,18 @@ export function Product({ t }) {
   const [userAgent, setUserAgent] = useState('');
   const [originalUrl, setOriginalUrl] = useState('');
   const { vin } = router.query;
-  const [vinUrl, setVinUrl] = useState(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`);
+  const [vinUrl, setVinUrl] = useState(`http://localhost:8081/api/salesdata/vin/${vin}`);
   useEffect(() => {
     async function getProductByVin() {
       setUserAgent(`${browser.name} ${browser.version} ${browser.os}`);
       await axios
-        .get(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`)
+        .get(`http://localhost:8081/api/salesdata/vin/${vin}`)
         .then(res => {
           setProduct(res.data);
           // eslint-disable-next-line no-console
           console.log(product);
           setOriginalUrl(res.data.ImageURL01);
-          setVinUrl(`http://185.157.81.192:8081/api/salesdata/vin/${vin}`);
+          setVinUrl(`http://localhost:8081/api/salesdata/vin/${vin}`);
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -47,7 +47,7 @@ export function Product({ t }) {
         userAgent: userAgent,
       };
       axios
-        .post('http://185.157.81.192:8081/api/requests/', {
+        .post('http://localhost:8081/api/requests/', {
           vin: userView.vin,
           isDatabaseIn: userView.isDatabaseIn,
           ipAddress: userView.ipAddress,
@@ -67,58 +67,64 @@ export function Product({ t }) {
   let images = [];
   images.push(
     {
-      url: `http://185.157.81.192/${product.ImageURL01}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_0.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL01}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL01}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_0.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_0.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL02}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_1.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL02}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL02}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_1.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_1.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL03}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_2.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL03}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL03}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_2.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_2.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL04}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_3.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL04}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL04}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_3.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_3.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL05}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_4.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL05}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL05}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_4.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_4.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL06}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_5.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL06}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL06}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_5.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_5.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL07}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_6.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL07}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL07}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_6.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_6.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL08}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_7.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL08}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL08}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_7.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_7.jpg`,
     },
     {
-      url: `http://185.157.81.192/${product.ImageURL09}`,
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_8.jpg`,
       title: product.Title,
-      original: `http://185.157.81.192/${product.ImageURL09}`,
-      thumbnail: `http://185.157.81.192/${product.ImageURL09}`,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_8.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_8.jpg`,
+    },
+    {
+      url: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_9.jpg`,
+      title: product.Title,
+      original: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_9.jpg`,
+      thumbnail: `http://localhost/storage/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_9.jpg`,
     }
   );
   return (
@@ -146,7 +152,7 @@ export function Product({ t }) {
                       (product.CurrencyCode !== undefined ? product.CurrencyCode : t('phrases.noMoreInfo'))
                     : t('phrases.noMoreInfo')
                 }
-                icon="https://autoastat.com/build/images/ico_auction.3822b338.svg"
+                icon=""
               />
               <ParametersBlock>
                 <ParametersContent>

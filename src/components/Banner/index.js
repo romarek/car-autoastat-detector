@@ -6,14 +6,13 @@ import makeAnimated from 'react-select/animated';
 import styled from '@emotion/styled';
 import axios from 'axios';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { withTranslation } from 'utils/with-i18next';
 import Collapsible from 'react-collapsible';
 const animatedComponents = makeAnimated();
-import Slider from 'react-slick';
 import { css } from '@emotion/react';
 import ScaleLoader from 'react-spinners/ScaleLoader';
-import ActionButton from '../BoxItems/ActionButton';
 
 import ArrowLeftIcon from '../_Icons/ArrowLeft';
 import ArrowRightIcon from '../_Icons/ArrowRight';
@@ -43,7 +42,7 @@ export function Banner({ t }) {
     setLoading(true);
     axios
       .get(
-        `http://185.157.81.192:8081/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}`
+        `http://localhost:8081/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}`
       )
       .then(res => {
         setCarSearchResults(res.data.salesdata);
@@ -111,7 +110,7 @@ export function Banner({ t }) {
     ],
   };
   useEffect(() => {
-    axios.get('http://185.157.81.192:8081/api/salesdata/queries').then(res => {
+    axios.get('http://localhost:8081/api/salesdata/queries').then(res => {
       const data = res.data.totalItems;
       setMakeOptions(
         data.map(d => ({
@@ -198,26 +197,14 @@ export function Banner({ t }) {
           <Collapsible
             lazyRender
             open={true}
-            trigger={t('expandParams')}
-            triggerWhenOpen={t('compressParams')}
+            trigger={<Image src="/static/images/chevron-down.svg" width="20" height="20" alt={t('expandParams')} />}
+            triggerWhenOpen={
+              <Image src="/static/images/chevron-up.svg" width="20" height="20" alt={t('compressParams')} />
+            }
             triggerStyle={{ cursor: 'pointer', userSelect: 'none' }}
             easing="ease-in-out">
             <SearchRow>
               <SelectBlockCount4>
-                {/* <FormControl>
-                  <Label>{t('typeLabel1')}</Label>
-                  <Select
-                    inputId={'type'}
-                    closeMenuOnSelect={true}
-                    components={animatedComponents}
-                    options={typeOptionsSelected}
-                    onChange={handleChangeType.bind(this)}
-                    placeholder={t('typePlaceholderSelect').concat(t('typeSpace'), t('typeLabel1'))}
-                    menuPortalTarget={document.body}
-                    menuPosition={'fixed'}
-                    styles={customStyles}
-                  />
-                </FormControl> */}
                 <FormControl>
                   <Label>{t('typeLabel2')}</Label>
                   <Select
@@ -292,24 +279,28 @@ export function Banner({ t }) {
               ) : (
                 <BoxResultSuccessed>Found {carResultsCount} records in database.</BoxResultSuccessed>
               )}
-              <Slider {...settings} style={{ maxWidth: '100%' }}>
+              <SearchResultsContainer>
                 {carSearchResults.map(car => (
-                  <BoilerplateImage key={car.VIN}>
-                    <ContainerItems>
-                      <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
-                        <ImageItem src={car.ImageURL01} />
-                      </Link>
-                      <DataContainer>
+                  <SearchResultsItem key={car.VIN}>
+                    <BoilerplateImage>
+                      <ContainerItems>
                         <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
-                          <TitleItem>{car.Title}</TitleItem>
+                          <ImageItem
+                            src={`http://localhost/storage/${car.Make}-${car.ModelGroup}-${car.Year}-${car.Color}-${car.VIN}_0.jpg`}
+                          />
                         </Link>
-                        <ContentItem>VIN: {car.VIN}</ContentItem>
-                        <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
-                      </DataContainer>
-                    </ContainerItems>
-                  </BoilerplateImage>
+                        <DataContainer>
+                          <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
+                            <TitleItem>{car.Title}</TitleItem>
+                          </Link>
+                          <ContentItem>VIN: {car.VIN}</ContentItem>
+                          <ContentItem>Date: {car.LastUpdatedTime} </ContentItem>
+                        </DataContainer>
+                      </ContainerItems>
+                    </BoilerplateImage>
+                  </SearchResultsItem>
                 ))}
-              </Slider>
+              </SearchResultsContainer>
             </div>
           )}
         </SliderContainer>
@@ -358,13 +349,6 @@ const BackgroundLandscape = styled('div')`
     background-image: url('/static/images/frame-g1b8de030c_1920.jpg');
     height: 50vh;
     margin-bottom: -20vh;
-  }
-`;
-
-const Logo = styled('img')`
-  max-width: 440px;
-  @media (max-width: 768px) {
-    max-width: 100%;
   }
 `;
 
@@ -483,17 +467,6 @@ const SelectBlockCount4 = styled(SelectBlock)`
   }
 `;
 
-const SelectBlockCount3 = styled(SelectBlock)`
-  & > div {
-    width: calc(100% / 3);
-    @media (max-width: 768px) {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    padding: 0px 5px;
-  }
-`;
-
 const DivideBlock = styled('div')`
   display: flex;
   flex-flow: row nowrap;
@@ -528,6 +501,7 @@ const Label = styled('label')`
 
 const SliderContainer = styled('div')`
   max-width: 1024px;
+  width: 100%;
   padding: 15px;
   margin: 0 auto;
   @media (max-width: 768px) {
@@ -618,6 +592,21 @@ const BoxResultFailed = styled(BoxResult)`
 
 const BoxResultSuccessed = styled(BoxResult)`
   background-color: green;
+`;
+
+const SearchResultsContainer = styled('div')`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  gap: 15px;
+`;
+
+const SearchResultsItem = styled('div')`
+  max-width: 322px;
 `;
 
 export default withTranslation('banner')(Banner);

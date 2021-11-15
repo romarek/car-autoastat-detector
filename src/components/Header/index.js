@@ -46,6 +46,12 @@ export function Header({ t }) {
             </Link>
           </ListItem>
           <Space />
+          <EmailHeader>
+            <Link href="mailto:support@bidspace.info" target="_blank">
+              <EmailHeaderText>support@bidspace.info</EmailHeaderText>
+            </Link>
+          </EmailHeader>
+          <Space />
           <ListActions>
             <SelectLanguages t={t} style={{ paddingRight: 10 }} />
           </ListActions>
@@ -193,6 +199,23 @@ const CustomLink = styled('span')`
   &:hover {
     cursor: pointer;
     color: #000;
+  }
+`;
+
+const EmailHeader = styled('div')`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const EmailHeaderText = styled('span')`
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 3px;
+  &:hover {
+    border-bottom: 1.5px solid black;
+    transition: 0.5s;
   }
 `;
 

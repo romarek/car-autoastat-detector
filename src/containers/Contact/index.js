@@ -19,11 +19,11 @@ import reducer from './reducer';
 import { getShowcases } from './actions';
 import { selectShowcases } from './selectors';
 
-export function PageInBuild({ getShowcases, showcasesData }) {
+export function ContactPage({ getShowcases, showcasesData }) {
   useInjectSaga({ key: 'showcases', saga });
   useInjectReducer({ key: 'showcases', reducer });
 
-  return <Layout>Page in Build</Layout>;
+  return <Layout>Contact</Layout>;
 }
 
 const mapStateToProps = createStructuredSelector({
@@ -36,9 +36,9 @@ export function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-PageInBuild.propTypes = {
+ContactPage.propTypes = {
   showcasesData: PropTypes.object,
   getShowcases: PropTypes.func,
 };
 
-export default compose(withConnect, memo)(PageInBuild);
+export default compose(withConnect, memo)(ContactPage);

@@ -14,7 +14,6 @@ import Features from 'components/Features';
 import SliderResponsive from 'components/Slider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Newsletter from 'components/Newsletter';
 import Fade from 'react-reveal/Fade';
 
 import saga from './saga';
@@ -34,31 +33,28 @@ export function Home({ getShowcases, showcasesData }) {
         <Banner />
       </Fade>
       <Fade>
-        <SliderResponsive
-          headline="Sport cars"
-          apilink="http://185.157.81.192:8081/api/salesdata/params?make=Ferrari"
-        />
+        <SliderResponsive headline="Sport cars" apilink="http://localhost:8081/api/salesdata/params?make=FERRARI" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Highest bid" apilink="http://185.157.81.192:8081/api/salesdata/params?make=Audi" />
+        <SliderResponsive headline="Highest bid" apilink="http://localhost:8081/api/salesdata/params?make=AUDI" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Mercedes" apilink="http://185.157.81.192:8081/api/salesdata/params?make=Mercedes" />
+        <SliderResponsive headline="Mercedes" apilink="http://localhost:8081/api/salesdata/params?make=MERCEDES" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Toyota" apilink="http://185.157.81.192:8081/api/salesdata/params?make=Toyota" />
+        <SliderResponsive headline="Toyota" apilink="http://localhost:8081/api/salesdata/params?make=TOYOTA" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Lexus" apilink="http://185.157.81.192:8081/api/salesdata/params?make=Lexus" />
+        <SliderResponsive headline="Lexus" apilink="http://localhost:8081/api/salesdata/params?make=LEXUS" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="BMW" apilink="http://185.157.81.192:8081/api/salesdata/params?make=BMW" />
+        <SliderResponsive headline="BMW" apilink="http://localhost:8081/api/salesdata/params?make=BMW" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Subaru" apilink="http://185.157.81.192:8081/api/salesdata/params?make=Subaru" />
+        <SliderResponsive headline="Subaru" apilink="http://localhost:8081/api/salesdata/params?make=SUBARU" />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Nissan" apilink="http://185.157.81.192:8081/api/salesdata/params?make=Nissan" />
+        <SliderResponsive headline="Nissan" apilink="http://localhost:8081/api/salesdata/params?make=NISSAN" />
       </Fade>
     </Layout>
   );

@@ -88,7 +88,7 @@ export default function SliderResponsive(props) {
   };
   return (
     <SliderContainer>
-      <h2> {props.headline} </h2>
+      <SliderHeader>{props.headline}</SliderHeader>
       {loading ? (
         <ScaleLoader loading={loading} css={override} size={150} />
       ) : (
@@ -97,8 +97,13 @@ export default function SliderResponsive(props) {
             <BoilerplateImage key={car.VIN}>
               <ContainerItems>
                 <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
-                  <ImageItem src={`http://185.157.81.192/${car.ImageURL01}`} />
+                  <ImageItem
+                    src={`http://localhost/storage/${car.Make}-${car.ModelGroup}-${car.Year}-${car.Color}-${car.VIN}_0.jpg`}
+                  />
                 </Link>
+                <PriceContainer>
+                  {car.FinalBid !== typeof undefined ? car.FinalBid : ''} {car.CurrencyCode}
+                </PriceContainer>
                 <DataContainer>
                   <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
                     <TitleItem>{car.Title}</TitleItem>
@@ -196,4 +201,21 @@ const TouchableDot = styled('div')`
     background-color: rgba(198, 40, 40, 0.5);
     transition: 0.25s ease-out;
   }
+`;
+
+const SliderHeader = styled('h2')`
+  font-size: 32px;
+  line-height: 40px;
+`;
+
+const PriceContainer = styled('div')`
+  background-color: #535353;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  margin: -20px auto 20px auto;
+  width: fit-content;
+  padding: 10px 15px;
+  position: relative;
+  z-index: 1000;
 `;

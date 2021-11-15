@@ -42,7 +42,7 @@ const FormRegister = ({ t }) => {
     event.preventDefault();
     setInfo();
     axios
-      .post('http://185.157.81.192:8081/api/auth/signup', {
+      .post('http://localhost:8081/api/auth/signup', {
         username: username,
         email: email,
         password: password,

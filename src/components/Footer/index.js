@@ -4,38 +4,18 @@ import styled from '@emotion/styled';
 import { withTranslation } from 'utils/with-i18next';
 
 import Link from 'next/link';
+import Image from 'next/image';
+
+import Logo from '../Header/Logo';
 
 function Footer({ t }) {
   return (
     <FooterRoot className="root">
       <FooterContainer className="container">
         <FooterRow className="row">
-          <Link
-            className="link"
-            href="https://nextjs.org/features/server-side-rendering"
-            rel="noopener noreferrer"
-            target="_blank">
-            <TextLink>My Page</TextLink>
-          </Link>
-
-          <Link
-            className="link"
-            href="https://nextjs.org/features/static-exporting"
-            rel="noopener noreferrer"
-            target="_blank">
-            <TextLink>My Page</TextLink>
-          </Link>
-
-          <Link className="link" href="https://nextjs.org/features/css-in-js" rel="noopener noreferrer" target="_blank">
-            <TextLink>My Page</TextLink>
-          </Link>
-
-          <Link
-            className="link"
-            href="https://nextjs.org/features/progressive-web-apps"
-            rel="noopener noreferrer"
-            target="_blank">
-            <TextLink>My Page</TextLink>
+          <Logo href="/" src="/static/images/BIDSPACE-removebg-preview.png" alt="Logo" />
+          <Link href="mailto:support@bidspace.info">
+            <TextLink>support@bidspace.info</TextLink>
           </Link>
         </FooterRow>
       </FooterContainer>
@@ -61,13 +41,14 @@ const FooterContainer = styled('div')`
   margin: 0 auto;
   max-width: 1024px;
   padding: 2rem 0 2rem;
-  min-height: 200px;
+  min-height: 100px;
 `;
 
 const FooterRow = styled('div')`
   display: flex;
   flex-flow: row;
   justify-content: space-evenly;
+  align-items: center;
   @media (max-width: 768px) {
     flex-flow: column nowrap;
   }
@@ -82,6 +63,10 @@ const TextLink = styled('span')`
     text-decoration: underline;
     transition: 0.25s ease;
   }
+`;
+
+const Space = styled('div')`
+  flex: 1 1 auto;
 `;
 
 export default withTranslation('banner')(Footer);

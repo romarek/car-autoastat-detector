@@ -29,7 +29,7 @@ export default function SliderResponsive(props) {
     const { vin } = router.query;
     axios
       // eslint-disable-next-line react/prop-types
-      .get(`http://185.157.81.192:8081/api/salesdata/vin/WDDGF81X08F085363`)
+      .get(`http://localhost:8081/api/salesdata/vin/WDDGF81X08F085363`)
       .then(res => {
         setCarResults(res.data);
         setLoading(false);
@@ -100,7 +100,9 @@ export default function SliderResponsive(props) {
             <BoilerplateImage key={car.VIN}>
               <ContainerItems>
                 <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
-                  <ImageItem src={`http://185.157.81.192/${car.ImageURL01}`} />
+                  <ImageItem
+                    src={`http://localhost/storage/${car.Make}-${car.ModelGroup}-${car.Year}-${car.Color}-${car.VIN}_0.jpg`}
+                  />
                 </Link>
                 <DataContainer>
                   <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>

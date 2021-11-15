@@ -22,7 +22,7 @@ class Srr extends App {
         <Head>
           <title>Bidspace Auction History - Best sales history search service | bidspace.info</title>
         </Head>
-        <RestfulProvider base="http://185.157.81.192:8081/api">
+        <RestfulProvider base="http://localhost:8081/api">
           <Provider store={reduxStore}>
             <AnimateSharedLayout>
               <Component {...pageProps} />

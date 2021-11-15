@@ -18,11 +18,6 @@ function MobileMenu({ close, t }) {
             </Link>
           </MenuItem>
           <MenuItem onClick={close}>
-            <Link href="/donate">
-              <TextLink>{t('phrases.donate')}</TextLink>
-            </Link>
-          </MenuItem>
-          <MenuItem onClick={close}>
             <Link href="/contact">
               <TextLink>{t('phrases.contact')}</TextLink>
             </Link>

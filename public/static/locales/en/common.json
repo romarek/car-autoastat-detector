@@ -48,7 +48,7 @@
     "vehicle": "Vehicle",
     "accident": "Accident",
     "auction": "Auction",
-    "specialNote": "Special note",
+    "specialNote": "Title",
     "primaryDamage": "Primary damage",
     "secondaryDamage": "Secondary damage",
     "estRetailValue": "Est. Retail Value",
