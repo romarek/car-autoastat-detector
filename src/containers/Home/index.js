@@ -33,7 +33,7 @@ export function Home({ getShowcases, showcasesData }) {
         <Banner />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Sport cars" apilink="http://panel.bidspace.info/api/salesdata/params?make=FERRARI" />
+        <SliderResponsive headline="Sport cars" apilink="http://panel.bidspace.info/api/salesdata/params?make=LEXUS" />
       </Fade>
       <Fade>
         <SliderResponsive headline="Highest bid" apilink="http://panel.bidspace.info/api/salesdata/params?make=AUDI" />
