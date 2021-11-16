@@ -286,7 +286,7 @@ export function Banner({ t }) {
                       <ContainerItems>
                         <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
                           <ImageItem
-                            src={`http://localhost/storage/${car.Make}-${car.ModelGroup}-${car.Year}-${car.Color}-${car.VIN}_0.jpg`}
+                            src={`http://storage.bidspace.info/${car.Make}/${car.Make}-${car.ModelGroup}-${car.Year}-${car.Color}-${car.VIN}_0.jpg`}
                           />
                         </Link>
                         <DataContainer>
