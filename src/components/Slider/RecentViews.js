@@ -29,7 +29,7 @@ export default function SliderResponsive(props) {
     const { vin } = router.query;
     axios
       // eslint-disable-next-line react/prop-types
-      .get(`http://localhost:8081/api/salesdata/vin/WDDGF81X08F085363`)
+      .get(`http://panel.bidspace.info/api/salesdata/vin/WDDGF81X08F085363`)
       .then(res => {
         setCarResults(res.data);
         setLoading(false);

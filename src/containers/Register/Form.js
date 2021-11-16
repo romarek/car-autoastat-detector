@@ -42,7 +42,7 @@ const FormRegister = ({ t }) => {
     event.preventDefault();
     setInfo();
     axios
-      .post('http://localhost:8081/api/auth/signup', {
+      .post('http://panel.bidspace.info/api/auth/signup', {
         username: username,
         email: email,
         password: password,
