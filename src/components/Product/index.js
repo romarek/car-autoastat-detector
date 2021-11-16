@@ -32,10 +32,10 @@ export function Product({ t }) {
           console.log(product);
           setImages([
             {
-              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
+              url: `http://storage.bidspace.info/${res.data.Make.toLowerCase()}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
               title: res.data.Title,
-              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
-              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
+              original: `http://storage.bidspace.info/${res.data.Make.toLowerCase()}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make.toLowerCase()}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
             },
             {
               url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_1.jpg`,
