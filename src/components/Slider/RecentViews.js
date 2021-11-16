@@ -101,7 +101,9 @@ export default function SliderResponsive(props) {
               <ContainerItems>
                 <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
                   <ImageItem
-                    src={`http://storage.bidspace.info/${car.Make}/${car.Make}-${car.ModelGroup}-${car.Year}-${car.Color}-${car.VIN}_0.jpg`}
+                    src={`http://storage.bidspace.info/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${
+                      car.Year
+                    }-${car.Color.toLowerCase()}-${car.VIN}_0.jpg`}
                   />
                 </Link>
                 <DataContainer>
