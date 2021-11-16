@@ -19,7 +19,6 @@ export function Product({ t }) {
   const [product, setProduct] = useState([]);
   const [images, setImages] = useState([]);
   const [userAgent, setUserAgent] = useState('');
-  const [originalUrl, setOriginalUrl] = useState('');
   const { vin } = router.query;
   const [vinUrl, setVinUrl] = useState(`http://panel.bidspace.info/api/salesdata/vin/${vin}`);
   useEffect(() => {
@@ -31,7 +30,68 @@ export function Product({ t }) {
           setProduct(res.data);
           // eslint-disable-next-line no-console
           console.log(product);
-          setOriginalUrl(res.data.ImageURL01);
+          setImages([
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_0.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_1.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_1.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_1.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_2.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_2.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_2.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_3.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_3.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_3.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_4.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_4.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_4.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_5.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_5.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_5.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_6.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_6.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_6.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_7.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_7.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_7.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_8.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_8.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_8.jpg`,
+            },
+            {
+              url: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_9.jpg`,
+              title: res.data.Title,
+              original: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_9.jpg`,
+              thumbnail: `http://storage.bidspace.info/${res.data.Make}/${res.data.Make}-${res.data.ModelGroup}-${res.data.Year}-${res.data.Color}-${res.data.VIN}_9.jpg`,
+            },
+          ]);
           setVinUrl(`http://panel.bidspace.info/api/salesdata/vin/${vin}`);
         })
         .catch(error => {
@@ -64,71 +124,6 @@ export function Product({ t }) {
         });
     }
     sendUserData();
-    setTimeout(function() {
-      const img = [
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_0.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_0.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_0.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_1.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_1.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_1.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_2.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_2.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_2.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_3.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_3.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_3.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_4.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_4.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_4.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_5.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_5.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_5.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_6.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_6.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_6.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_7.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_7.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_7.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_8.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_8.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_8.jpg`,
-        },
-        {
-          url: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_9.jpg`,
-          title: product.Title,
-          original: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_9.jpg`,
-          thumbnail: `http://storage.bidspace.info/${product.Make}/${product.Make}-${product.ModelGroup}-${product.Year}-${product.Color}-${product.VIN}_9.jpg`,
-        },
-      ];
-      setImages(img);
-    }, 3000);
   }, []);
   return (
     <Container id="product_content">
