@@ -29,7 +29,7 @@ export default function SliderResponsive(props) {
     const { vin } = router.query;
     axios
       // eslint-disable-next-line react/prop-types
-      .get(`http://panel.bidspace.info/api/salesdata/vin/WDDGF81X08F085363`)
+      .get(`https://panel.bidspace.info/api/salesdata/vin/WDDGF81X08F085363`)
       .then(res => {
         setCarResults(res.data);
         setLoading(false);
@@ -101,7 +101,7 @@ export default function SliderResponsive(props) {
               <ContainerItems>
                 <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
                   <ImageItem
-                    src={`http://storage.bidspace.info/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${
+                    src={`https://storage.bidspace.info/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${
                       car.Year
                     }-${car.Color.toLowerCase()}-${car.VIN}_0.jpg`}
                   />

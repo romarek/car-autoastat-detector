@@ -42,7 +42,7 @@ export function Banner({ t }) {
     setLoading(true);
     axios
       .get(
-        `http://panel.bidspace.info/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}`
+        `https://panel.bidspace.info/api/salesdata/params?type=${type}&make=${make}&model=${model}&yearBegin=${yearBegin}&yearEnd=${yearEnd}`
       )
       .then(res => {
         setCarSearchResults(res.data.salesdata);
@@ -110,7 +110,7 @@ export function Banner({ t }) {
     ],
   };
   useEffect(() => {
-    axios.get('http://panel.bidspace.info/api/salesdata/queries').then(res => {
+    axios.get('https://panel.bidspace.info/api/salesdata/queries').then(res => {
       const data = res.data.totalItems;
       setMakeOptions(
         data.map(d => ({
@@ -286,7 +286,7 @@ export function Banner({ t }) {
                       <ContainerItems>
                         <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
                           <ImageItem
-                            src={`http://storage.bidspace.info/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${
+                            src={`https://storage.bidspace.info/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${
                               car.Year
                             }-${car.Color.toLowerCase()}-${car.VIN}_0.jpg`}
                           />
