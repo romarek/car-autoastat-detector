@@ -387,6 +387,7 @@ const VinInput = styled('input')`
   background-color: #f2f2f2;
   color: black;
   font-family: 'Gilroy Bold';
+  font-size: 18px;
   margin: 15px 5px;
   padding: 15px 5px;
   border: 2px solid black;
@@ -407,6 +408,7 @@ const SearchButton = styled('button')`
   background-color: #ff3030;
   color: white;
   font-family: 'Gilroy Bold';
+  font-size: 18px;
   cursor: pointer;
   width: 275px;
   margin: 15px 5px;
