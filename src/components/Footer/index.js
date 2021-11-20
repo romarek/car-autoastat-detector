@@ -40,18 +40,16 @@ const FooterRoot = styled('footer')`
 
 const FooterContainer = styled('div')`
   margin: 0 auto;
-  max-width: 1024px;
-  padding: 2rem 0 2rem;
   min-height: 100px;
 `;
 
 const FooterRow = styled('div')`
   display: flex;
   flex-flow: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   @media (max-width: 768px) {
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
   }
 `;
 

@@ -215,114 +215,114 @@ export function Product({ t }) {
               <ParametersBlock>
                 <ParametersContent>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.vin')}</ParametersCell>
+                    <ParametersCell>{t('phrases.vin')}:</ParametersCell>
                     <ParametersCell>{product.VIN !== undefined ? product.VIN : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.lot')}</ParametersCell>
+                    <ParametersCell>{t('phrases.lot')}:</ParametersCell>
                     <ParametersCell>
                       {product.LotNumber !== undefined ? product.LotNumber : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.auction')}</ParametersCell>
+                    <ParametersCell>{t('phrases.auction')}:</ParametersCell>
                     <ParametersCell>
                       {product.YardName !== undefined ? product.YardName : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.year')}</ParametersCell>
+                    <ParametersCell>{t('phrases.year')}:</ParametersCell>
                     <ParametersCell>
                       {product.Year !== undefined ? product.Year : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.seller')}</ParametersCell>
+                    <ParametersCell>{t('phrases.seller')}:</ParametersCell>
                     <ParametersCell>
                       {product.Seller !== undefined ? product.Seller : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.date')}</ParametersCell>
+                    <ParametersCell>{t('phrases.date')}:</ParametersCell>
                     <ParametersCell>
                       {product.SaleDateMDCY !== undefined ? product.SaleDateMDCY : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.specialNote')}</ParametersCell>
+                    <ParametersCell>{t('phrases.specialNote')}:</ParametersCell>
                     <ParametersCell>
                       {t('phrases.titleCode')}{' '}
                       {product.SpecialNote !== undefined ? product.SpecialNote : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.fuel')}</ParametersCell>
+                    <ParametersCell>{t('phrases.fuel')}:</ParametersCell>
                     <ParametersCell>
                       {product.FuelType !== undefined ? product.FuelType : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.color')}</ParametersCell>
+                    <ParametersCell>{t('phrases.color')}:</ParametersCell>
                     <ParametersCell>
                       {product.Color !== undefined ? product.Color : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.location')}</ParametersCell>
+                    <ParametersCell>{t('phrases.location')}:</ParametersCell>
                     <ParametersCell>
                       {product.LocationCity !== undefined ? product.LocationCity : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.reatilValue')}</ParametersCell>
+                    <ParametersCell>{t('phrases.reatilValue')}:</ParametersCell>
                     <ParametersCell>
                       {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}{' '}
                       {product.CurrencyCode !== undefined ? product.CurrencyCode : ''}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.repairValue')}</ParametersCell>
+                    <ParametersCell>{t('phrases.repairValue')}:</ParametersCell>
                     <ParametersCell>
                       {product.RepairCost !== undefined ? product.RepairCost : t('phrases.noMoreInfo')}{' '}
                       {product.CurrencyCode !== undefined ? product.CurrencyCode : ''}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.primaryDamage')}</ParametersCell>
+                    <ParametersCell>{t('phrases.primaryDamage')}:</ParametersCell>
                     <ParametersCell>
                       {product.PrimaryDamage !== undefined ? product.PrimaryDamage : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.secondaryDamage')}</ParametersCell>
+                    <ParametersCell>{t('phrases.secondaryDamage')}:</ParametersCell>
                     <ParametersCell>
                       {product.SecondaryDamage !== undefined ? product.SecondaryDamage : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.estRetailValue')}</ParametersCell>
+                    <ParametersCell>{t('phrases.estRetailValue')}:</ParametersCell>
                     <ParametersCell>{product.id !== undefined ? product.id : t('phrases.noMoreInfo')}</ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.bodyStyle')}</ParametersCell>
+                    <ParametersCell>{t('phrases.bodyStyle')}:</ParametersCell>
                     <ParametersCell>
                       {product.BodyStyle !== undefined ? product.BodyStyle : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.runsdrives')}</ParametersCell>
+                    <ParametersCell>{t('phrases.runsdrives')}:</ParametersCell>
                     <ParametersCell>
                       {product.RunsDrives !== undefined ? product.RunsDrives : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.keys')}</ParametersCell>
+                    <ParametersCell>{t('phrases.keys')}:</ParametersCell>
                     <ParametersCell>
                       {product.HasKeysYesOrNo !== undefined ? product.HasKeysYesOrNo : t('phrases.noMoreInfo')}
                     </ParametersCell>
                   </ParametersRow>
                   <ParametersRow>
-                    <ParametersCell>{t('phrases.transmission')}</ParametersCell>
+                    <ParametersCell>{t('phrases.transmission')}:</ParametersCell>
                     <ParametersCell>
                       {product.Transmission !== undefined ? product.Transmission : t('phrases.noMoreInfo')}
                     </ParametersCell>
