@@ -428,6 +428,7 @@ const SearchButton = styled('button')`
   }
   & > a {
     color: white;
+    font-size: 18px;
     padding: 10px 15px;
     text-decoration: none;
     &:hover {
@@ -439,6 +440,7 @@ const SearchButton = styled('button')`
     background: unset;
     color: white;
     font-family: 'Gilroy Bold';
+    font-size: 18px;
     border: none;
     cursor: pointer;
     width: 100%;
