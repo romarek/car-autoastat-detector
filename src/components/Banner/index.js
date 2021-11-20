@@ -389,12 +389,15 @@ const VinInput = styled('input')`
   font-family: 'Gilroy Bold';
   margin: 15px 5px;
   padding: 15px 5px;
-  border: 2px solid transparent;
+  border: 2px solid black;
   border-radius: 10px;
   min-width: calc(100% - 310px);
   &:focus {
     border-color: #ff3030;
     transition: 0.5s ease;
+  }
+  ::placeholder {
+    color: black;
   }
 `;
 
