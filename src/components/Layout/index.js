@@ -53,7 +53,7 @@ const Main = styled('main')`
   position: relative;
   margin-top: 5rem;
   @media (max-width: 768px) {
-    margin-left: 1rem;
+    padding-left: 1rem;
   }
 `;
 
