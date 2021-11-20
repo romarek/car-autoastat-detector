@@ -35,6 +35,8 @@ class MyDocument extends Document {
               padding: 0;
               font-family: 'Gilroy Bold';
               scroll-behaviour: smooth;
+            }
+            body {
               overflow-x: hidden;
             }
             .link-style {
