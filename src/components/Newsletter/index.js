@@ -84,7 +84,7 @@ function Newsletter() {
                     disabled={isSubmitting}
                     label="Subscribe"
                     case="login"
-                    buttonColor="#535353"
+                    buttonColor="#ff3030"
                   />
                 </FormButtons>
                 {/* <DisplayState {...props} /> */}

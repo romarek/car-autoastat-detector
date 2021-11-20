@@ -198,7 +198,7 @@ const FormRegister = ({ t }) => {
                   type="submit"
                   label={t('phrases.register')}
                   case="login"
-                  buttonColor="#535353"
+                  buttonColor="#ff3030"
                 />
               </Form>
             )}

@@ -18,7 +18,7 @@ class MyDocument extends Document {
         <Global
           styles={css`
             ::selection {
-              background-color: #535353;
+              background-color: #ff3030;
               color: #fff;
             }
             @font-face {
@@ -108,7 +108,7 @@ class MyDocument extends Document {
             }
             .tab-list-active:before {
               content: 'A';
-              background: #535353;
+              background: #ff3030;
               color: transparent;
               width: 1px;
               border-radius: 5px 0px 0px 5px;
@@ -183,7 +183,7 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#000000" />
           <link rel="shortcut icon" href="/static/favicon/favicon.png" />
           <meta name="msapplication-config" content="/static/favicon/browserconfig.xml" />
-          <meta name="theme-color" content="#535353" />
+          <meta name="theme-color" content="#ff3030" />
           <meta content="The Bidspace website provides reliable information on prices and damage to insured vehicles in America and Canada resulting from an accident, hail, flood, theft or other insured event." />
           <meta
             name="keywords"

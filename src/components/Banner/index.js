@@ -328,7 +328,7 @@ const BannerRoot = styled('div')`
 `;
 
 const Title = styled('h1')`
-  font-size: 45px;
+  font-size: 36px;
   @media (max-width: 768px) {
     margin-top: 50px;
   }
@@ -393,20 +393,20 @@ const VinInput = styled('input')`
   border-radius: 10px;
   min-width: calc(100% - 310px);
   &:focus {
-    border: 2px solid #535353;
+    border: 2px solid #ff3030;
     transition: 0.5s ease;
   }
 `;
 
 const SearchButton = styled('button')`
-  background-color: #535353;
+  background-color: #ff3030;
   color: white;
   font-family: 'Gilroy Bold';
   cursor: pointer;
   width: 275px;
   margin: 15px 5px;
   padding: 15px 45px;
-  border: 2px solid #535353;
+  border: 2px solid #ff3030;
   border-radius: 10px;
   @media (max-width: 768px) {
     width: 100%;
@@ -416,7 +416,7 @@ const SearchButton = styled('button')`
   }
   &:hover,
   &:hover a {
-    color: #535353;
+    color: #ff3030;
     transition: 0.25s;
   }
   & > a {
@@ -424,7 +424,7 @@ const SearchButton = styled('button')`
     padding: 10px 15px;
     text-decoration: none;
     &:hover {
-      color: #535353;
+      color: #ff3030;
       transition: 0.25s;
     }
   }
@@ -438,7 +438,7 @@ const SearchButton = styled('button')`
     height: 100%;
   }
   &:hover > button {
-    color: #535353;
+    color: #ff3030;
     transition: 0.25s;
   }
 `;

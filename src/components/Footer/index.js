@@ -35,6 +35,7 @@ const FooterRoot = styled('footer')`
   padding: 0 0;
   color: black;
   overflow: hidden;
+  border-top: 1.5px solid black;
 `;
 
 const FooterContainer = styled('div')`

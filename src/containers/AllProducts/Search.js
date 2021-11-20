@@ -188,7 +188,7 @@ const LeftPanel = styled('div')`
     color: gray;
   }
   button.ais-RangeInput-submit[type='submit'] {
-    background-color: #535353;
+    background-color: #ff3030;
     color: #fff;
     cursor: pointer;
     text-transform: uppercase;
@@ -239,7 +239,7 @@ const RightPanel = styled('div')`
     cursor: pointer;
   }
   & form button[type='submit'] {
-    background-color: #535353;
+    background-color: #ff3030;
   }
   & form button[type='reset'] {
     background-color: #f2f2f2;

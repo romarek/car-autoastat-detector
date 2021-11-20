@@ -16,7 +16,7 @@ Logo.propTypes = {
 };
 
 const ItemLogo = styled.img`
-  color: #535353;
+  color: #ff3030;
   text-decoration: none;
   margin-left: -5px;
   margin-right: 1rem;

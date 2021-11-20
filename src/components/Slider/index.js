@@ -114,7 +114,7 @@ export default function SliderResponsive(props) {
                   <ContentItem>Date: {car.SaleDateMDCY} </ContentItem>
                 </DataContainer>
                 <ButtonsContainer style={{ display: 'none' }}>
-                  <ActionButton label="Add to favourite" case="favourite" buttonColor="#535353" />
+                  <ActionButton label="Add to favourite" case="favourite" buttonColor="#ff3030" />
                   <ActionButton label="Read more" case="more" buttonColor="#000" />
                 </ButtonsContainer>
               </ContainerItems>
@@ -211,7 +211,7 @@ const SliderHeader = styled('h2')`
 `;
 
 const PriceContainer = styled('div')`
-  background-color: #535353;
+  background-color: #ff3030;
   color: white;
   font-size: 18px;
   border-radius: 10px;
