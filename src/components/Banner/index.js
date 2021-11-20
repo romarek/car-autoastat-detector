@@ -396,7 +396,9 @@ const VinInput = styled('input')`
     border-color: #ff3030;
     transition: 0.5s ease;
   }
-  ::placeholder {
+  ::placeholder,
+  ::webkit-placeholder,
+  ::moz-placeholder {
     color: black;
   }
 `;
