@@ -52,6 +52,9 @@ const Main = styled('main')`
   width: 100%;
   position: relative;
   margin-top: 5rem;
+  @media (max-width: 768px) {
+    margin-left: 1rem;
+  }
 `;
 
 const CookieIcon = styled('img')`
