@@ -288,7 +288,7 @@ export function Banner({ t }) {
                           <ImageItem
                             src={`https://storage.bidspace.info/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${
                               car.Year
-                            }-${car.Color.toLowerCase()}-${car.VIN}_0.jpg`}
+                            }-${car.Color.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
                           />
                         </Link>
                         <DataContainer>

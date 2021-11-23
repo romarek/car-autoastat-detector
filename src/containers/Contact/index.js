@@ -23,7 +23,11 @@ export function ContactPage({ getShowcases, showcasesData }) {
   useInjectSaga({ key: 'showcases', saga });
   useInjectReducer({ key: 'showcases', reducer });
 
-  return <Layout>Contact</Layout>;
+  return (
+    <Layout>
+      <Fade>Contact</Fade>
+    </Layout>
+  );
 }
 
 const mapStateToProps = createStructuredSelector({
