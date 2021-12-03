@@ -24,9 +24,6 @@ export function Banner({ t }) {
   const [model, setModel] = useState('');
   const [yearBegin, setYearBegin] = useState('');
   const [yearEnd, setYearEnd] = useState('');
-  const [modelOptions, setModelOptions] = useState();
-  const [makeOptions, setMakeOptions] = useState();
-  const [yearOptions, setYearOptions] = useState();
   const [modelOptionsSelected, setModelOptionsSelected] = useState([]);
   const [makeOptionsSelected, setMakeOptionsSelected] = useState([]);
   const [yearOptionsSelected, setYearOptionsSelected] = useState([]);
@@ -112,25 +109,19 @@ export function Banner({ t }) {
   useEffect(() => {
     axios.get('https://panel.bidspace.info/api/salesdata/queries').then(res => {
       const data = res.data.totalItems;
-      console.log(data);
-      setMakeOptions(
-        res.data.totalItems.map(d => ({
-          value: d.Make,
-          label: d.Make,
-        }))
-      );
-      setModelOptions(
-        res.data.totalItems.map(d => ({
-          value: d.ModelGroup,
-          label: d.ModelGroup,
-        }))
-      );
-      setYearOptions(
-        res.data.totalItems.map(d => ({
-          value: d.Year,
-          label: d.Year,
-        }))
-      );
+      let makeOptions = res.data.totalItems.map(d => ({
+        value: d.Make,
+        label: d.Make,
+      }));
+      let modelOptions = res.data.totalItems.map(d => ({
+        value: d.ModelGroup,
+        label: d.ModelGroup,
+      }));
+      let yearOptions = res.data.totalItems.map(d => ({
+        value: d.Year,
+        label: d.Year,
+      }));
+      console.log(makeOptions);
       const uniqueValuesMakeOptions = new Set();
       const uniqueValuesModelOptions = new Set();
       const uniqueValuesYearOptions = new Set();
