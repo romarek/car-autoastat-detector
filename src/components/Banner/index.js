@@ -620,6 +620,9 @@ const SearchResultsContainer = styled('div')`
 
 const SearchResultsItem = styled('div')`
   max-width: 322px;
+  @media (min-width: 322px) {
+    width: 322px;
+  }
 `;
 
 export default withTranslation('banner')(Banner);
