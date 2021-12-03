@@ -114,19 +114,19 @@ export function Banner({ t }) {
       const data = res.data.totalItems;
       console.log(data);
       setMakeOptions(
-        data.map(d => ({
+        res.data.totalItems.map(d => ({
           value: d.Make,
           label: d.Make,
         }))
       );
       setModelOptions(
-        data.map(d => ({
+        res.data.totalItems.map(d => ({
           value: d.ModelGroup,
           label: d.ModelGroup,
         }))
       );
       setYearOptions(
-        data.map(d => ({
+        res.data.totalItems.map(d => ({
           value: d.Year,
           label: d.Year,
         }))
