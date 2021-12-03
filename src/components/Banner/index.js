@@ -130,34 +130,34 @@ export function Banner({ t }) {
           label: d.Year,
         }))
       );
+      const uniqueValuesMakeOptions = new Set();
+      const uniqueValuesModelOptions = new Set();
+      const uniqueValuesYearOptions = new Set();
+      console.log(`Show me plis: ${JSON.stringify(makeOptions)}`);
+      const filteredMake = makeOptions.filter(obj => {
+        const isPresentInSetMake = uniqueValuesMakeOptions.has(obj.value);
+        uniqueValuesMakeOptions.add(obj.value);
+        return !isPresentInSetMake;
+      });
+      const filteredModel = modelOptions.filter(obj => {
+        const isPresentInSetModel = uniqueValuesModelOptions.has(obj.value);
+        uniqueValuesModelOptions.add(obj.value);
+        return !isPresentInSetModel;
+      });
+      const filteredYear = yearOptions.filter(obj => {
+        const isPresentInSetYear = uniqueValuesYearOptions.has(obj.value);
+        uniqueValuesYearOptions.add(obj.value);
+        return !isPresentInSetYear;
+      });
+      console.log(`Show me: ${JSON.stringify(filteredMake)}`);
+      setMakeOptionsSelected(filteredMake);
+      setModelOptionsSelected(filteredModel);
+      setYearOptionsSelected(filteredYear);
+      setMake('');
+      setModel('');
+      setYearBegin('');
+      setYearEnd('');
     });
-    const uniqueValuesMakeOptions = new Set();
-    const uniqueValuesModelOptions = new Set();
-    const uniqueValuesYearOptions = new Set();
-    console.log(`Show me plis: ${JSON.stringify(makeOptions)}`);
-    const filteredMake = makeOptions.filter(obj => {
-      const isPresentInSetMake = uniqueValuesMakeOptions.has(obj.value);
-      uniqueValuesMakeOptions.add(obj.value);
-      return !isPresentInSetMake;
-    });
-    const filteredModel = modelOptions.filter(obj => {
-      const isPresentInSetModel = uniqueValuesModelOptions.has(obj.value);
-      uniqueValuesModelOptions.add(obj.value);
-      return !isPresentInSetModel;
-    });
-    const filteredYear = yearOptions.filter(obj => {
-      const isPresentInSetYear = uniqueValuesYearOptions.has(obj.value);
-      uniqueValuesYearOptions.add(obj.value);
-      return !isPresentInSetYear;
-    });
-    console.log(`Show me: ${JSON.stringify(filteredMake)}`);
-    setMakeOptionsSelected(filteredMake);
-    setModelOptionsSelected(filteredModel);
-    setYearOptionsSelected(filteredYear);
-    setMake('');
-    setModel('');
-    setYearBegin('');
-    setYearEnd('');
   }, []);
   function handleChangeMake(e) {
     setMake(e.value);
