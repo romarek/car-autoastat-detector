@@ -24,9 +24,9 @@ export function Banner({ t }) {
   const [model, setModel] = useState('');
   const [yearBegin, setYearBegin] = useState('');
   const [yearEnd, setYearEnd] = useState('');
-  const [modelOptions, setModelOptions] = useState([]);
-  const [makeOptions, setMakeOptions] = useState([]);
-  const [yearOptions, setYearOptions] = useState([]);
+  const [modelOptions, setModelOptions] = useState();
+  const [makeOptions, setMakeOptions] = useState();
+  const [yearOptions, setYearOptions] = useState();
   const [modelOptionsSelected, setModelOptionsSelected] = useState([]);
   const [makeOptionsSelected, setMakeOptionsSelected] = useState([]);
   const [yearOptionsSelected, setYearOptionsSelected] = useState([]);
