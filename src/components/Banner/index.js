@@ -112,6 +112,7 @@ export function Banner({ t }) {
   useEffect(() => {
     axios.get('https://panel.bidspace.info/api/salesdata/queries').then(res => {
       const data = res.data.totalItems;
+      console.log(data);
       setMakeOptions(
         data.map(d => ({
           value: d.Make,
