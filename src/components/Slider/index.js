@@ -155,6 +155,9 @@ const ImageItem = styled('img')`
   border-radius: 10px;
   cursor: pointer;
   background-image: url('/static/images/blank.png');
+  background-size: 100%;
+  background-position: center;
+  background-origin: content-box;
 `;
 
 const TitleItem = styled('h3')`
