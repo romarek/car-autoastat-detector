@@ -35,32 +35,50 @@ export function Home({ getShowcases, showcasesData }) {
       <Fade>
         <SliderResponsive
           headline="Sport cars"
-          apilink="https://panel.bidspace.info/api/salesdata/params?make=Ferrari"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=Ferrari"
         />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Highest bid" apilink="https://panel.bidspace.info/api/salesdata/params?make=Audi" />
+        <SliderResponsive
+          headline="Highest bid"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=Audi"
+        />
       </Fade>
       <Fade>
         <SliderResponsive
           headline="Mercedes"
-          apilink="https://panel.bidspace.info/api/salesdata/params?make=Mercedes"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=Mercedes"
         />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Toyota" apilink="https://panel.bidspace.info/api/salesdata/params?make=Toyota" />
+        <SliderResponsive
+          headline="Toyota"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=Toyota"
+        />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Lexus" apilink="https://panel.bidspace.info/api/salesdata/params?make=Lexus" />
+        <SliderResponsive
+          headline="Lexus"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=Lexus"
+        />
       </Fade>
       <Fade>
-        <SliderResponsive headline="BMW" apilink="https://panel.bidspace.info/api/salesdata/params?make=BMW" />
+        <SliderResponsive
+          headline="BMW"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=BMW"
+        />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Subaru" apilink="https://panel.bidspace.info/api/salesdata/params?make=Subaru" />
+        <SliderResponsive
+          headline="Subaru"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=Subaru"
+        />
       </Fade>
       <Fade>
-        <SliderResponsive headline="Nissan" apilink="https://panel.bidspace.info/api/salesdata/params?make=Nissan" />
+        <SliderResponsive
+          headline="Nissan"
+          apilink="https://panel.bidspace.info/api/salesdata/params?yard=IAAI&make=Nissan"
+        />
       </Fade>
     </Layout>
   );
