@@ -286,7 +286,7 @@ export function Banner({ t }) {
                       <ContainerItems>
                         <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
                           <ImageItem
-                            src={`https://storage.bidspace.info/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${car.Color.toLowerCase()}-${car.Year.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
+                            src={`https://storage.bidspace.info/${car.YardName.trim().toLowerCase()}/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${car.Color.toLowerCase()}-${car.Year.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
                           />
                         </Link>
                         <DataContainer>
