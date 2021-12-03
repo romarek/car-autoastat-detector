@@ -108,7 +108,6 @@ export function Banner({ t }) {
   };
   useEffect(() => {
     axios.get('https://panel.bidspace.info/api/salesdata/queries').then(res => {
-      const data = res.data.totalItems;
       let makeOptions = res.data.totalItems.map(d => ({
         value: d.Make,
         label: d.Make,
@@ -121,11 +120,9 @@ export function Banner({ t }) {
         value: d.Year,
         label: d.Year,
       }));
-      console.log(makeOptions);
       const uniqueValuesMakeOptions = new Set();
       const uniqueValuesModelOptions = new Set();
       const uniqueValuesYearOptions = new Set();
-      console.log(`Show me plis: ${JSON.stringify(makeOptions)}`);
       const filteredMake = makeOptions.filter(obj => {
         const isPresentInSetMake = uniqueValuesMakeOptions.has(obj.value);
         uniqueValuesMakeOptions.add(obj.value);
@@ -141,7 +138,6 @@ export function Banner({ t }) {
         uniqueValuesYearOptions.add(obj.value);
         return !isPresentInSetYear;
       });
-      console.log(`Show me: ${JSON.stringify(filteredMake)}`);
       setMakeOptionsSelected(filteredMake);
       setModelOptionsSelected(filteredModel);
       setYearOptionsSelected(filteredYear);
