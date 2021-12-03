@@ -154,6 +154,7 @@ const ImageItem = styled('img')`
   background-size: 100%;
   background-position: center;
   background-origin: content-box;
+  border: 1px solid #f5f5f5;
 `;
 
 const TitleItem = styled('h3')`
