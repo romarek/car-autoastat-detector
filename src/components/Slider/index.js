@@ -97,9 +97,17 @@ export default function SliderResponsive(props) {
             <BoilerplateImage key={car.VIN}>
               <ContainerItems>
                 <Link href={`/car-model/${car.VIN}`} style={{ cursor: 'pointer' }}>
-                  <ImageItem
-                    src={`https://storage.bidspace.info/${car.YardName.trim().toLowerCase()}/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${car.Color.toLowerCase()}-${car.Year.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
-                  />
+                  {car.YardName.trim()
+                    .toLowerCase()
+                    .includes('copart') ? (
+                    <ImageItem
+                      src={`https://storage.bidspace.info/${car.YardName.trim().toLowerCase()}/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${car.Year.toLowerCase()}-${car.Color.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
+                    />
+                  ) : (
+                    <ImageItem
+                      src={`https://storage.bidspace.info/${car.YardName.trim().toLowerCase()}/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${car.Color.toLowerCase()}-${car.Year.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
+                    />
+                  )}
                 </Link>
                 <PriceContainer>
                   {car.FinalBid !== typeof undefined ? car.FinalBid : ''} {car.CurrencyCode}

@@ -30,68 +30,142 @@ export function Product({ t }) {
           setProduct(res.data);
           // eslint-disable-next-line no-console
           console.log(product);
-          setImages([
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
-            },
-            {
-              url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
-              title: res.data.Title,
-              original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
-              thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
-            },
-          ]);
+          if (
+            res.data.YardName.trim()
+              .toLowerCase()
+              .includes('copart')
+          ) {
+            setImages([
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
+              },
+            ]);
+          }
+          if (
+            res.data.YardName.trim()
+              .toLowerCase()
+              .includes('iaai')
+          ) {
+            setImages([
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_0.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_1.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_2.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_3.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_4.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_5.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_6.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_7.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_8.jpg`,
+              },
+              {
+                url: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
+                title: res.data.Title,
+                original: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
+                thumbnail: `https://storage.bidspace.info/${res.data.YardName.trim().toLowerCase()}/${res.data.Make.toLowerCase()}/${res.data.Make.toLowerCase()}-${res.data.ModelGroup.toLowerCase()}-${res.data.Color.toLowerCase()}-${res.data.Year.toLowerCase()}-${res.data.VIN.toLowerCase()}_9.jpg`,
+              },
+            ]);
+          }
           setVinUrl(`https://panel.bidspace.info/api/salesdata/vin/${vin}`);
         })
         .catch(error => {
