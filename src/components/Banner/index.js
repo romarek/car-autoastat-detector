@@ -277,7 +277,7 @@ export function Banner({ t }) {
                             .toLowerCase()
                             .includes('copart') ? (
                             <ImageItem
-                              src={`https://storage.bidspace.info/${car.YardName.trim().toLowerCase()}/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${car.Year.toLowerCase()}-${car.Color.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
+                              src={`https://storage.bidspace.info/${car.YardName.trim().toLowerCase()}/${car.SaleDateMDCY.trim().toLowerCase()}/${car.Make.toLowerCase()}/${car.Make.toLowerCase()}-${car.ModelGroup.toLowerCase()}-${car.Year.toLowerCase()}-${car.Color.toLowerCase()}-${car.VIN.toLowerCase()}_0.jpg`}
                             />
                           ) : (
                             <ImageItem
